@@ -1,4 +1,4 @@
-export type Menu = {
+export interface MenuType {
   data: {
     ID: number;
     menu_order: number;
@@ -7,9 +7,9 @@ export type Menu = {
     url: string;
     menu_item_parent: string;
   }[];
-};
+}
 
-export type rsOptions = {
+export interface rsOptions {
   facebook: {
     url: string;
     title: string;
@@ -25,17 +25,17 @@ export type rsOptions = {
     title: string;
     target: string;
   };
-};
+}
 
-export type OptionsType = {
+export interface OptionsType {
   data: rsOptions;
-};
+}
 
-export type MenuData = {
+export interface MenuData {
   ID: number;
   menu_order: number;
   title: string;
   slug: string;
   url: string;
   menu_item_parent: string;
-};
+}

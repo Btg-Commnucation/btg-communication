@@ -17,6 +17,13 @@
     line-height: calc(21 / 16);
     margin-bottom: 5rem;
 
+    @media (max-width: 824px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: start;
+      align-items: center;
+    }
+
     a {
       color: black;
       text-decoration: none;
@@ -45,6 +52,10 @@
     max-width: 750px;
     position: relative;
     margin-block-end: 2rem;
+
+    @media (max-width: 860px) {
+      font-size: 2.2rem;
+    }
   }
 
   .title {
@@ -54,6 +65,10 @@
     img {
       align-self: flex-end;
       padding-bottom: 3rem;
+
+      @media (max-width: 1000px) {
+        display: none;
+      }
     }
   }
 
@@ -65,6 +80,10 @@
     padding: 3.1rem;
     position: relative;
     margin-top: -2rem;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .exo-light-18 {
@@ -109,6 +128,10 @@
       align-items: flex-start;
       margin-bottom: 5.6rem;
       flex-direction: row;
+
+      @media (max-width: 799px) {
+        flex-direction: column;
+      }
     }
 
     .author-card-content {
@@ -117,6 +140,12 @@
       margin-left: -10.6rem;
       border-radius: 0.8rem;
       background: #fcd647;
+
+      @media (max-width: 799px) {
+        margin-left: auto;
+        margin-top: -9rem;
+        padding: 11rem 2rem 3rem 2rem;
+      }
     }
 
     img {
@@ -126,6 +155,17 @@
       margin-top: 1.1rem;
       position: relative;
       z-index: 2;
+
+      @media (max-width: 1023px) {
+        height: 200px;
+        width: 174px;
+      }
+
+      @media (max-width: 799px) {
+        height: 150px;
+        width: 130px;
+        align-self: center;
+      }
     }
 
     .author-card-title {
@@ -140,6 +180,10 @@
       line-height: calc(54 / 53);
       font-weight: 700;
       margin-bottom: 1.5rem;
+
+      @media (max-width: 799px) {
+        font-size: 3rem;
+      }
     }
 
     .author-card-job {
@@ -158,6 +202,18 @@
       margin-bottom: 3.5rem;
     }
 
+    .btn-container {
+      @media (max-width: 799px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        text-align: center;
+      }
+    }
+
     .btn {
       font-size: 2.6rem;
       font-family: "Exo", sans-serif;
@@ -170,8 +226,16 @@
       border-radius: 37px;
       transition: 0.2 ease-in-out;
 
+      @media (max-width: 799px) {
+        font-size: 1.8rem;
+      }
+
       &:first-child {
         margin-right: 1.2rem;
+
+        @media (max-width: 799px) {
+          margin-right: 0;
+        }
       }
 
       &:hover {
@@ -316,6 +380,12 @@
     span {
       color: #fcd647;
     }
+
+    @media (max-width: 1200px) {
+      br {
+        display: none;
+      }
+    }
   }
 
   .card-content {
@@ -332,6 +402,12 @@
 
       &:hover {
         text-decoration: underline;
+      }
+
+      img {
+        @media (max-width: 1200px) {
+          width: 100%;
+        }
       }
     }
 

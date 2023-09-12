@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Rs from "./header/Rs";
+import Rs from "../header/Rs";
 import https from "https";
 import axios from "axios";
 import { OptionsType } from "@/middleware/Header";

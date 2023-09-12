@@ -6,7 +6,7 @@ import https from "https";
 import ListNav from "./ListNav";
 import Rs from "./Rs";
 import ContactFront from "./ContactFront";
-import { Menu, OptionsType } from "@/middleware/Header";
+import { MenuType, OptionsType } from "@/middleware/Header";
 
 const cabin = Cabin({ subsets: ["latin"] });
 const URL_API = process.env.URL_API;
@@ -27,9 +27,9 @@ const agent = new https.Agent({
   rejectUnauthorized: false,
 });
 
-const getMenu = async (): Promise<Menu | undefined> => {
+const getMenu = async (): Promise<MenuType | undefined> => {
   try {
-    const response = await axios<Menu, any>(
+    const response = await axios<MenuType, any>(
       `${URL_API}/better-rest-endpoints/v1/menus/principal`,
       { httpsAgent: agent }
     );

@@ -3,13 +3,13 @@ import axios from "axios";
 import https from "https";
 import { ResolvingMetadata, Metadata } from "next";
 import he from "he";
-import BlogHeader from "@/components/BlogHeader";
+import BlogHeader from "@/components/blog/BlogHeader";
 import { use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AcfLayout from "./AcfLayout";
 import Author from "./Author";
-import BlogFooter from "@/components/BlogFooter";
+import BlogFooter from "@/components/blog/BlogFooter";
 import Posts from "./Posts";
 
 const URL_API = process.env.URL_API;
@@ -130,6 +130,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     height={370}
                     alt={data!.title}
                     className="thumbnail"
+                    priority={true}
                   />
                 ) : (
                   <Image

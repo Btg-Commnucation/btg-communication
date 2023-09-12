@@ -40,8 +40,10 @@ export default function Posts({
                 <Image
                   src={post.media.large}
                   alt={he.decode(post.title)}
-                  width={366}
-                  height={218}
+                  width={833}
+                  height={496}
+                  quality={100}
+                  priority={true}
                 />
               </Link>
               <div className="card-content">

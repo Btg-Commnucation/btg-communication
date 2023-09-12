@@ -9,6 +9,37 @@
   font-weight: 500;
   margin-inline: auto;
   height: 100%;
+
+  @media (max-width: 1023px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: flex-start;
+    align-items: center;
+
+    .menu {
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: flex-end;
+      z-index: 200;
+    }
+
+    .blog-header-right {
+      justify-self: center;
+    }
+  }
+
+  & ~ #overlay-menu {
+    height: 100%;
+    top: 0;
+
+    .content {
+      height: 100%;
+    }
+
+    .list-nav {
+      height: 100%;
+    }
+  }
 }
 
 .header-logo {
@@ -25,6 +56,10 @@
     color: black;
     font-family: "Exo", sans-serif;
     line-height: 1.3;
+
+    @media (max-width: 1200px) {
+      display: none;
+    }
 
     strong {
       font-weight: 700;
@@ -44,6 +79,10 @@
     text-decoration: none;
     color: black;
     font-weight: 500;
+  }
+
+  @media (max-width: 1440px) {
+    gap: 1rem;
   }
 }
 
