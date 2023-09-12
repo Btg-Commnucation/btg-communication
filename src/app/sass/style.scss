@@ -1,0 +1,7 @@
+@use "base";
+@use "components";
+@use "layouts";
+
+body.no-scroll {
+  overflow: hidden;
+}

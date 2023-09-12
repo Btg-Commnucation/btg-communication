@@ -1,0 +1,138 @@
+#front-page #philosophie {
+  position: relative;
+  margin-top: -2em;
+
+  .container {
+    justify-content: flex-start;
+
+    @media (max-width: 950px) {
+      flex-direction: column-reverse;
+    }
+    @media (max-width: 768px) {
+      padding: 0;
+    }
+  }
+
+  h2 {
+    font-size: 5.6rem;
+    font-family: "Cabin", sans-serif;
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 0.5rem 0 3rem 0.5rem;
+    line-height: 0.8;
+    white-space: nowrap;
+    position: relative;
+    z-index: 4;
+    color: white;
+    background: black;
+    top: -4rem;
+    left: -7rem;
+
+    &::after {
+      display: inline-block;
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 3.5rem;
+      margin-left: 0.5rem;
+      background: white;
+    }
+
+    @media (max-width: 1200px) {
+      top: 0;
+      left: 5rem;
+    }
+    @media (max-width: 950px) {
+      top: 0;
+      left: 0;
+    }
+    @media (max-width: 768px) {
+      left: 4%;
+      font-size: 3.3rem;
+    }
+  }
+
+  .desc {
+    position: absolute;
+    z-index: 5;
+    top: 15%;
+    left: 31%;
+    width: 60%;
+
+    @media (max-width: 1739px) {
+      width: 70%;
+    }
+    @media (max-width: 1605px) {
+      top: 12%;
+      left: 28%;
+      width: 74%;
+    }
+    @media (max-width: 1200px) {
+      width: 63%;
+      left: 36%;
+      top: 2%;
+    }
+    @media (max-width: 950px) {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 71%;
+      margin-left: 7em;
+    }
+    @media (max-width: 768px) {
+      top: 4rem;
+      padding-bottom: 10rem;
+      z-index: -1;
+      margin-left: 0;
+      align-self: flex-start;
+      width: 100%;
+      padding-left: 0;
+    }
+  }
+
+  .content {
+    background: white;
+    padding: 2rem 5rem;
+    font-size: 2.1rem;
+    font-weight: 300;
+  }
+
+  .philo-img {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 13px 13px 13px 0 rgba(0, 0, 0, 0.46);
+
+    @media (max-width: 1200px) {
+      width: 85%;
+    }
+    @media (max-width: 950px) {
+      width: 68%;
+      margin-top: -28rem;
+      align-self: flex-start;
+    }
+    @media (max-width: 768px) {
+      margin-top: -26rem;
+      bottom: -18rem;
+    }
+  }
+
+  .vague.flipped {
+    transform: rotate(270deg);
+    position: absolute;
+    bottom: -12%;
+    right: -4%;
+
+    @media (max-width: 1200px) {
+      bottom: -7%;
+    }
+    @media (max-width: 950px) {
+      left: -20%;
+      top: 50%;
+    }
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,254 @@
+header {
+  width: 100%;
+  height: 44px;
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    padding: 0;
+    width: calc(100% - 84px);
+    margin-inline: auto;
+
+    @media screen and (max-width: 1200px) {
+      width: calc(100% - 24px);
+    }
+  }
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-right: -3px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    cursor: pointer;
+
+    &.open p {
+      transform: rotate(-90deg);
+      left: -50%;
+    }
+
+    &.open #menu-img .front-face {
+      transform: rotateY(180deg);
+    }
+
+    &.open #menu-img .back-face {
+      transform: rotateY(0);
+    }
+  }
+
+  p {
+    position: absolute;
+    bottom: 17px;
+    left: -75%;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    transition: 0.2s ease-in-out;
+  }
+
+  strong {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 2rem;
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  #menu-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: 0.2s ease-in-out;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+
+    .front-face {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      transform: rotateY(0);
+      transition: 0.2s ease-in-out;
+    }
+
+    .back-face {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      transition: 0.2s ease-in-out;
+    }
+  }
+}
+
+#overlay-menu {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  position: fixed;
+  top: 44px;
+  right: 0;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition-duration: 0.4s;
+  opacity: 0;
+
+  &.open {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .content {
+    width: 60%;
+    height: calc(100vh - 44px);
+    min-height: 675px;
+    margin-left: 40%;
+    background: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -299px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 300px calc(100vh - 44px) 0;
+      border-color: transparent #fff transparent transparent;
+    }
+
+    @media screen and (max-width: 1200px) {
+      width: calc(100% - 200px);
+      margin-left: 200px;
+      justify-content: flex-start;
+
+      &::after {
+        left: -199px;
+        border-width: 0 200px calc(100vh - 44px) 0;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      margin-left: 0;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .menu-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    @media screen and (max-width: 768px) {
+      align-items: center;
+    }
+
+    .rs {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5em;
+
+      li {
+        transform: translateY(0);
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          transform: translateY(-10px);
+        }
+      }
+
+      li:hover a::after {
+        display: none;
+      }
+    }
+  }
+}
+
+.contact-icons {
+  cursor: pointer;
+  position: fixed;
+  left: 25px;
+  top: calc(50% - 25px);
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+  transition: 0.2s ease-in-out;
+
+  @media screen and (max-width: 1200px) {
+    position: initial;
+    left: unset;
+    top: unset;
+    margin-top: 1.5rem;
+
+    img {
+      width: 39.28px;
+    }
+  }
+
+  .flip-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: 0.2s ease-in-out;
+
+    .front-face {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      transform: rotateY(0);
+      transition: 0.2s ease-in-out;
+    }
+
+    .back-face {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      transition: 0.2s ease-in-out;
+    }
+  }
+
+  &.open .front-face {
+    transform: rotateY(180deg);
+  }
+
+  &.open .back-face {
+    transform: rotateY(0);
+  }
+}

@@ -1,0 +1,351 @@
+#client {
+  margin-top: 0;
+  position: relative;
+
+  #media {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background: rgb(0 0 0 / 0.5);
+    top: 0;
+    left: 0;
+
+    .container {
+      width: 75%;
+      margin: auto;
+      position: absolute;
+      inset: 0;
+      height: fit-content;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem 4rem;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 600;
+      font-family: "Cabin", sans-serif;
+      transition: 0.3s ease-in-out;
+      border: none;
+      background: transparent;
+      margin-bottom: 2rem;
+
+      &:hover #arrow {
+        transform: translateX(10px);
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    svg {
+      margin-right: 1.2rem;
+      transition: 0.3s ease-in-out;
+      fill: white;
+
+      path {
+        transition: 0.3s ease-in-out;
+      }
+    }
+
+    h3 {
+      color: white;
+      margin-block: 4rem;
+      font-size: 2.1rem;
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: 600;
+      font-family: "Cabin", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-block: 0 10px;
+      }
+    }
+  }
+
+  .banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    min-height: 622px;
+    width: calc(100% - 88px);
+    margin-inline: auto;
+  }
+
+  .vague {
+    width: 67px;
+    height: 29px;
+    margin-block: 40px 25px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(180deg);
+    }
+  }
+
+  h1 {
+    font-size: 5.4rem;
+    line-height: 4.5rem;
+    font-weight: 700;
+    font-family: "Cabin", sans-serif;
+    text-align: center;
+  }
+
+  .sub-title {
+    margin-top: 1em;
+    text-align: center;
+    font-weight: 700;
+    font-family: "Cabin", sans-serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    font-style: italic;
+    color: white;
+  }
+
+  .real {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    position: relative;
+    font-family: "Cabin", sans-serif;
+    font-size: 2.1rem;
+    font-weight: 300;
+    padding: 2.5rem 3.3rem;
+    transition: 0.1s ease-in-out;
+    width: fit-content;
+    margin-inline: auto;
+    text-transform: uppercase;
+    margin-top: 4rem;
+
+    &:hover {
+      color: white;
+      background: black;
+
+      svg {
+        right: -39px;
+      }
+    }
+
+    svg {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      bottom: 0;
+      right: -25px;
+      transition: 0.1s ease-in-out;
+      z-index: 1;
+
+      g {
+        fill: #e3775b;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 5px solid black;
+    }
+  }
+}
+
+.experiences {
+  width: 83%;
+  margin-inline: auto;
+  text-align: center;
+  margin-top: 5rem;
+
+  h2 {
+    font-size: 3.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Cabin", sans-serif;
+    line-height: 0.8;
+  }
+
+  .clients {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-inline: 3rem;
+      padding-block: 4rem;
+    }
+
+    .photo {
+      width: 210px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      position: relative;
+
+      &.video {
+        cursor: pointer;
+      }
+
+      &.video::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-block: auto;
+        left: calc(50% - 20px);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 34px 0 34px 59px;
+        border-color: transparent transparent transparent
+          rgba(255, 255, 255, 0.8);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    h3 {
+      margin-block: 20px;
+      font-size: 2rem;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      span {
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+      }
+    }
+
+    .wave-radiant {
+      transform: rotate(180deg);
+      margin-bottom: 2rem;
+    }
+
+    .desc {
+      font-weight: 300;
+      font-family: "Exo", sans-serif;
+      padding: 2rem;
+    }
+  }
+}
+
+.trust-us {
+  margin-top: 9rem;
+
+  .container {
+    max-width: 80%;
+    margin-inline: auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 3.6rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: black;
+    line-height: 0.8;
+    font-weight: 700;
+    white-space: nowrap;
+    font-family: "Cabin", sans-serif;
+
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
+      white-space: normal;
+    }
+  }
+
+  .confiances {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2.5rem;
+    margin-inline: auto;
+    place-items: center;
+    margin-top: 2.5rem;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.contact-us {
+  margin-block: 2.5rem 7rem;
+
+  .container {
+    max-width: 80%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 3.6rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: black;
+    line-height: 0.8;
+    font-weight: 700;
+    white-space: nowrap;
+    font-family: "Cabin", sans-serif;
+  }
+
+  a {
+    margin-top: 3.5rem;
+    display: flow-root;
+    transition: 0.3s ease-in-out;
+    transform: translateY(0);
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+  }
+}

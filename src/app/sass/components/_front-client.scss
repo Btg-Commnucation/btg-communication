@@ -1,0 +1,178 @@
+#front-page #front-clients {
+  background: #fcd647;
+  padding-block: 7.5rem 6rem;
+
+  @media (max-width: 1200px) {
+    padding-top: 24.4rem;
+    margin-top: -11rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 8rem;
+    padding-top: 0;
+  }
+
+  .container {
+    max-width: 1155px;
+    flex-direction: column;
+    align-items: start;
+
+    @media (max-width: 1200px) {
+      max-width: 700px;
+      padding: 0;
+    }
+
+    @media (max-width: 768px) {
+      max-width: calc(100% - 24px);
+    }
+  }
+
+  .headings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+
+    @media (max-width: 1360px) {
+      margin-left: 2em;
+    }
+
+    @media (max-width: 1200px) {
+      margin-left: 7em;
+    }
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
+  }
+
+  h2 {
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: "Cabin", sans-serif;
+    font-weight: 700;
+    font-size: 5.6rem;
+    padding: 0.5rem 0 3rem 0.5rem;
+    line-height: 0.8;
+    white-space: nowrap;
+    background: black;
+    color: white;
+    transform-origin: top left;
+    transform: rotate(-90deg);
+    position: absolute;
+    left: -2em;
+    top: 2.8em;
+
+    @media (max-width: 1360px) {
+      left: -1.8em;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 3.3rem;
+      left: 0;
+      top: unset;
+      bottom: -1.9em;
+    }
+
+    &::after {
+      display: inline-block;
+      content: "";
+      background: black;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 3.5rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  h3 {
+    font-size: 2.6rem;
+    color: #010101;
+    font-weight: 300;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+      margin-top: 4rem;
+      font-size: 2rem;
+      margin-left: 8rem;
+    }
+
+    svg {
+      margin-bottom: 1.6rem;
+      width: 188px;
+      height: 32px;
+
+      @media (max-width: 768px) {
+        width: 87px;
+        height: 19px;
+      }
+    }
+  }
+
+  .clients {
+    align-self: center;
+    background: white;
+    position: relative;
+    width: 85%;
+    margin-top: 5rem;
+    padding-inline: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    place-items: center;
+    min-height: 312px;
+    min-width: 1031px;
+
+    @media (max-width: 1200px) {
+      min-width: auto;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+      min-height: auto;
+      gap: 1rem;
+      padding: 0;
+
+      li {
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 0;
+    }
+
+    .grille {
+      position: absolute;
+      width: 105%;
+      height: 112%;
+      top: -6%;
+      left: -2.5%;
+      background: url("/grille.png") no-repeat center;
+      background-size: cover;
+      pointer-events: none;
+
+      @media (max-width: 1200px) {
+        display: none;
+      }
+    }
+  }
+
+  .btn-primary {
+    align-self: end;
+    margin-right: -8rem;
+    margin-top: 4rem;
+
+    @media (max-width: 1600px) {
+      margin-right: 0;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+      margin-right: 1em;
+    }
+  }
+}
