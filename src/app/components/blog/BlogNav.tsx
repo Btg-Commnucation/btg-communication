@@ -26,7 +26,9 @@ export default function BlogNav({
         <ul id="menu-principal">
           {data.map((item) => (
             <li key={item.ID}>
-              <Link href={`/${item.slug}`}>{he.decode(item.title)}</Link>
+              <Link href={`/blog?category=${item.slug}`}>
+                {he.decode(item.title)} toto
+              </Link>
             </li>
           ))}
         </ul>

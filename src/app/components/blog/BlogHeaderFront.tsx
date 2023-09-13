@@ -19,7 +19,7 @@ export default function BlogHeaderFront({ element }: { element: MenuData[] }) {
             {element &&
               element.map((item, index: number) => (
                 <li key={index}>
-                  <Link href={`/blog?category=${item.url}`}>{item.title}</Link>
+                  <Link href={`/blog?category=${item.slug}`}>{item.title}</Link>
                 </li>
               ))}
           </ul>

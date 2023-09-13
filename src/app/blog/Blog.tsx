@@ -11,6 +11,8 @@ import { Membre } from "@/middleware/Page";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useSearchParams } from "next/navigation";
+import slugify from "slugify";
+import unslugify from "unslugify";
 
 const Post = ({
   article,
@@ -26,6 +28,15 @@ const Post = ({
       return text;
     }
     return text.slice(0, length) + "...";
+  };
+
+  const slug = (categoryName: string): string => {
+    const categorySlug = slugify(categoryName, {
+      replacement: "-",
+      lower: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
+    return categorySlug;
   };
 
   const formatDate = (isoDate: string): string => {
@@ -70,7 +81,7 @@ const Post = ({
       ) : (
         <>
           {article.category_names.find(
-            (category) => category.toLowerCase() === filter
+            (category) => slug(category) === filter
           ) && (
             <div className="post-content">
               <Link href={`/blog/${article.slug}`}>
@@ -207,6 +218,12 @@ export default function Blog({
 
   const [search, setSearch] = useState(searchParams.get("category"));
 
+  const categoryName = (slug: string): string => {
+    const name = unslugify(slug);
+    console.log(name);
+    return name;
+  };
+
   useEffect(() => {
     setSearch(searchParams.get("category"));
   }, [search, searchParams]);
@@ -283,7 +300,9 @@ export default function Blog({
         <>
           <section className="hero-banner filtered-hero">
             <div className="blog-container">
-              <h1>{search === "all" ? "Tous les articles" : search}</h1>
+              <h1>
+                {search === "all" ? "Tous les articles" : categoryName(search)}
+              </h1>
             </div>
           </section>
           <section className="posts filtered-posts">
