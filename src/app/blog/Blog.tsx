@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PostData } from "@/middleware/Post";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,13 +10,16 @@ import { fr } from "date-fns/locale";
 import { Membre } from "@/middleware/Page";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import { useSearchParams } from "next/navigation";
 
 const Post = ({
   article,
   priority,
+  filter,
 }: {
   article: PostData;
   priority: boolean;
+  filter?: string | null;
 }) => {
   const truncateText = (text: string, length: number): string => {
     if (text.length <= length) {
@@ -31,33 +34,79 @@ const Post = ({
   };
 
   return (
-    <div className="post-content">
-      <Link href={`/blog/${article.slug}`}>
-        <Image
-          src={article.media.large}
-          alt={he.decode(article.title)}
-          width={833}
-          height={496}
-          quality={100}
-          priority={priority}
-        />
-      </Link>
-      <div className="card-content">
-        <Link href={`/blog/${article.slug}`} className="card-title">
-          {he.decode(article.title)}
-        </Link>
-        <p className="post-cateogry">{he.decode(article.category_names[0])}</p>
-        <div
-          className="card-excerpt"
-          dangerouslySetInnerHTML={
-            article.excerpt
-              ? { __html: article.excerpt }
-              : { __html: truncateText(article.acf.accroche, 199) }
-          }
-        ></div>
-        <div className="card-date">{he.decode(formatDate(article.date))}</div>
-      </div>
-    </div>
+    <>
+      {!filter ? (
+        <div className="post-content">
+          <Link href={`/blog/${article.slug}`}>
+            <Image
+              src={article.media.large}
+              alt={he.decode(article.title)}
+              width={833}
+              height={496}
+              quality={100}
+              priority={priority}
+            />
+          </Link>
+          <div className="card-content">
+            <Link href={`/blog/${article.slug}`} className="card-title">
+              {he.decode(article.title)}
+            </Link>
+            <p className="post-cateogry">
+              {he.decode(article.category_names[0])}
+            </p>
+            <div
+              className="card-excerpt"
+              dangerouslySetInnerHTML={
+                article.excerpt
+                  ? { __html: article.excerpt }
+                  : { __html: truncateText(article.acf.accroche, 199) }
+              }
+            ></div>
+            <div className="card-date">
+              {he.decode(formatDate(article.date))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <>
+          {article.category_names.find(
+            (category) => category.toLowerCase() === filter
+          ) && (
+            <div className="post-content">
+              <Link href={`/blog/${article.slug}`}>
+                <Image
+                  src={article.media.large}
+                  alt={he.decode(article.title)}
+                  width={833}
+                  height={496}
+                  quality={100}
+                  priority={priority}
+                />
+              </Link>
+              <div className="card-content">
+                <Link href={`/blog/${article.slug}`} className="card-title">
+                  {he.decode(article.title)}
+                </Link>
+                <p className="post-cateogry">
+                  {he.decode(article.category_names[0])}
+                </p>
+                <div
+                  className="card-excerpt"
+                  dangerouslySetInnerHTML={
+                    article.excerpt
+                      ? { __html: article.excerpt }
+                      : { __html: truncateText(article.acf.accroche, 199) }
+                  }
+                ></div>
+                <div className="card-date">
+                  {he.decode(formatDate(article.date))}
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 };
 
@@ -154,62 +203,112 @@ export default function Blog({
   articles: PostData[];
   members: Membre[];
 }) {
+  const searchParams = useSearchParams();
+
+  const [search, setSearch] = useState(searchParams.get("category"));
+
+  useEffect(() => {
+    setSearch(searchParams.get("category"));
+  }, [search, searchParams]);
+
   return (
     <>
-      <section className="hero-banner">
-        <div className="blog-container">
-          <h1>Retrouvez l&apos;actualités de la communication</h1>
-          <div className="articles-container-recommended">
-            <h2>
-              Nos derniers <span>Articles</span>
-            </h2>
-            <div className="recommended-items">
-              {articles.slice(0, 3).map((article) => (
-                <Post article={article} key={article.id} priority={true} />
-              ))}
+      {!search ? (
+        <>
+          <section className="hero-banner">
+            <div className="blog-container">
+              <h1>Retrouvez l&apos;actualités de la communication</h1>
+              <div className="articles-container-recommended">
+                <h2>
+                  Nos derniers <span>Articles</span>
+                </h2>
+                <div className="recommended-items">
+                  {articles.slice(0, 3).map((article) => (
+                    <Post article={article} key={article.id} priority={true} />
+                  ))}
+                </div>
+              </div>
+              <div className="all-articles__container">
+                <Link href="/blog?category=all" className="all-articles">
+                  Tous nos articles
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="all-articles__container">
-            <Link href="/blog?category=all" className="all-articles">
-              Tous nos articles
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className="mostRead">
-        <div className="blog-container">
-          <h2>
-            Les articles les <span>plus lus</span>
-          </h2>
-          <div className="recommended-items">
-            {articles.map((article) => (
-              <>
-                {article.acf.article_plus_lu && (
-                  <Post article={article} key={article.id} priority={false} />
-                )}
-              </>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="authors">
-        <div className="blog-container">
-          <Authors members={members} />
-        </div>
-      </section>
-      <section className="guides">
-        <div className="blog-container">
-          <h2>Tuto / guides</h2>
-          <div className="recommended-items">
-            {articles.map((article) => (
-              <Post article={article} key={article.id} priority={false} />
-            ))}
-          </div>
-          <div className="guides-link">
-            <Link href="/blog?category=guides">Tous nos guides</Link>
-          </div>
-        </div>
-      </section>
+          </section>
+          <section className="mostRead">
+            <div className="blog-container">
+              <h2>
+                Les articles les <span>plus lus</span>
+              </h2>
+              <div className="recommended-items">
+                {articles.map((article) => (
+                  <>
+                    {article.acf.article_plus_lu && (
+                      <Post
+                        article={article}
+                        key={article.id}
+                        priority={false}
+                      />
+                    )}
+                  </>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className="authors">
+            <div className="blog-container">
+              <Authors members={members} />
+            </div>
+          </section>
+          <section className="guides">
+            <div className="blog-container">
+              <h2>Tuto / guides</h2>
+              <div className="recommended-items">
+                {articles.map((article) => (
+                  <Post
+                    article={article}
+                    key={article.id}
+                    priority={false}
+                    filter="guides"
+                  />
+                ))}
+              </div>
+              <div className="guides-link">
+                <Link href="/blog?category=guides">Tous nos guides</Link>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <>
+          <section className="hero-banner filtered-hero">
+            <div className="blog-container">
+              <h1>{search === "all" ? "Tous les articles" : search}</h1>
+            </div>
+          </section>
+          <section className="posts filtered-posts">
+            <div className="blog-container">
+              <Image
+                src="/wave-radiant.gif"
+                alt="Vague"
+                width={188}
+                height={36}
+                className="wave"
+              />
+              <div className="recommended-items">
+                {articles.map((article) => (
+                  <Post
+                    article={article}
+                    key={article.id}
+                    priority={true}
+                    filter={search === "all" ? null : search}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </>
   );
 }
