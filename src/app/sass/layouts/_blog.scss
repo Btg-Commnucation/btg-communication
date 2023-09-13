@@ -1,0 +1,106 @@
+.recommended-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: flex-start;
+  column-gap: 3.7rem;
+  row-gap: 7.2rem;
+
+  @media (max-width: 1199px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+h2 {
+  font-size: 5.3rem;
+  font-family: "Cabin", sans-serif;
+  font-weight: 700;
+  padding: 0.5rem 0 3rem 0.5rem;
+  line-height: 0.8;
+
+  span {
+    color: #fcd647;
+  }
+
+  @media (max-width: 1200px) {
+    br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 467px) {
+    font-size: 3rem;
+    line-height: 1.15;
+  }
+}
+
+.card-content {
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 2.5rem;
+    margin-block: 1.5rem 1rem;
+    font-weight: 600;
+    font-family: "Cabin", sans-serif;
+    display: flow-root;
+    line-height: 1;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      @media (max-width: 1200px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .post-cateogry {
+    font-size: 1.8rem;
+    line-height: calc(24 / 18);
+    font-family: "Exo", sans-serif;
+    color: #fc5e82;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    margin-top: 3rem;
+  }
+
+  .card-excerpt {
+    line-height: caclc(21 / 16);
+    font-family: "Exo", sans-serif;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  .card-date {
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+    line-height: calc(20 / 15);
+    font-family: "Exo", sans-serif;
+    font-weight: 700;
+    color: #b4b4b4;
+  }
+}
+
+.mostRead {
+  padding-block: 4.2rem;
+
+  .recommended-items {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2.9rem;
+
+    @media (max-width: 1199px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

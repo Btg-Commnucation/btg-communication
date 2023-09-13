@@ -17,6 +17,7 @@ export interface PostData {
     image_haut_article?: ImageType;
     content: contentType[];
     auteur: string;
+    article_plus_lu: string;
   };
   yoast: {
     yoast_wpseo_title: string;
