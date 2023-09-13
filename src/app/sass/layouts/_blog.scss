@@ -104,3 +104,93 @@ h2 {
     }
   }
 }
+
+#blog .guides {
+  margin-bottom: 5.2rem;
+
+  .blog-container {
+    background: black;
+    color: white;
+    padding: 5rem 4.3rem 6.1rem 6.9rem;
+  }
+
+  .recommended-items {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3.7rem;
+    row-gap: 6.8rem;
+    align-items: start;
+
+    @media (max-width: 799px) {
+      grid-template-columns: repeat(1, 1fr);
+      align-items: center;
+    }
+  }
+
+  .post-cateogry {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    color: #fff;
+    font-weight: 700;
+    font-family: "Exo", sans-serif;
+    margin-block-start: 0;
+  }
+
+  h2 {
+    font-size: 5.3rem;
+
+    @media (max-width: 799px) {
+      font-size: 3rem;
+    }
+  }
+
+  .post-content {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2.5rem;
+    row-gap: 2.5rem;
+
+    @media (max-width: 799px) {
+      flex-direction: column;
+    }
+
+    a {
+      color: white;
+    }
+  }
+
+  .guides-link {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+
+    @media (max-width: 799px) {
+      justify-content: center;
+    }
+
+    a {
+      padding: 15px 20px;
+      display: inline-block;
+      margin-block-start: 23px;
+      background-color: #fff;
+      color: #000;
+      border-radius: 37px;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: "Exo", sans-serif;
+      text-decoration: none;
+      border: 2px solid #fff;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        background: black;
+        color: white;
+      }
+    }
+  }
+}

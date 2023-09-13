@@ -197,6 +197,19 @@ export default function Blog({
           <Authors members={members} />
         </div>
       </section>
+      <section className="guides">
+        <div className="blog-container">
+          <h2>Tuto / guides</h2>
+          <div className="recommended-items">
+            {articles.map((article) => (
+              <Post article={article} key={article.id} priority={false} />
+            ))}
+          </div>
+          <div className="guides-link">
+            <Link href="/blog?category=guides">Tous nos guides</Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
