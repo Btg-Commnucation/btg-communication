@@ -103,3 +103,25 @@
     font-family: "Cabin", sans-serif;
   }
 }
+
+.search-input {
+  border: 2px solid #fcd647;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: auto;
+  transition: 0.5s ease-in-out;
+
+  &.hidden {
+    width: 0;
+    border-color: transparent;
+  }
+}
+
+.blog-header-right {
+  .search-link {
+    padding: 0;
+    background: transparent;
+    width: fit-content;
+    height: fit-content;
+  }
+}

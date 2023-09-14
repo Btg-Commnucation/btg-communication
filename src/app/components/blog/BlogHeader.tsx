@@ -12,6 +12,7 @@ import Link from "next/link";
 import BlogHeaderFront from "./BlogHeaderFront";
 import BlogNav from "./BlogNav";
 import { Cabin } from "next/font/google";
+import Search from "./Search";
 
 const cabin = Cabin({ subsets: ["latin"] });
 
@@ -66,15 +67,7 @@ export default function BlogHeader() {
           </span>
         </Link>
         <BlogHeaderFront element={menuBlog as unknown as MenuData[]} />
-        <section className="blog-header-right">
-          <Image
-            src="/search.png"
-            width={27}
-            height={27}
-            alt="Rechercher un article"
-          />
-          <Link href="/">L&apos;agence</Link>
-        </section>
+        <Search />
       </header>
       <div id="overlay-menu" className={cabin.className}>
         <div className="content">
