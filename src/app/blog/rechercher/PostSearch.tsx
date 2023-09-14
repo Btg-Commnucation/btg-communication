@@ -34,31 +34,42 @@ const Post = ({
     <>
       <div className="post-content">
         <Link href={`/blog/${article.slug}`}>
-          <Image
-            src={article.media.large}
-            alt={he.decode(article.title)}
-            width={833}
-            height={496}
-            quality={100}
-            priority={priority}
-          />
+          {article.media && (
+            <Image
+              src={article.media?.large}
+              alt={he.decode(article.title)}
+              width={833}
+              height={496}
+              quality={100}
+              priority={priority}
+            />
+          )}
         </Link>
         <div className="card-content">
           <Link href={`/blog/${article.slug}`} className="card-title">
             {he.decode(article.title)}
           </Link>
-          <p className="post-cateogry">
-            {he.decode(article.category_names[0])}
-          </p>
-          <div
-            className="card-excerpt"
-            dangerouslySetInnerHTML={
-              article.excerpt
-                ? { __html: article.excerpt }
-                : { __html: truncateText(article.acf.accroche, 199) }
-            }
-          ></div>
-          <div className="card-date">{he.decode(formatDate(article.date))}</div>
+          {article.category_names?.length > 1 && (
+            <p className="post-cateogry">
+              {he.decode(article.category_names[0])}
+            </p>
+          )}
+          {article.excerpt ||
+            (article.acf?.accroche && (
+              <div
+                className="card-excerpt"
+                dangerouslySetInnerHTML={
+                  article.excerpt
+                    ? { __html: article.excerpt }
+                    : { __html: truncateText(article.acf?.accroche, 199) }
+                }
+              ></div>
+            ))}
+          {article.date && (
+            <div className="card-date">
+              {he.decode(formatDate(article.date))}
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -67,7 +78,7 @@ const Post = ({
 
 export default function PostSearch({ posts }: { posts: PostData[] }) {
   const searchParams = useSearchParams();
-  const [search, setSearch] = useState(searchParams.get("search"));
+  const [search, setSearch] = useState(searchParams?.get("search") || "");
   const [filteredArticles, setFilteredArticles] = useState<PostData[]>([]);
 
   const slug = (title: string): string => {
@@ -86,7 +97,7 @@ export default function PostSearch({ posts }: { posts: PostData[] }) {
   };
 
   useEffect(() => {
-    setSearch(searchParams.get("search"));
+    setSearch(searchParams?.get("search") || "");
     setFilteredArticles(
       posts.filter((article) => {
         return slug(article.title).includes(search!);
