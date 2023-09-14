@@ -34,42 +34,31 @@ const Post = ({
     <>
       <div className="post-content">
         <Link href={`/blog/${article.slug}`}>
-          {article.media && (
-            <Image
-              src={article.media?.large}
-              alt={he.decode(article.title)}
-              width={833}
-              height={496}
-              quality={100}
-              priority={priority}
-            />
-          )}
+          <Image
+            src={article.media.large}
+            alt={he.decode(article.title)}
+            width={833}
+            height={496}
+            quality={100}
+            priority={priority}
+          />
         </Link>
         <div className="card-content">
           <Link href={`/blog/${article.slug}`} className="card-title">
             {he.decode(article.title)}
           </Link>
-          {article.category_names?.length > 1 && (
-            <p className="post-cateogry">
-              {he.decode(article.category_names[0])}
-            </p>
-          )}
-          {article.excerpt ||
-            (article.acf?.accroche && (
-              <div
-                className="card-excerpt"
-                dangerouslySetInnerHTML={
-                  article.excerpt
-                    ? { __html: article.excerpt }
-                    : { __html: truncateText(article.acf?.accroche, 199) }
-                }
-              ></div>
-            ))}
-          {article.date && (
-            <div className="card-date">
-              {he.decode(formatDate(article.date))}
-            </div>
-          )}
+          <p className="post-cateogry">
+            {he.decode(article.category_names[0])}
+          </p>
+          <div
+            className="card-excerpt"
+            dangerouslySetInnerHTML={
+              article.excerpt
+                ? { __html: article.excerpt }
+                : { __html: truncateText(article.acf?.accroche, 199) }
+            }
+          ></div>
+          <div className="card-date">{he.decode(formatDate(article.date))}</div>
         </div>
       </div>
     </>
