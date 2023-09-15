@@ -161,6 +161,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             <h2>{he.decode(data!.acf.titre)}</h2>
             <div
               className="slogan"
+              // deepcode ignore DOMXSS: <Personnal API>
               dangerouslySetInnerHTML={{ __html: data!.content }}
             ></div>
             <Image
