@@ -8,6 +8,10 @@
   width: calc(100% - 88px);
   margin-inline: auto;
 
+  @media (max-width: 750px) {
+    width: calc(100% - 22px);
+  }
+
   .vague {
     width: 67px;
     height: 29px;
@@ -21,7 +25,7 @@
   }
 
   h1 {
-    font-size: 5.4rem;
+    font-size: calc(40px + (54 - 40) * ((100vw - 320px) / (1920 - 320)));
     line-height: 4.5rem;
     font-weight: 700;
     font-family: "Cabin", sans-serif;

@@ -23,6 +23,27 @@ export type PageType<T> = {
   };
 };
 
+export interface VilleType {
+  sous_titre: string;
+  image_premier_paragraphe: ImageType;
+  texte_premier_paragraphe: string;
+  titre_premier_paragraphe: string;
+  titre_fond_jaune: string;
+  description_fond_jaune: string;
+  textes_fond_jaune: { texte: string }[];
+  image_post_fond_jaune: ImageType;
+  texte_post_fond_jaune: string;
+  titre_fond_blanc: string;
+  texte_un_fond_blanc: string;
+  texte_deux_fond_blanc: string;
+  image_fond_blanc: ImageType;
+  titre_fond_gris: string;
+  texte_fond_gris: { texte: string }[];
+  titre_fond_jaune_2: string;
+  texte_fond_jaune_un: string;
+  texte_fond_jaune_deux: string;
+}
+
 export type TemoignagesType = {
   nom: string;
   job: string;
