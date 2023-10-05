@@ -70,7 +70,7 @@ const getPages = async (slug: string): Promise<Response> => {
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },
-  parent?: ResolvingMetadata
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { slug } = params;
 
@@ -86,16 +86,16 @@ export async function generateMetadata(
     )
   );
   if (!data) {
-    return {
+    return Promise.resolve({
       title: "404",
       description: "Page not found",
-    };
+    });
   }
 
-  return {
+  return Promise.resolve({
     title: he.decode(data?.title),
     description: he.decode(data?.yoast.yoast_wpseo_metadesc),
-  };
+  });
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
