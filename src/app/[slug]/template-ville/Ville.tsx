@@ -5,6 +5,7 @@ import he from "he";
 
 export default function Ville({ data }: { data: PageType<VilleType> }) {
   const { acf } = data;
+  console.log(acf);
   return (
     <main id="ville">
       <Banner data={data} />
