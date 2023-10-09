@@ -1,0 +1,58 @@
+main.loading-mail {
+  height: 100vh;
+  margin-top: 0;
+}
+
+.loading {
+  height: 100%;
+  margin-top: 0;
+  .container {
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    background: #f9eee1;
+    height: 100%;
+  }
+
+  .image-container {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+
+    img {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .background-pulse {
+    width: 500px;
+    height: 500px;
+    background: #8670cc;
+    opacity: 0.5;
+    border-radius: 50%;
+    animation: pulse 5s infinite ease-in-out;
+    position: absolute;
+    inset: 0;
+    left: -17%;
+    margin: auto;
+    z-index: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.1);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.1);
+  }
+}
