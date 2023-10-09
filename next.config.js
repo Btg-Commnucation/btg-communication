@@ -9,6 +9,11 @@ const nextConfig = {
         hostname: "btg-communication.test",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "admin.btg-dev.com",
+        port: "",
+      },
     ],
   },
 };
