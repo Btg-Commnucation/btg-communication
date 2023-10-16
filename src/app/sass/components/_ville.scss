@@ -346,9 +346,9 @@
   }
 
   .fond-gris {
-    margin-top: 13rem;
+    margin-top: 6rem;
     background: #f3f3f3;
-    padding-block: 7.3rem 10rem;
+    padding-block: 7.6rem 10rem;
 
     .content {
       display: grid;
@@ -480,5 +480,9 @@
         display: none;
       }
     }
+  }
+
+  .communication-digitale {
+    margin-bottom: 6rem;
   }
 }

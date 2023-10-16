@@ -220,7 +220,6 @@ export default function Blog({
 
   const categoryName = (slug: string): string => {
     const name = unslugify(slug);
-    console.log(name);
     return name;
   };
 

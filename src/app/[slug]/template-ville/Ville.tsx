@@ -2,10 +2,10 @@ import Banner from "@/components/Banner";
 import { PageType, VilleType } from "@/middleware/Page";
 import Image from "next/image";
 import he from "he";
+import ContactBanner from "@/components/ContactBanner";
 
 export default function Ville({ data }: { data: PageType<VilleType> }) {
   const { acf } = data;
-  console.log(acf);
   return (
     <main id="ville">
       <Banner data={data} />
@@ -78,6 +78,9 @@ export default function Ville({ data }: { data: PageType<VilleType> }) {
             />
           </div>
         </section>
+      </div>
+      <ContactBanner />
+      <div className="container">
         <section className="fond-gris">
           <h2>{he.decode(acf.titre_fond_gris)}</h2>
           <div className="content">

@@ -39,7 +39,7 @@ export type Response = {
   | { status: 404; data: string }
 );
 
-const getPages = async (slug: string): Promise<Response> => {
+export const getPages = async (slug: string): Promise<Response> => {
   try {
     const response = await axios<
       PageType<ClientType | SavoirType | EquipeType | VilleType>[],

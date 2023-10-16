@@ -81,7 +81,6 @@ export default function PostSearch({ posts }: { posts: PostData[] }) {
 
   const searchTitle = (slug: string): string => {
     const name = unslugify(slug);
-    console.log(name);
     return name;
   };
 
