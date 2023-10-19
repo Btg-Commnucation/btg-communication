@@ -8,7 +8,11 @@ export default function Equipe({ page }: { page: PageType<EquipeType> }) {
   return (
     <main id="equipe">
       <ScrollToTop />
-      <Banner data={page} />
+      <Banner
+        title={page.title}
+        sous_titre={page.acf.sous_titre}
+        media={page.media}
+      />
       <article>
         <div
           className="container"

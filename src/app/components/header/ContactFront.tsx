@@ -1,17 +1,18 @@
 "use client";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { object, string } from "yup";
+import { Formik, Form, Field } from "formik";
+import { object, string, optional } from "zod";
+import { toFormikValidationSchema } from "zod-formik-adapter";
 
-const userSchema = object().shape({
-  name: string().required("Votre nom et prénom sont requis"),
-  entreprise: string(),
-  email: string()
-    .email("Votre email est invalide")
-    .required("Votre email est requis"),
-  phoneNumber: string()
-    .length(10)
-    .required("Votre numéro de téléphone est requis"),
-  message: string().required("Votre message est requis"),
+const userSchema = object({
+  name: string({ required_error: "Votre nom et prénom sont requis" }),
+  entreprise: optional(string()),
+  email: string({ required_error: "Votre adresse mail est requise" }).email(
+    "Votre adresse mail est invalide"
+  ),
+  phoneNumber: string({
+    required_error: "Votre numéro de téléphone est requis",
+  }).length(10),
+  message: string({ required_error: "Un message est requis" }),
 });
 
 export default function ContactFront() {
@@ -28,7 +29,7 @@ export default function ContactFront() {
           phoneNumber: "",
           message: "",
         }}
-        validationSchema={userSchema}
+        validationSchema={toFormikValidationSchema(userSchema)}
         onSubmit={(values) => console.log(values)}
       >
         {({ errors, touched }) => (

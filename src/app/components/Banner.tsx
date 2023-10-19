@@ -3,16 +3,23 @@ import Image from "next/image";
 import he from "he";
 
 export default function Banner({
-  data,
+  title,
+  media,
+  sous_titre,
 }: {
-  data: PageType<{ sous_titre: string }>;
+  title: string;
+  media: {
+    "2048x2048": string;
+  };
+  sous_titre: string;
 }) {
   return (
     <section
       className="banner"
       style={{
-        background: `url('${data.media["2048x2048"]}') no-repeat top center`,
+        background: `url('${media["2048x2048"]}') no-repeat top center`,
         backgroundSize: "cover",
+        marginTop: "4.4rem",
       }}
     >
       <Image
@@ -31,8 +38,8 @@ export default function Banner({
         </svg>
       </div>
       <div className="title">
-        <h1>{he.decode(data.title)}</h1>
-        <p className="sub-title">{he.decode(data.acf.sous_titre)}</p>
+        <h1>{he.decode(title)}</h1>
+        <p className="sub-title">{he.decode(sous_titre)}</p>
       </div>
     </section>
   );

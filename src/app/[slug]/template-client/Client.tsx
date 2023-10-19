@@ -12,7 +12,11 @@ export default function Client({ page }: { page: PageType<ClientType> }) {
   return (
     <main id="client">
       <ScrollToTop />
-      <Banner data={page} />
+      <Banner
+        title={page.title}
+        media={page.media}
+        sous_titre={page.acf.sous_titre}
+      />
       <section className="experiences">
         <h2>Ils ont fait l&apos;expérience</h2>
         <ul className="clients">

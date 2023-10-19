@@ -8,7 +8,11 @@ export default function Ville({ data }: { data: PageType<VilleType> }) {
   const { acf } = data;
   return (
     <main id="ville">
-      <Banner data={data} />
+      <Banner
+        title={data.title}
+        media={data.media}
+        sous_titre={data.acf.sous_titre}
+      />
       <section className="gardens">
         <div className="container">
           <Image

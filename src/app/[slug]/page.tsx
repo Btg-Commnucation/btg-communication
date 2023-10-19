@@ -20,6 +20,8 @@ import {
 import Custom404 from "./custom404";
 import Equipe from "./template-equipe/Equipe";
 import Ville from "./template-ville/Ville";
+import { ContactType } from "@/middleware/Contact";
+import Contact from "./template-contact/Contact";
 
 const URL_API = process.env.URL_API;
 const agent = new https.Agent({
@@ -32,7 +34,12 @@ export type Response = {
   | {
       status: 200;
       data: PageType<
-        ClientType | SavoirType | RealisationType | EquipeType | VilleType
+        | ClientType
+        | SavoirType
+        | RealisationType
+        | EquipeType
+        | VilleType
+        | ContactType
       >;
     }
   | { status: 500; data: any }
@@ -42,13 +49,15 @@ export type Response = {
 export const getPages = async (slug: string): Promise<Response> => {
   try {
     const response = await axios<
-      PageType<ClientType | SavoirType | EquipeType | VilleType>[],
+      PageType<
+        ClientType | SavoirType | EquipeType | VilleType | ContactType
+      >[],
       any
     >(`${URL_API}/better-rest-endpoints/v1/pages?per_page=100`, {
       httpsAgent: agent,
     }).then((response) =>
       response.data.find(
-        (page: PageType<ClientType | SavoirType | EquipeType>) =>
+        (page: PageType<ClientType | SavoirType | EquipeType | ContactType>) =>
           page.slug === slug
       )
     );
@@ -75,14 +84,17 @@ export async function generateMetadata(
   const { slug } = params;
 
   const data = await axios<
-    PageType<ClientType | SavoirType | EquipeType | VilleType>[],
+    PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>[],
     any
   >(`${URL_API}/better-rest-endpoints/v1/pages?per_page=100`, {
     httpsAgent: agent,
   }).then((response) =>
     response.data.find(
-      (page: PageType<ClientType | SavoirType | EquipeType | VilleType>) =>
-        page.slug === slug
+      (
+        page: PageType<
+          ClientType | SavoirType | EquipeType | VilleType | ContactType
+        >
+      ) => page.slug === slug
     )
   );
   if (!data) {
@@ -129,6 +141,9 @@ export default function Page({ params }: { params: { slug: string } }) {
       )}
       {data?.template === "template-ville" && (
         <Ville data={data as PageType<VilleType>} />
+      )}
+      {data?.template === "template-contact" && (
+        <Contact data={data as PageType<ContactType>} />
       )}
       {data?.slug === "accueil" && (
         <>

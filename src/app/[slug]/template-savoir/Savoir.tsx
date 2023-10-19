@@ -10,7 +10,11 @@ export default function Savoir({ page }: { page: PageType<SavoirType> }) {
   return (
     <main id="savoir">
       <ScrollToTop />
-      <Banner data={page} />
+      <Banner
+        title={page.title}
+        media={page.media}
+        sous_titre={page.acf.sous_titre}
+      />
       <section className="agence">
         <div className="container">
           <Image

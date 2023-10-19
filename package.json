@@ -28,7 +28,8 @@
     "slugify": "^1.6.6",
     "typescript": "5.2.2",
     "unslugify": "^1.0.4",
-    "yup": "^1.2.0"
+    "zod": "^3.22.4",
+    "zod-formik-adapter": "^1.2.0"
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "^11.0.6",
