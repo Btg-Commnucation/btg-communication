@@ -15,7 +15,7 @@
   .container {
     max-width: 1155px;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
 
     @media (max-width: 1200px) {
       max-width: 700px;
@@ -162,7 +162,7 @@
   }
 
   .btn-primary {
-    align-self: end;
+    align-self: flex-end;
     margin-right: -8rem;
     margin-top: 4rem;
 

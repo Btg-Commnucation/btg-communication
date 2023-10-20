@@ -121,7 +121,7 @@
 
     @media (max-width: 1200px) {
       width: calc(100% - 30px);
-      align-self: end;
+      align-self: flex-end;
       margin-top: -7.5rem;
       position: relative;
       padding-block: 8rem 5rem;

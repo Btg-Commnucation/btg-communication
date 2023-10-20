@@ -1,0 +1,55 @@
+.acf.contentType .container {
+  max-width: 1030px;
+
+  h3 {
+    font-size: 2.4rem;
+    font-family: "Exo", sans-serif;
+    margin-bottom: 2.1rem;
+  }
+
+  article {
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1.3;
+
+    p {
+      margin-left: 1em;
+    }
+  }
+
+  .yellow-background {
+    background: #fcd647;
+    padding-block: 7rem 3rem;
+    padding-inline: 4.5rem;
+    position: relative;
+    margin-top: 9.9rem;
+
+    .image-background {
+      background: black;
+      border-radius: 20px;
+      width: 106px;
+      height: 106px;
+      transform: rotate(45deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -12%;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+    }
+
+    img {
+      transform: rotate(-45deg);
+    }
+
+    h3 {
+      color: #e3775b;
+    }
+
+    p:not(:first-of-type) {
+      margin-top: 1em;
+    }
+  }
+}

@@ -73,7 +73,7 @@
     background: #fcfcfc;
     padding-block: 4.1rem 0;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin-top: 9.7rem;
     gap: 2.4rem;
     position: relative;
@@ -109,13 +109,13 @@
       height: 729px;
       position: relative;
       margin-top: -89px;
-      align-self: start;
+      align-self: flex-start;
       object-fit: cover;
 
       @media (max-width: 1329px) {
         width: 427px;
         height: 503px;
-        align-self: end;
+        align-self: flex-end;
         margin-top: -95px;
       }
 
@@ -205,5 +205,9 @@
         color: black;
       }
     }
+  }
+
+  .contact-banner {
+    margin-bottom: 3.5rem;
   }
 }

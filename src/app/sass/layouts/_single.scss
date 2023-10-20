@@ -20,7 +20,7 @@
     @media (max-width: 824px) {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      justify-items: start;
+      justify-items: flex-start;
       align-items: center;
     }
 

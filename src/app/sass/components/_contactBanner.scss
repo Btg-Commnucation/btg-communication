@@ -19,7 +19,7 @@
     max-width: 499px;
     display: flex;
     flex-direction: column;
-    justify-self: end;
+    justify-self: flex-end;
     gap: 1.9rem;
 
     @media (max-width: 768px) {
@@ -50,7 +50,7 @@
 
     a {
       text-decoration: none;
-      justify-self: start;
+      justify-self: flex-start;
       border: 1px solid white;
       color: white;
       border-radius: 2px;

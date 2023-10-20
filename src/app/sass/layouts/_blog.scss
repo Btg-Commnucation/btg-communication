@@ -118,7 +118,7 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3.7rem;
     row-gap: 6.8rem;
-    align-items: start;
+    align-items: flex-start;
 
     @media (max-width: 799px) {
       grid-template-columns: repeat(1, 1fr);

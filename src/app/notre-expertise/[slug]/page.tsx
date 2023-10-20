@@ -16,6 +16,7 @@ import {
 import Banner from "@/components/Banner";
 import GrayBackground from "./GrayBackground";
 import ContactBanner from "@/components/ContactBanner";
+import AcfContent from "./AcfContent/AcfContent";
 
 export type Domaines = DomainesType<
   ContentType<ContentTypeFondJauneType | ContentTypeImage> | SliderType
@@ -103,6 +104,20 @@ export default function Page({ params }: { params: { slug: string } }) {
           image={data!.acf.image_fond_gris}
         />
         <ContactBanner />
+        {data!.acf.contenu_flexible.map((item, key) => (
+          <>
+            {item.acf_fc_layout === "contenu" && (
+              <AcfContent
+                key={key}
+                item={
+                  item as ContentType<
+                    ContentTypeImage | ContentTypeFondJauneType
+                  >
+                }
+              />
+            )}
+          </>
+        ))}
         {/* <section className="other-domaines">
           <div className="container">
             <h4>{he.decode("Nos autres domaines d'expertise")}</h4>
