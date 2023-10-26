@@ -2,7 +2,6 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import axios from "axios";
 import he from "he";
-import Image from "next/image";
 import { use } from "react";
 import OtherDomain from "./OtherDomain";
 import Custom404 from "@/[slug]/custom404";
@@ -16,7 +15,9 @@ import {
 import Banner from "@/components/Banner";
 import GrayBackground from "./GrayBackground";
 import ContactBanner from "@/components/ContactBanner";
-import AcfContent from "./AcfContent/AcfContent";
+import AcfContent from "./AcfLayout/AcfContent";
+import Slider from "./AcfLayout/Slider";
+import ExpertiseForm from "@/components/ExpertiseForm";
 
 export type Domaines = DomainesType<
   ContentType<ContentTypeFondJauneType | ContentTypeImage> | SliderType
@@ -116,15 +117,22 @@ export default function Page({ params }: { params: { slug: string } }) {
                 }
               />
             )}
+            {item.acf_fc_layout === "slider" && (
+              <Slider data={item as SliderType} />
+            )}
           </>
         ))}
-        {/* <section className="other-domaines">
+        <ExpertiseForm
+          titre={data!.acf.titre_bas_de_page}
+          image={data!.acf.image_bas_de_page}
+        />
+        <section className="other-domaines">
           <div className="container">
             <h4>{he.decode("Nos autres domaines d'expertise")}</h4>
             <div className="separator"></div>
             <OtherDomain domains={allData} />
           </div>
-        </section> */}
+        </section>
       </main>
       <Footer />
     </>

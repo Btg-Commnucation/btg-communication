@@ -8,12 +8,15 @@ export type DomainesType<T> = {
   excerpt: string;
   content: string;
   acf: {
+    mini_titre: string;
     sous_titre: string;
     titre: string;
     logo_noir: ImageType;
     contenu_fond_gris: string;
     image_fond_gris: ImageType;
     contenu_flexible: T[];
+    image_bas_de_page: ImageType;
+    titre_bas_de_page: string;
   };
   yoast: {
     yoast_wpsea_metadesc: string;

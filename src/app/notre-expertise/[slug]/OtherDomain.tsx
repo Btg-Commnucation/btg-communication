@@ -1,12 +1,20 @@
 import Link from "next/link";
-import { DomaineType, ImageContentType, TextContentType } from "./page";
+import {
+  DomainesType,
+  ContentType,
+  ContentTypeFondJauneType,
+  ContentTypeImage,
+  SliderType,
+} from "@/middleware/Domaines";
 import he from "he";
 import Image from "next/image";
 
 export default function OtherDomain({
   domains,
 }: {
-  domains: DomaineType<TextContentType | ImageContentType>[];
+  domains: DomainesType<
+    ContentType<ContentTypeFondJauneType | ContentTypeImage> | SliderType
+  >[];
 }) {
   return (
     <ul className="domains-list">
@@ -21,7 +29,7 @@ export default function OtherDomain({
                 height={86.67}
               />
             </div>
-            <strong>{he.decode(domain.title)}</strong>
+            <strong>{he.decode(domain.acf.mini_titre)}</strong>
           </Link>
         </li>
       ))}

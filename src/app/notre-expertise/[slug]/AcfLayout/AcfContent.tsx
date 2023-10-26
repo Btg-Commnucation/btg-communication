@@ -38,6 +38,31 @@ export default function AcfContent({ item }: { item: ItemType }) {
                 )}
               </>
             )}
+            {content.acf_fc_layout === "image" && (
+              <>
+                <Image
+                  src={content.image.url}
+                  alt={content.image.alt}
+                  title={content.image.title}
+                  width={content.image.width}
+                  height={content.image.height}
+                  className="image-under"
+                />
+                {content.un_texte_sous_limage === "Oui" && (
+                  <div className="text-under">
+                    <div className="picto">
+                      <span>+</span>
+                    </div>
+                    <div
+                      className="text-under-content"
+                      dangerouslySetInnerHTML={{
+                        __html: content.texte_sous_image,
+                      }}
+                    ></div>
+                  </div>
+                )}
+              </>
+            )}
           </>
         ))}
       </div>

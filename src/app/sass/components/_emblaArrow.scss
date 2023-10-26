@@ -1,0 +1,56 @@
+.embla__button__svg {
+  width: 32px;
+  height: 26px;
+}
+
+.embla__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+
+  .embla__dots {
+    margin-top: 0;
+    gap: 9px;
+  }
+
+  .embla__dot {
+    background-color: white;
+    touch-action: manipulation;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #cececc;
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+  }
+
+  .embla__dot--selected {
+    background: #cececc;
+  }
+}
+
+.embla__button {
+  width: fit-content;
+  height: fit-content;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  g {
+    transition: 0.2s ease-in-out;
+  }
+
+  &:hover g {
+    fill: #e3775b;
+  }
+
+  &--prev {
+    transform: rotate(-180deg);
+  }
+}

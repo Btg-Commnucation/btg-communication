@@ -2,13 +2,31 @@
 
 import { ImageType } from "@/middleware/Image";
 import { AcfFrontPage } from "@/page";
-import "keen-slider/keen-slider.min.css";
-import { useKeenSlider } from "keen-slider/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback } from "react";
+import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel, {
+  EmblaOptionsType,
+  EmblaCarouselType,
+} from "embla-carousel-react";
+import {
+  NextButton,
+  PrevButton,
+  usePrevNextButtons,
+} from "./EmblaCarouselArrowButton";
 
-const animation = { duration: 100, easing: (t: number) => t };
+const OPTIONS: EmblaOptionsType = {
+  align: "start",
+  slidesToScroll: 1,
+  duration: 30,
+  breakpoints: {
+    "(max-width: 967px)": {
+      slidesToScroll: 1,
+    },
+  },
+};
 
 export default function FrontSlider({
   slider,
@@ -17,90 +35,74 @@ export default function FrontSlider({
   slider: AcfFrontPage["slider"];
   sliderText: AcfFrontPage["texte_photo"];
 }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: 0,
-    renderMode: "performance",
-    loop: true,
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
-    },
-    created(s) {
-      setLoaded(true);
-      setTimeout(() => {
-        s.moveToIdx(1, true, animation);
-      }, 5000);
-    },
-    updated(s) {
-      s.moveToIdx(s.track.details.abs + 1, true, animation);
-    },
-    animationEnded(s) {
-      setTimeout(() => {
-        s.moveToIdx(s.track.details.abs + 1, true, animation);
-      }, 5000);
-    },
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [Autoplay()]);
+
+  const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
+    const { autoplay } = emblaApi.plugins();
+    if (!autoplay) return;
+    if (autoplay.options.stopOnInteraction !== false) autoplay.stop();
+  }, []);
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
+    emblaApi,
+    onButtonClick
+  );
+
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi, onButtonClick);
 
   return (
     <section className="slider-wrapper">
       <div className="container">
-        <div className="navigation-wrapper">
-          <div
-            className="keen-slider"
-            ref={sliderRef}
-            style={{
-              width: slider[0].image.width,
-              height: slider[0].image.height,
-            }}
-          >
-            {slider.map((slide: { image: ImageType }) => (
-              <div
-                className="keen-slider__slide"
-                key={slide.image.id}
-                style={{ width: slide.image.width, height: slide.image.height }}
-              >
-                <Image
-                  src={slide.image.url}
-                  alt={slide.image.alt}
-                  width={slide.image.width}
-                  height={slide.image.height}
-                />
-              </div>
-            ))}
-          </div>
-          {loaded && instanceRef.current && (
-            <div className="slider-navigation">
-              <Arrow
-                left
-                onClick={(e: any) =>
-                  e.stopPropagation() || instanceRef.current?.prev()
-                }
-              />
-              <div className="dots">
-                {[
-                  ...Array(
-                    instanceRef.current.track.details.slides.length
-                  ).keys(),
-                ].map((idx) => {
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => instanceRef.current?.moveToIdx(idx)}
-                      className={
-                        "dot " + (currentSlide === idx ? "active" : "")
-                      }
-                    ></button>
-                  );
-                })}
-              </div>
-              <Arrow
-                onClick={(e: any) =>
-                  e.stopPropagation() || instanceRef.current?.next()
-                }
-              />
+        <div className="embla">
+          <div ref={emblaRef} className="embla__viewport">
+            <div className="embla__container">
+              {slider.map((slide: { image: ImageType }) => (
+                <div
+                  className="embla__slide"
+                  key={slide.image.id}
+                  style={{
+                    width: slide.image.width,
+                    height: slide.image.height,
+                  }}
+                >
+                  <Image
+                    src={slide.image.url}
+                    alt={slide.image.alt}
+                    title={slide.image.title}
+                    width={slide.image.width}
+                    height={slide.image.height}
+                  />
+                </div>
+              ))}
             </div>
-          )}
+          </div>
+
+          <div className="embla__buttons">
+            <PrevButton
+              onClick={onPrevButtonClick}
+              disabled={prevBtnDisabled}
+            />
+            <div className="embla__dots">
+              {scrollSnaps.map((_, index) => (
+                <DotButton
+                  key={index}
+                  onClick={() => onDotButtonClick(index)}
+                  className={"embla__dot".concat(
+                    index === selectedIndex ? " embla__dot--selected" : ""
+                  )}
+                />
+              ))}
+            </div>
+            <NextButton
+              onClick={onNextButtonClick}
+              disabled={nextBtnDisabled}
+            />
+          </div>
         </div>
         <div className="slider-text">
           <h2>Projets</h2>

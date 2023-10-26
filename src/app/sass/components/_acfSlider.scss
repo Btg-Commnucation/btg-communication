@@ -1,0 +1,109 @@
+.acf.sliderType {
+  background: #fafafa;
+  padding-block: 5.6rem 8.2rem;
+  margin-block: 6.3rem 6.5rem;
+
+  .container {
+    max-width: 1030px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 2.6rem;
+    font-weight: 300;
+    font-family: "Cabin", sans-serif;
+    text-align: center;
+    margin-bottom: 2.1rem;
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 4.6rem;
+
+    button {
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid #fcd647;
+
+      &.active {
+        background: #fcd647;
+      }
+    }
+  }
+}
+
+.embla {
+  --slide-spacing: 6.1rem;
+  --slide-size: 21%;
+  --slide-height: 13.3rem;
+
+  @media (max-width: 967px) {
+    --slide-size: 34%;
+  }
+
+  @media (max-width: 697px) {
+    --slide-spacing: 2.7rem;
+  }
+
+  margin-top: 6.6rem;
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y;
+}
+
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  position: relative;
+  padding-right: var(--slide-spacing);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.embla__slide__img {
+  display: block;
+  height: var(--slide-height);
+  width: 100%;
+  object-fit: cover;
+}
+
+.embla__dot {
+  background-color: white;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #fcd647;
+  width: 19px;
+  height: 19px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.embla__dot--selected {
+  background: #fcd647;
+}
+
+.embla__dots {
+  margin-top: 4.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}

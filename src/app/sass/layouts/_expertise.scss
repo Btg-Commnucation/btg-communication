@@ -47,6 +47,10 @@
 
     .container {
       max-width: 52%;
+
+      @media (max-width: 767px) {
+        max-width: 95%;
+      }
     }
 
     h2 {
@@ -153,6 +157,8 @@
 
   .other-domaines {
     margin-top: 2em;
+    margin-bottom: 1.5rem;
+
     .container {
       max-width: 1250px;
       display: flex;

@@ -1,0 +1,157 @@
+.expertise__form {
+  margin-block: 11.8rem 2.5rem;
+
+  .container {
+    display: grid;
+    grid-template-columns: 445px 568px;
+    gap: 2.2rem;
+    width: fit-content;
+  }
+
+  .expertise__form-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2.9rem;
+    position: relative;
+    z-index: 2;
+    margin-top: 6.5rem;
+
+    h2 {
+      white-space: nowrap;
+      margin-left: 1em;
+      padding-bottom: 0;
+    }
+  }
+
+  form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .yellow-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      background: #fcd647;
+      padding-inline: 2.1rem 3.3rem;
+      padding-block: 12.2rem 3.4rem;
+
+      .txt {
+        font-size: 1.9rem;
+        margin-bottom: 3.4rem;
+      }
+    }
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &:not(:last-of-type) {
+      margin-bottom: 3.5rem;
+    }
+
+    span {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.6rem;
+    }
+
+    input {
+      border: none;
+      background: transparent;
+      font-size: 2rem;
+      font-weight: 700;
+      border-bottom: 1px solid black;
+      width: 100%;
+      padding: 1rem 0.5rem;
+
+      &.error-field {
+        border-color: #e3775b;
+      }
+    }
+
+    textarea {
+      background: transparent;
+      border: 1px solid black;
+      border-radius: 17px;
+      min-height: 197px;
+      margin-bottom: 0.7rem;
+
+      &.error-field {
+        border-color: #e3775b;
+      }
+    }
+  }
+
+  .consent {
+    display: flex;
+    gap: 0.6rem;
+
+    span {
+      font-size: 1.4rem;
+      font-weight: 300;
+    }
+  }
+
+  .error {
+    color: #e3775b;
+  }
+
+  button {
+    background: transparent;
+    color: black;
+    font-family: "Cabin", sans-serif;
+    text-transform: uppercase;
+    padding: 2.5rem 3.3rem;
+    transition: 0.1s ease-in-out;
+    position: relative;
+    font-size: 2.1rem;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    width: fit-content;
+    align-self: flex-end;
+    margin-right: 1em;
+    margin-top: 1.6rem;
+
+    svg {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      bottom: 0;
+      right: -25px;
+      z-index: 1;
+      transition: 0.1s;
+      z-index: 1;
+
+      g {
+        fill: #e3775b;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      border: 5px solid black;
+    }
+
+    &:hover {
+      color: white;
+      background: black;
+
+      svg {
+        transform: translateX(12px);
+      }
+    }
+  }
+}

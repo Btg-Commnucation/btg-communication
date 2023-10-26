@@ -1,12 +1,10 @@
 "use client";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import Image from "next/image";
-import { object, string } from "yup";
+import { object, string } from "zod";
 
-const newsletterSchema = object().shape({
-  email: string()
-    .email("Votre email est invalide")
-    .required("Votre email est requis"),
+const newsletterSchema = object({
+  email: string().email("Votre email est invalide"),
 });
 
 export default function Newsletter() {
