@@ -11,6 +11,7 @@ import {
   ContentTypeImage,
   DomainesType,
   SliderType,
+  ContentFondImageType,
 } from "@/middleware/Domaines";
 import Banner from "@/components/Banner";
 import GrayBackground from "./GrayBackground";
@@ -18,9 +19,12 @@ import ContactBanner from "@/components/ContactBanner";
 import AcfContent from "./AcfLayout/AcfContent";
 import Slider from "./AcfLayout/Slider";
 import ExpertiseForm from "@/components/ExpertiseForm";
+import AcfBackgroundImage from "./AcfLayout/AcfBackgroundImage";
 
 export type Domaines = DomainesType<
-  ContentType<ContentTypeFondJauneType | ContentTypeImage> | SliderType
+  | ContentType<ContentTypeFondJauneType | ContentTypeImage>
+  | SliderType
+  | ContentFondImageType
 >;
 
 export type allDomaineType = Domaines[];
@@ -116,6 +120,9 @@ export default function Page({ params }: { params: { slug: string } }) {
                   >
                 }
               />
+            )}
+            {item.acf_fc_layout === "image_de_fond" && (
+              <AcfBackgroundImage data={item as ContentFondImageType} />
             )}
             {item.acf_fc_layout === "slider" && (
               <Slider data={item as SliderType} />

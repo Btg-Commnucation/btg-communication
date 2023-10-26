@@ -34,7 +34,26 @@ export default function AcfContent({ item }: { item: ItemType }) {
                     ></div>
                   </div>
                 ) : (
-                  <></>
+                  <>
+                    {content.colonne.map((item, index) => (
+                      <div className="yellow-background" key={index}>
+                        <div className="image-background">
+                          <Image
+                            src={item.image.url}
+                            alt={item.image.alt}
+                            width={57}
+                            height={57}
+                          />
+                        </div>
+                        <div
+                          className="content_yellow_background"
+                          dangerouslySetInnerHTML={{
+                            __html: item.contenu,
+                          }}
+                        ></div>
+                      </div>
+                    ))}
+                  </>
                 )}
               </>
             )}

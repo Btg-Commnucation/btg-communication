@@ -95,6 +95,10 @@
         max-width: 98%;
         margin-inline: auto;
       }
+
+      p:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
     }
 
     h3 {
@@ -185,6 +189,17 @@
       justify-content: center;
       align-items: flex-start;
       gap: 2rem;
+
+      @media (max-width: 1150px) {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        place-items: center;
+        width: 100%;
+      }
+
+      @media (max-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
       img {
         margin-right: 0;

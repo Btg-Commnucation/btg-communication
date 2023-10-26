@@ -5,6 +5,7 @@ import {
   ContentTypeFondJauneType,
   ContentTypeImage,
   SliderType,
+  ContentFondImageType,
 } from "@/middleware/Domaines";
 import he from "he";
 import Image from "next/image";
@@ -13,7 +14,9 @@ export default function OtherDomain({
   domains,
 }: {
   domains: DomainesType<
-    ContentType<ContentTypeFondJauneType | ContentTypeImage> | SliderType
+    | ContentType<ContentTypeFondJauneType | ContentTypeImage>
+    | SliderType
+    | ContentFondImageType
   >[];
 }) {
   return (

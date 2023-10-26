@@ -1,0 +1,51 @@
+.background-image {
+  margin-block: -3.5rem -6.5rem;
+  color: white;
+  padding-block: 6.9rem;
+  position: relative;
+  overflow: hidden;
+
+  .wave {
+    position: absolute;
+    right: 0;
+    bottom: 15rem;
+    transform: rotate(180deg);
+
+    @media (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  h3:first-of-type {
+    margin-bottom: 2.1rem;
+  }
+
+  p,
+  h3:not(:first-of-type) {
+    margin-left: 4rem;
+
+    @media (max-width: 745px) {
+      margin-left: 0;
+    }
+  }
+
+  p {
+    font-weight: 300;
+  }
+
+  p:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+
+  .container {
+    max-width: 55%;
+
+    @media (max-width: 1200px) {
+      max-width: 86%;
+    }
+
+    @media (max-width: 800px) {
+      max-width: 100%;
+    }
+  }
+}

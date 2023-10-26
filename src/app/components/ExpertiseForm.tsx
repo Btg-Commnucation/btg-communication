@@ -40,16 +40,7 @@ export default function ExpertiseForm({
   return (
     <section className="expertise__form">
       <div className="container">
-        <div className="expertise__form-left">
-          <h2>{he.decode(titre)}</h2>
-          <Image
-            src={image.url}
-            alt={image.alt}
-            title={image.title}
-            width={445}
-            height={608}
-          />
-        </div>
+        <h2 className="expertise__form-title">{he.decode(titre)}</h2>
         <Formik
           initialValues={{
             nom: "",
@@ -193,6 +184,15 @@ export default function ExpertiseForm({
             </Form>
           )}
         </Formik>
+        <div className="expertise__form-left">
+          <Image
+            src={image.url}
+            alt={image.alt}
+            title={image.title}
+            width={445}
+            height={608}
+          />
+        </div>
       </div>
     </section>
   );

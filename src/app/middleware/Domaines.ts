@@ -1,4 +1,5 @@
 import { ImageType } from "./Image";
+import { LinkType } from "./Link";
 
 export type DomainesType<T> = {
   id: number;
@@ -48,7 +49,7 @@ export interface ContentTypeFondJauneType {
   colonne_ou_ligne: string;
   image: ImageType;
   contenu_fond_jaune: string;
-  colonne: Array<{ contenu: string }>;
+  colonne: Array<{ contenu: string; image: ImageType }>;
 }
 
 export interface SliderType {
@@ -57,4 +58,16 @@ export interface SliderType {
   visuels: {
     image: ImageType;
   }[];
+}
+
+export interface ContentFondImageType {
+  acf_fc_layout: "image_de_fond";
+  image_de_fond: ImageType;
+  colonne_ou_ligne: string;
+  contenu_en_ligne: string;
+  contenu_en_colonne: Array<{ contenu: string }>;
+  lien_ou_sous_texte: string;
+  lien: LinkType;
+  sous_texte: string;
+  image_sous_texte: ImageType;
 }
