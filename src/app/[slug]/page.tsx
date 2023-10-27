@@ -46,7 +46,7 @@ export type Response = {
   | { status: 404; data: string }
 );
 
-export const getPages = async (slug: string): Promise<Response> => {
+const getPages = async (slug: string): Promise<Response> => {
   try {
     const response = await axios<
       PageType<

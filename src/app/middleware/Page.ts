@@ -61,6 +61,7 @@ export type RealisationType = {
     image: ImageType;
     image_degrade: ImageType;
   }[];
+  lien_contact: LinkType;
 };
 
 export type ClientType = {

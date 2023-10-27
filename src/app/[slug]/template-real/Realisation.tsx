@@ -6,6 +6,7 @@ import axios from "axios";
 import { use } from "react";
 import { RealType } from "@/middleware/RealType";
 import ScrollToTop from "@/components/ScrollToTop";
+import Link from "next/link";
 
 const URL_API = process.env.URL_API;
 
@@ -29,6 +30,11 @@ export default function Realisation({
   page: PageType<RealisationType>;
 }) {
   const { data, error } = use(getRealisation());
+
+  const getSlug = (url: string) => {
+    const match = url.match(/\/([^/]+)\/?$/);
+    return match ? match[1] : null;
+  };
 
   return (
     <main id="template-realisations">
@@ -82,8 +88,8 @@ export default function Realisation({
       </section>
       <section className="contact-us">
         <div className="container">
-          <a href="mailto:contact@btg-communication.fr">
-            Nous contacter
+          <Link target={page.acf.lien_contact.target} href={`/${getSlug(page.acf.lien_contact.url)}`}>
+            {he.decode(page.acf.lien_contact.title)}
             <svg
               className="arrow"
               xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +102,7 @@ export default function Realisation({
                 <polygon points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
               </g>
             </svg>
-          </a>
+          </Link>
         </div>
       </section>
     </main>

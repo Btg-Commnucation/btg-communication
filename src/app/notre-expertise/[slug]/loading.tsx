@@ -7,7 +7,7 @@ function loading() {
         <div className="container">
           <div className="image-container">
             <Image
-              src="logo-btg-encadre.svg"
+              src="/logo-btg-encadre.svg"
               alt="Logo BTG Communication"
               width={370}
               height={427}

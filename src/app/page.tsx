@@ -35,6 +35,7 @@ export type AcfFrontPage = {
   image_philosophie: ImageType;
   texte_philosophie: string;
   texte_methodologie: string;
+  lien_contact: LinkType;
 };
 
 type Response = {
@@ -192,7 +193,7 @@ export default function Home() {
           textePhilosophie={data.acf.texte_philosophie}
           imagePhilosophie={data.acf.image_philosophie}
         />
-        <FrontMethodologie texteMethodologie={data.acf.texte_methodologie} />
+        <FrontMethodologie texteMethodologie={data.acf.texte_methodologie} lien={data.acf.lien_contact} />
       </main>
       <Footer />
     </>
