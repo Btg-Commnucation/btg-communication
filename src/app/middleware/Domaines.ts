@@ -33,15 +33,24 @@ export type DomainesType<T> = {
 export type ContentType<T> = {
   acf_fc_layout: "contenu";
   contenu: string;
-  contenu_flex: T[];
+  contenu_flex: T[] | false;
 };
+
+export interface ContentLine {
+  acf_fc_layout: "lien";
+  lien: LinkType;
+}
+
+export interface ContentTextePlusType {
+  acf_fc_layout: "texte_avec_plus";
+  texte: string;
+}
 
 export interface ContentTypeImage {
   acf_fc_layout: "image";
   image: ImageType;
   un_texte_sous_limage: string;
   texte_sous_image: string;
-  picto_sous_image: ImageType;
 }
 
 export interface ContentTypeFondJauneType {
@@ -65,7 +74,8 @@ export interface ContentFondImageType {
   image_de_fond: ImageType;
   colonne_ou_ligne: string;
   contenu_en_ligne: string;
-  contenu_en_colonne: Array<{ contenu: string }>;
+  titre: string;
+  contenu_en_colonne: Array<{ texte: string; titre: string; image: ImageType }>;
   lien_ou_sous_texte: string;
   lien: LinkType;
   sous_texte: string;

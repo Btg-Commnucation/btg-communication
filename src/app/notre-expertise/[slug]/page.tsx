@@ -12,6 +12,8 @@ import {
   DomainesType,
   SliderType,
   ContentFondImageType,
+  ContentTextePlusType,
+  ContentLine
 } from "@/middleware/Domaines";
 import Banner from "@/components/Banner";
 import GrayBackground from "./GrayBackground";
@@ -22,7 +24,7 @@ import ExpertiseForm from "@/components/ExpertiseForm";
 import AcfBackgroundImage from "./AcfLayout/AcfBackgroundImage";
 
 export type Domaines = DomainesType<
-  | ContentType<ContentTypeFondJauneType | ContentTypeImage>
+  | ContentType<ContentTypeFondJauneType | ContentTypeImage | ContentTextePlusType | ContentLine>
   | SliderType
   | ContentFondImageType
 >;
@@ -116,7 +118,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 key={key}
                 item={
                   item as ContentType<
-                    ContentTypeImage | ContentTypeFondJauneType
+                    ContentTypeImage | ContentTypeFondJauneType | ContentTextePlusType | ContentLine
                   >
                 }
               />

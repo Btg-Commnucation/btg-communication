@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Newsletter from "./Newsletter";
 import Map from "./Map";
 import axios from "axios";
 import https from "https";
@@ -30,7 +28,6 @@ export default function Footer() {
 
   return (
     <footer>
-      <Newsletter />
       <Map />
       <section className="informations">
         <div className="left">
