@@ -8,6 +8,7 @@
   }
 
   margin-top: 0;
+
   .container {
     width: calc(100% - 84px);
     margin-inline: auto;
@@ -23,8 +24,9 @@
 
   .hero-banner {
     margin-bottom: 3rem;
+
     .container {
-      min-height: 947px;
+      min-height: 920px;
       background: #f9eee1;
 
       @media screen and (max-width: 1200px) {
@@ -72,12 +74,15 @@
         &#arrow-svg-bot {
           animation: setBotArrow 0.2s ease-in-out forwards;
         }
+
         &#arrow-svg-left {
           animation: setLeftArrow 0.2s ease-in-out forwards;
         }
+
         &#arrow-svg-right {
           animation: setRightArrow 0.2s ease-in-out forwards;
         }
+
         &#arrow-svg-top {
           animation: setTopArrow 0.2s ease-in-out forwards;
         }
@@ -111,8 +116,10 @@
       }
     }
   }
+
   .slider-wrapper {
     margin-bottom: 10rem;
+
     .container {
       justify-content: flex-start;
       width: 1155px;
@@ -345,6 +352,7 @@
     transform: translateX(-112px) translateY(130px);
   }
 }
+
 @keyframes setLeftArrow {
   0% {
     transform: translateX(0) translateY(0);
@@ -353,6 +361,7 @@
     transform: translateX(112px) translateY(130px);
   }
 }
+
 @keyframes setTopArrow {
   0% {
     transform: translateY(0);

@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import Temoin from "./Temoin";
-import he from "he";
 import Link from "next/link";
-import { ClientType, PageType, TemoignagesType } from "@/middleware/Page";
+import {ClientType, PageType, TemoignagesType} from "@/middleware/Page";
 import Banner from "@/components/Banner";
 import ScrollToTop from "@/components/ScrollToTop";
+import ContactBanner from "@/components/ContactBanner";
 
-export default function Client({ page }: { page: PageType<ClientType> }) {
+export default function Client({page}: { page: PageType<ClientType> }) {
   return (
     <main id="client">
-      <ScrollToTop />
+      <ScrollToTop/>
       <Banner
         title={page.title}
         media={page.media}
@@ -21,7 +21,7 @@ export default function Client({ page }: { page: PageType<ClientType> }) {
         <h2>Ils ont fait l&apos;expérience</h2>
         <ul className="clients">
           {page.acf.temoignage.map((temoin: TemoignagesType, index: number) => (
-            <Temoin temoin={temoin} index={index} key={index} />
+            <Temoin temoin={temoin} index={index} key={index}/>
           ))}
         </ul>
         <Link href="/" className="real">
@@ -35,7 +35,8 @@ export default function Client({ page }: { page: PageType<ClientType> }) {
           >
             <title>Arrows</title>
             <g data-name="Layer 2">
-              <polygon points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
+              <polygon
+                points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
             </g>
           </svg>
         </Link>
@@ -57,22 +58,7 @@ export default function Client({ page }: { page: PageType<ClientType> }) {
           </ul>
         </div>
       </section>
-      <section className="contact-us">
-        <div className="container">
-          <h2>Et vous ?</h2>
-          <a href="mailto:contact@btg-communication.fr">
-            <span className="screen-reader-text">
-              contact@btg-communication.fr
-            </span>
-            <Image
-              src="/contact-degrade.svg"
-              alt="Nous contacter à contacter@btg-communication.fr"
-              width={75}
-              height={86.59}
-            />
-          </a>
-        </div>
-      </section>
+      <ContactBanner/>
     </main>
   );
 }

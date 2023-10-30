@@ -2,28 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 
 export default function HeaderFront() {
   const menuRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
   const [overlayMenu, setOverlayMenu] = useState<HTMLDivElement>();
-  const [overlayContact, setOverlayContact] = useState<HTMLDivElement>();
 
   useEffect(() => {
     const menuElement = document.getElementById("overlay-menu");
-    const contactElement = document.getElementById("overlay-contact");
 
     if (menuElement instanceof HTMLDivElement) {
       setOverlayMenu(menuElement);
     }
 
-    if (contactElement instanceof HTMLDivElement) {
-      setOverlayContact(contactElement);
-    }
-
     if (
-      !overlayContact?.classList.contains("open") ||
       !overlayMenu?.classList.contains("open")
     ) {
       document.body.classList.remove("no-scroll");
@@ -33,31 +25,11 @@ export default function HeaderFront() {
 
   const openMenu = () => {
     menuRef.current!.classList.toggle("open");
-    contactRef.current!.classList.remove("open");
 
     document.body.classList.toggle("no-scroll");
-
-    if (overlayContact) {
-      overlayContact.classList.remove("open");
-    }
 
     if (overlayMenu) {
       overlayMenu.classList.toggle("open");
-    }
-  };
-
-  const openContact = () => {
-    contactRef.current!.classList.toggle("open");
-    menuRef.current!.classList.remove("open");
-
-    document.body.classList.toggle("no-scroll");
-
-    if (overlayMenu) {
-      overlayMenu.classList.remove("open");
-    }
-
-    if (overlayContact) {
-      overlayContact.classList.toggle("open");
     }
   };
 
@@ -75,9 +47,10 @@ export default function HeaderFront() {
         </Link>
       </div>
       <strong>- Le bureau très graphique -</strong>
-      <div className="contact-icons" ref={contactRef}>
-        <div className="flip-card" onClick={openContact}>
-          <div className="front-face">
+      <div className="contact-icons">
+        <div className="flip-card">
+          <Link href={"/contact"} className="front-face">
+            <span className="screen-reader-text">Nous contacter</span>
             <Image
               src="/contact.svg"
               alt="Ouvrir la fenêtre de contact"
@@ -85,16 +58,7 @@ export default function HeaderFront() {
               height={50}
               quality={85}
             />
-          </div>
-          <div className="back-face">
-            <Image
-              src="/close-contact.svg"
-              alt="Fermer la fenêtre de contact"
-              width={50}
-              height={50}
-              quality={85}
-            />
-          </div>
+          </Link>
         </div>
       </div>
       <div className="menu" ref={menuRef}>
