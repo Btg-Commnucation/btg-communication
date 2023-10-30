@@ -99,6 +99,15 @@
     }
   }
 
+  @media (max-width: 525px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
   &:not(:first-child) {
     margin-top: 3rem;
   }
@@ -144,6 +153,18 @@
       left: calc(79% - 20px);
     }
 
+    @media (max-width: 525px) {
+      position: relative;
+      left: unset;
+      top: 2rem;
+      transform: rotate(0);
+      padding-block: 1.5rem;
+    }
+
+    @media (max-width: 375px) {
+      font-size: 4.5rem;
+    }
+
     &::after {
       display: inline-block;
       content: "";
@@ -179,6 +200,11 @@
       line-height: 1.3;
       margin-left: 0;
       padding-inline: 0;
+    }
+
+    @media (max-width: 525px) {
+      position: initial;
+      margin-top: 1rem;
     }
 
     a {
@@ -242,7 +268,13 @@
   }
 }
 
-#anaïs h4 {
+#anais img {
+  @media (max-width: 525px) {
+    margin: 0 auto;
+  }
+}
+
+#anais h4 {
   right: 370px;
 
   @media (max-width: 1258px) {
@@ -257,6 +289,18 @@
     right: unset;
     left: calc(18% - 20px);
   }
+
+  @media (max-width: 525px) {
+    margin: 0 auto;
+    left: unset;
+    top: 2rem;
+  }
+}
+
+#gael img {
+  @media (max-width: 525px) {
+    margin: 0 auto;
+  }
 }
 
 #gael h4 {
@@ -266,6 +310,14 @@
 
   @media (max-width: 768px) {
     right: 350px;
+  }
+
+  @media (max-width: 525px) {
+    right: unset;
+    left: unset;
+    top: 2rem;
+    text-align: center;
+    margin: 0 auto;
   }
 }
 
@@ -279,6 +331,19 @@
   @media (max-width: 768px) {
     left: calc(78% - 20px);
     top: 387px;
+  }
+
+  @media (max-width: 525px) {
+    left: unset;
+    top: 2rem;
+    margin: 0 auto;
+  }
+}
+
+#corentin img {
+
+  @media (max-width: 525px) {
+    margin: 0 auto;
   }
 }
 
@@ -302,6 +367,13 @@
 
   @media (max-width: 573px) {
     top: 330px;
+  }
+
+  @media (max-width: 525px) {
+    top: 2rem;
+    left: unset;
+    right: unset;
+    margin: 0 auto;
   }
 }
 

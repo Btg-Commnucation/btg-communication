@@ -91,6 +91,31 @@
   align-items: center;
   gap: 2rem;
 
+  @media (max-width: 1023px) {
+    display: grid;
+    grid-template-columns: 0 27px 1fr;
+    place-items: center;
+
+    &.open {
+      grid-template-columns: 1fr 27px;
+
+      a {
+        grid-column: 1 / 3;
+        grid-row: 1;
+      }
+
+      input {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      img, .search-link {
+        grid-column: 2;
+        grid-row: 2;
+      }
+    }
+  }
+
   a {
     background: #fcd647;
     color: black;

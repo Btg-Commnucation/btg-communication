@@ -1,13 +1,13 @@
-import { MenuData, OptionsType, rsOptions } from "@/middleware/Header";
+import {MenuData, rsOptions} from "@/middleware/Header";
 import Image from "next/image";
 import Link from "next/link";
 import he from "he";
 import Rs from "../header/Rs";
 
 export default function BlogNav({
-  data,
-  options,
-}: {
+                                  data,
+                                  options,
+                                }: {
   data: MenuData[];
   options: rsOptions;
 }) {
@@ -27,12 +27,12 @@ export default function BlogNav({
           {data.map((item) => (
             <li key={item.ID}>
               <Link href={`/blog?category=${item.slug}`}>
-                {he.decode(item.title)} toto
+                {he.decode(item.title)}
               </Link>
             </li>
           ))}
         </ul>
-        <Rs rsOptions={options} showContact={false} />
+        <Rs rsOptions={options} showContact={false}/>
       </nav>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import {useState} from "react";
 import slugify from "slugify";
 
 export default function Search() {
@@ -19,7 +19,7 @@ export default function Search() {
   };
 
   return (
-    <section className="blog-header-right">
+    <section className={`blog-header-right ${search && 'open'}`}>
       <span className="screen-reader-text">Recherche un article</span>
       <input
         type="text"
@@ -27,6 +27,7 @@ export default function Search() {
         id="search"
         onChange={(e) => setsearchValue(e.target.value)}
         className={search ? "search-input" : "search-input hidden"}
+        placeholder={"Rechercher ..."}
       />
       {search ? (
         <Link

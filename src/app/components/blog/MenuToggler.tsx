@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 
 export default function MenuToggler() {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ export default function MenuToggler() {
   };
   return (
     <div className="menu" ref={menuRef}>
-      <p>menu</p>
+      <p>Menu</p>
       <div id="menu-img" onClick={openMenu}>
         <div className="front-face">
           <Image
