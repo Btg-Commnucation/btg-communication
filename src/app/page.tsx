@@ -2,10 +2,10 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import axios from "axios";
 import https from "https";
-import { ImageType } from "./middleware/Image";
-import { LinkType } from "./middleware/Link";
-import { PageType } from "./middleware/Page";
-import { use } from "react";
+import {ImageType} from "./middleware/Image";
+import {LinkType} from "./middleware/Link";
+import {PageType} from "./middleware/Page";
+import {use} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import FrontSlider from "./components/FrontSlider";
@@ -14,7 +14,7 @@ import FrontDomains from "./components/FrontDomains";
 import FrontClient from "./components/FrontClient";
 import FrontPhilosophie from "./components/FrontPhilosophie";
 import FrontMethodologie from "./components/FrontMethodologie";
-import { ResolvingMetadata, Metadata } from "next";
+import {Metadata, ResolvingMetadata} from "next";
 import Custom404 from "./[slug]/custom404";
 
 const URL_API = process.env.URL_API;
@@ -42,18 +42,18 @@ type Response = {
   error: string;
 } & (
   | {
-      status: 200;
-      data: PageType<AcfFrontPage>;
-    }
+  status: 200;
+  data: PageType<AcfFrontPage>;
+}
   | {
-      status: 500;
-      data: null;
-    }
-);
+  status: 500;
+  data: null;
+}
+  );
 
 const HeroDomains = ({
-  competences,
-}: {
+                       competences,
+                     }: {
   competences: AcfFrontPage["competences"];
 }) => {
   const getSlug = (url: string) => {
@@ -81,7 +81,7 @@ const getHome = async (): Promise<Response> => {
   try {
     const response = await axios(
       `${URL_API}/better-rest-endpoints/v1/page/accueil`,
-      { httpsAgent: agent }
+      {httpsAgent: agent}
     );
     return {
       data: response.data,
@@ -102,7 +102,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const data = await axios<PageType<AcfFrontPage>[], any>(
     `${URL_API}/better-rest-endpoints/v1/page/accueil`,
-    { httpsAgent: agent }
+    {httpsAgent: agent}
   );
 
   return {
@@ -112,22 +112,22 @@ export async function generateMetadata(
 }
 
 export default function Home() {
-  const { data, error, status } = use(getHome());
+  const {data, error, status} = use(getHome());
 
   if (status !== 200) {
     console.log(error);
     return (
       <>
-        <Header />
-        <Custom404 data={data} status={status} errorMessage={error} />
-        <Footer />
+        <Header/>
+        <Custom404 data={data} status={status} errorMessage={error}/>
+        <Footer/>
       </>
     );
   }
 
   return (
     <>
-      <Header />
+      <Header/>
       <main id="front-page">
         <section className="hero-banner">
           <div className="container">
@@ -139,7 +139,7 @@ export default function Home() {
                 height={427.2}
                 quality={100}
               />
-              <HeroDomains competences={data.acf.competences} />
+              <HeroDomains competences={data.acf.competences}/>
               <svg
                 id="arrow-index"
                 className="arrow active"
@@ -188,14 +188,14 @@ export default function Home() {
           skills={data.acf.competences}
           skillsText={data.acf.texte_competences}
         />
-        <FrontClient clients={data.acf.clients} />
+        <FrontClient clients={data.acf.clients}/>
         <FrontPhilosophie
           textePhilosophie={data.acf.texte_philosophie}
           imagePhilosophie={data.acf.image_philosophie}
         />
-        <FrontMethodologie texteMethodologie={data.acf.texte_methodologie} lien={data.acf.lien_contact} />
+        <FrontMethodologie texteMethodologie={data.acf.texte_methodologie} lien={data.acf.lien_contact}/>
       </main>
-      <Footer />
+      <Footer/>
     </>
   );
 }

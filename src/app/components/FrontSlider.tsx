@@ -7,15 +7,8 @@ import Link from "next/link";
 import {CSSProperties, useCallback} from "react";
 import {DotButton, useDotButton} from "./EmblaCarouselDotButton";
 import Autoplay from "embla-carousel-autoplay";
-import useEmblaCarousel, {
-  EmblaOptionsType,
-  EmblaCarouselType,
-} from "embla-carousel-react";
-import {
-  NextButton,
-  PrevButton,
-  usePrevNextButtons,
-} from "./EmblaCarouselArrowButton";
+import useEmblaCarousel, {EmblaCarouselType, EmblaOptionsType,} from "embla-carousel-react";
+import {NextButton, PrevButton, usePrevNextButtons,} from "./EmblaCarouselArrowButton";
 
 const OPTIONS: EmblaOptionsType = {
   align: "start",
@@ -74,6 +67,8 @@ export default function FrontSlider({
                     title={slide.image.title}
                     width={slide.image.width}
                     height={slide.image.height}
+                    placeholder={"blur"}
+                    blurDataURL="data:image/jpeg..."
                   />
                 </div>
               ))}

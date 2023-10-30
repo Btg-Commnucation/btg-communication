@@ -2,14 +2,21 @@ import Image from "next/image";
 import he from "he";
 import Link from "next/link";
 import ListSavoir from "./ListSavoir";
-import { PageType, SavoirType } from "@/middleware/Page";
+import {PageType, SavoirType} from "@/middleware/Page";
 import Banner from "@/components/Banner";
 import ScrollToTop from "@/components/ScrollToTop";
+import ContactBanner from "@/components/ContactBanner";
 
-export default function Savoir({ page }: { page: PageType<SavoirType> }) {
+export default function Savoir({page}: { page: PageType<SavoirType> }) {
+
+  const getSlug = (url: string) => {
+    const match = url.match(/\/([^/]+)\/?$/);
+    return match ? match[1] : null;
+  };
+
   return (
     <main id="savoir">
-      <ScrollToTop />
+      <ScrollToTop/>
       <Banner
         title={page.title}
         media={page.media}
@@ -25,21 +32,21 @@ export default function Savoir({ page }: { page: PageType<SavoirType> }) {
           />
           <div
             className="right"
-            style={{ height: `${page.acf.image_de_fond.height}px` }}
+            style={{height: `${page.acf.image_de_fond.height}px`}}
           >
             <div className="supperpo">
               <h2>L&apos;agence</h2>
               <div
-                dangerouslySetInnerHTML={{ __html: page.acf.texte_agence }}
+                dangerouslySetInnerHTML={{__html: page.acf.texte_agence}}
               ></div>
               <ul className="link">
                 <li>
-                  <Link href="/">
+                  <Link href={`/${getSlug(page.acf.lien_agence_tours.url)}`}>
                     {he.decode(page.acf.lien_agence_tours.title)}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/">
+                  <Link href={`/${getSlug(page.acf.lien_agence_vannes.url)}`}>
                     {he.decode(page.acf.lien_agence_vannes.title)}
                   </Link>
                 </li>
@@ -62,7 +69,8 @@ export default function Savoir({ page }: { page: PageType<SavoirType> }) {
                 >
                   <title>Arrows</title>
                   <g data-name="Layer 2">
-                    <polygon points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
+                    <polygon
+                      points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
                   </g>
                 </svg>
               </Link>
@@ -70,7 +78,8 @@ export default function Savoir({ page }: { page: PageType<SavoirType> }) {
           </div>
         </div>
       </section>
-      <ListSavoir competences={page.acf.competences} />
+      <ListSavoir competences={page.acf.competences}/>
+      <ContactBanner/>
       <section className="bottom">
         <div className="container">
           <Image
@@ -81,7 +90,7 @@ export default function Savoir({ page }: { page: PageType<SavoirType> }) {
           />
           <div
             className="bottom-text"
-            dangerouslySetInnerHTML={{ __html: page.acf.agence_bas_texte }}
+            dangerouslySetInnerHTML={{__html: page.acf.agence_bas_texte}}
           ></div>
         </div>
       </section>

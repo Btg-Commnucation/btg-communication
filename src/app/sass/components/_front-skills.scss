@@ -115,7 +115,7 @@
   }
 
   .skills {
-    background: url("/ce-que-lon-fait.jpg");
+    background: url("/ce-que-lon-fait.jpg") no-repeat center center;
     background-size: cover;
     box-shadow: 13px 13px 13px 0 rgba(112, 94, 41, 0.46);
     width: 56%;
@@ -129,7 +129,6 @@
       margin-top: -7.5rem;
       position: relative;
       padding-block: 8rem 5rem;
-      padding-block: 5;
     }
     @media (max-width: 768px) {
       margin-top: 0;
@@ -140,7 +139,7 @@
     }
 
     ul {
-      padding-inline: 3rem;
+      padding-inline: 2rem 12rem;
       padding-block: 5rem 13rem;
       display: grid;
       grid-template-columns: repeat(3, 1fr);

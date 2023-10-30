@@ -35,17 +35,17 @@
   }
 
   .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    justify-content: center;
-    gap: 13.2rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 13.2rem !important;
 
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      max-width: 85%;
-      margin-inline: auto;
-      gap: 3.4rem;
+      grid-template-columns: 1fr !important;
+      max-width: 85% !important;
+      margin-inline: auto !important;
+      gap: 3.4rem !important;
     }
 
     a {
@@ -69,8 +69,7 @@
         background: white;
 
         span {
-          background: linear-gradient(79deg, #ff5e80 0%, #8570cc 100%) 0% 0%
-            no-repeat;
+          background: linear-gradient(79deg, #ff5e80 0%, #8570cc 100%) 0% 0% no-repeat;
           background-clip: text;
           text-fill-color: transparent;
           -webkit-text-fill-color: transparent;
