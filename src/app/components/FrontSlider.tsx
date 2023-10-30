@@ -1,11 +1,11 @@
 "use client";
 
-import { ImageType } from "@/middleware/Image";
-import { AcfFrontPage } from "@/page";
+import {ImageType} from "@/middleware/Image";
+import {AcfFrontPage} from "@/page";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback } from "react";
-import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
+import {CSSProperties, useCallback} from "react";
+import {DotButton, useDotButton} from "./EmblaCarouselDotButton";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel, {
   EmblaOptionsType,
@@ -29,21 +29,21 @@ const OPTIONS: EmblaOptionsType = {
 };
 
 export default function FrontSlider({
-  slider,
-  sliderText,
-}: {
+                                      slider,
+                                      sliderText,
+                                    }: {
   slider: AcfFrontPage["slider"];
   sliderText: AcfFrontPage["texte_photo"];
 }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [Autoplay()]);
 
   const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-    const { autoplay } = emblaApi.plugins();
+    const {autoplay} = emblaApi.plugins();
     if (!autoplay) return;
     if (autoplay.options.stopOnInteraction !== false) autoplay.stop();
   }, []);
 
-  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
+  const {selectedIndex, scrollSnaps, onDotButtonClick} = useDotButton(
     emblaApi,
     onButtonClick
   );
@@ -58,17 +58,15 @@ export default function FrontSlider({
   return (
     <section className="slider-wrapper">
       <div className="container">
-        <div className="embla">
+        <div className="embla" style={{
+          "--slide-height": `calc(394px + (${slider[0].image.height} - 394) * ((100vw - 320px) / (1920 - 320)))`
+        } as CSSProperties}>
           <div ref={emblaRef} className="embla__viewport">
             <div className="embla__container">
               {slider.map((slide: { image: ImageType }) => (
                 <div
                   className="embla__slide"
                   key={slide.image.id}
-                  style={{
-                    width: slide.image.width,
-                    height: slide.image.height,
-                  }}
                 >
                   <Image
                     src={slide.image.url}
@@ -108,7 +106,7 @@ export default function FrontSlider({
           <h2>Projets</h2>
           <div
             className="text"
-            dangerouslySetInnerHTML={{ __html: sliderText }}
+            dangerouslySetInnerHTML={{__html: sliderText}}
           ></div>
           <Link href="/nos-realisations" className="btn-primary">
             Les réalisations de l&apos;agence
@@ -121,7 +119,8 @@ export default function FrontSlider({
             >
               <title>Arrows</title>
               <g data-name="Layer 2">
-                <polygon points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
+                <polygon
+                  points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
               </g>
             </svg>
           </Link>
@@ -147,13 +146,14 @@ const Arrow = (props: {
       y="0px"
       style={
         props.left
-          ? { transform: "rotate(180deg)" }
-          : { transform: "rotate(0)" }
+          ? {transform: "rotate(180deg)"}
+          : {transform: "rotate(0)"}
       }
     >
       <title>Arrows</title>
       <g data-name="Layer 2">
-        <polygon points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
+        <polygon
+          points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
       </g>
     </svg>
   );

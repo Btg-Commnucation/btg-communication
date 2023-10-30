@@ -36,7 +36,6 @@
     .middle {
       position: relative;
       width: 370px;
-      position: relative;
 
       @media screen and (max-width: 1200px) {
         width: 100%;
@@ -134,6 +133,10 @@
       --slide-spacing: 0;
       --slide-size: 100%;
       --slide-height: 698px;
+
+      @media (max-width: 560px) {
+        width: 100%;
+      }
     }
 
     .embla__viewport {
@@ -285,7 +288,6 @@
       padding: 4.3rem 3rem 7.5rem 9.3rem;
       right: -24em;
       top: -9em;
-      background: white;
       z-index: 3;
       font-size: 2.1rem;
       font-weight: 300;
@@ -353,7 +355,7 @@
 }
 @keyframes setTopArrow {
   0% {
-    transform: ranslateY(0);
+    transform: translateY(0);
   }
   100% {
     transform: translateY(130px);

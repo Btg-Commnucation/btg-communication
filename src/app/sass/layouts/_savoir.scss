@@ -26,10 +26,11 @@
         height: 100% !important;
       }
     }
+
     .supperpo {
       position: absolute;
       top: 12%;
-      left: -15%;
+      left: -5%;
       height: fit-content;
 
       @media (max-width: 1757px) {
@@ -237,6 +238,12 @@
         transition: 0.1s ease-in-out;
         position: relative;
 
+        @media (max-width: 350px) {
+          align-self: flex-start;
+          padding: 25px 17px;
+          font-size: 2rem;
+        }
+
         svg {
           width: 44px;
           height: 44px;
@@ -319,6 +326,11 @@
       color: black;
       font-family: "Exo", sans-serif;
       font-style: normal;
+
+      @media (max-width: 650px) {
+        text-align: left;
+        width: 100%;
+      }
     }
 
     .savoir-listing {
@@ -503,6 +515,12 @@
         flex-direction: column-reverse;
         align-items: flex-start;
       }
+
+      @media (max-width: 550px) {
+        img {
+          width: 100%;
+        }
+      }
     }
 
     img {
@@ -548,6 +566,10 @@
         left: unset;
         top: unset;
       }
+
+      @media (max-width: 550px) {
+        padding-inline: 0;
+      }
     }
   }
 
@@ -561,6 +583,7 @@
       height: 100%;
       position: relative;
     }
+
     .container {
       height: 100%;
       display: flex;
@@ -603,6 +626,11 @@
           max-width: 95%;
           padding-left: 3rem;
           padding-top: 15rem;
+        }
+
+        @media (max-width: 550px) {
+          padding: 5rem;
+          padding-inline: 2rem;
         }
 
         img {

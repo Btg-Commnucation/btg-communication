@@ -108,6 +108,24 @@
       left: 67%;
       width: 60%;
     }
+
+    @media (max-width: 506px) {
+      top: 8%;
+    }
+
+    @media (max-width: 467px) {
+      width: fit-content;
+    }
+
+    @media (max-width: 362px) {
+      top: 10%;
+    }
+
+   @media (max-width: 336px) {
+     transform: rotate(0);
+     left: 0;
+     top: 7%;
+   }
   }
 
   .content {
@@ -127,6 +145,10 @@
       position: relative;
       left: 0;
       top: 17rem;
+    }
+
+    @media (max-width: 650px) {
+      padding-left: 0;
     }
   }
 

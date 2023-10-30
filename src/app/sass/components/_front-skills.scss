@@ -95,6 +95,10 @@
     @media (max-width: 768px) {
       font-size: 3.3rem;
       width: 100%;
+
+      &::after {
+        margin-right: 0;
+      }
     }
   }
 

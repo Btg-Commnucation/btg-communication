@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
 import he from "he";
-import { SetStateAction, useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
-import { PageType, RealisationType } from "@/middleware/Page";
-import { RealType } from "@/middleware/RealType";
+import {PageType, RealisationType} from "@/middleware/Page";
+import {RealType} from "@/middleware/RealType";
 
 export default function RealisationClient({
-  page,
-  data,
-}: {
+                                            page,
+                                            data,
+                                          }: {
   page: PageType<RealisationType>;
   data: RealType[];
 }) {
@@ -140,12 +140,13 @@ export default function RealisationClient({
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 371.9 429.5"
                   >
-                    <path d="M186 0L0 107.4v214.7l186 107.4 186-107.4V107.4L186 0zm174.9 315.7l-175 101-175-101v-202l175-101 175 101v202z"></path>
+                    <path
+                      d="M186 0L0 107.4v214.7l186 107.4 186-107.4V107.4L186 0zm174.9 315.7l-175 101-175-101v-202l175-101 175 101v202z"></path>
                     <path d="M169.3 134.7v63.6h-61.2v32.3h61.2v64.2h23.3v-64.2h61.2v-32.3h-61.2v-63.6z"></path>
                   </svg>
                   <div
                     className="project-content"
-                    dangerouslySetInnerHTML={{ __html: project.content }}
+                    dangerouslySetInnerHTML={{__html: project.content}}
                   ></div>
                 </div>
               </Link>
