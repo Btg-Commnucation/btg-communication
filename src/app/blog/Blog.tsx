@@ -1,24 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { PostData } from "@/middleware/Post";
+import {useEffect, useState} from "react";
+import {PostData} from "@/middleware/Post";
 import Image from "next/image";
 import Link from "next/link";
 import he from "he";
-import { format, parseISO } from "date-fns";
-import { fr } from "date-fns/locale";
-import { Membre } from "@/middleware/Page";
-import { useKeenSlider } from "keen-slider/react";
+import {format, parseISO} from "date-fns";
+import {fr} from "date-fns/locale";
+import {Membre} from "@/middleware/Page";
+import {useKeenSlider} from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { useSearchParams } from "next/navigation";
+import {useSearchParams} from "next/navigation";
 import slugify from "slugify";
 import unslugify from "unslugify";
 
 const Post = ({
-  article,
-  priority,
-  filter,
-}: {
+                article,
+                priority,
+                filter,
+              }: {
   article: PostData;
   priority: boolean;
   filter?: string | null;
@@ -41,7 +41,7 @@ const Post = ({
 
   const formatDate = (isoDate: string): string => {
     const date = parseISO(isoDate);
-    return `publié le ${format(date, "dd MMMM yyyy", { locale: fr })}`;
+    return `publié le ${format(date, "dd MMMM yyyy", {locale: fr})}`;
   };
 
   return (
@@ -69,8 +69,8 @@ const Post = ({
               className="card-excerpt"
               dangerouslySetInnerHTML={
                 article.excerpt
-                  ? { __html: article.excerpt }
-                  : { __html: truncateText(article.acf.accroche, 199) }
+                  ? {__html: article.excerpt}
+                  : {__html: truncateText(article.acf.accroche, 199)}
               }
             ></div>
             <div className="card-date">
@@ -105,8 +105,8 @@ const Post = ({
                   className="card-excerpt"
                   dangerouslySetInnerHTML={
                     article.excerpt
-                      ? { __html: article.excerpt }
-                      : { __html: truncateText(article.acf.accroche, 199) }
+                      ? {__html: article.excerpt}
+                      : {__html: truncateText(article.acf.accroche, 199)}
                   }
                 ></div>
                 <div className="card-date">
@@ -121,7 +121,7 @@ const Post = ({
   );
 };
 
-const Authors = ({ members }: { members: Membre[] }) => {
+const Authors = ({members}: { members: Membre[] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
@@ -165,7 +165,7 @@ const Authors = ({ members }: { members: Membre[] }) => {
                   <p className="author-card-job">{member.post_membre}</p>
                   <div
                     className="author-card-job-content"
-                    dangerouslySetInnerHTML={{ __html: member.blog_membre }}
+                    dangerouslySetInnerHTML={{__html: member.blog_membre}}
                   ></div>
                   <div className="btn-container">
                     <Link
@@ -176,7 +176,7 @@ const Authors = ({ members }: { members: Membre[] }) => {
                     >
                       Mon profil
                     </Link>
-                    <Link href="/" className="btn">
+                    <Link href={`/blog/bio?auteur=${removeAccents(member.nom_membre)}`} className="btn">
                       Mes articles
                     </Link>
                   </div>
@@ -208,9 +208,9 @@ const Authors = ({ members }: { members: Membre[] }) => {
 };
 
 export default function Blog({
-  articles,
-  members,
-}: {
+                               articles,
+                               members,
+                             }: {
   articles: PostData[];
   members: Membre[];
 }) {
@@ -240,7 +240,7 @@ export default function Blog({
                 </h2>
                 <div className="recommended-items">
                   {articles.slice(0, 3).map((article) => (
-                    <Post article={article} key={article.id} priority={true} />
+                    <Post article={article} key={article.id} priority={true}/>
                   ))}
                 </div>
               </div>
@@ -259,7 +259,7 @@ export default function Blog({
               <div className="recommended-items">
                 {articles.map((article) => (
                   <>
-                    {article.acf.article_plus_lu && (
+                    {article.acf.article_plus_lu === "Oui" && (
                       <Post
                         article={article}
                         key={article.id}
@@ -273,7 +273,7 @@ export default function Blog({
           </section>
           <section className="authors">
             <div className="blog-container">
-              <Authors members={members} />
+              <Authors members={members}/>
             </div>
           </section>
           <section className="guides">

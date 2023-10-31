@@ -1,7 +1,8 @@
-import { PostData } from "@/middleware/Post";
+import {PostData} from "@/middleware/Post";
 import he from "he";
+import Image from "next/image";
 
-export default function AcfLayout({ data }: { data: PostData }) {
+export default function AcfLayout({data}: { data: PostData }) {
   return (
     <div className="elem-container">
       {data.acf.content.map((item, index: number) => (
@@ -13,8 +14,12 @@ export default function AcfLayout({ data }: { data: PostData }) {
             <div
               key={index}
               className="exo-light-18"
-              dangerouslySetInnerHTML={{ __html: item.texte }}
+              dangerouslySetInnerHTML={{__html: item.texte}}
             ></div>
+          )}
+          {item.acf_fc_layout === "image" && (
+            <Image src={item.image.url} alt={item.image.alt} width={833}
+                   height={496}/>
           )}
         </>
       ))}

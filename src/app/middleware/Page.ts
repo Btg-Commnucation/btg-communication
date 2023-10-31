@@ -67,7 +67,7 @@ export type RealisationType = {
 export type ClientType = {
   temoignage: TemoignagesType[];
   sous_titre: string;
-  lien_page_realisation: LinkType;
+  lien_page_realisations: LinkType;
   confiances: {
     image: ImageType;
   }[];

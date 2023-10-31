@@ -28,6 +28,10 @@
     }
   }
 
+  @media (max-width: 410px) {
+    width: 95%;
+  }
+
   & ~ #overlay-menu {
     height: 100%;
     top: 0;

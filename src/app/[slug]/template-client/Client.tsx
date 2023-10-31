@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import Temoin from "./Temoin";
-import Link from "next/link";
 import {ClientType, PageType, TemoignagesType} from "@/middleware/Page";
-import Banner from "@/components/Banner";
 import ScrollToTop from "@/components/ScrollToTop";
 import ContactBanner from "@/components/ContactBanner";
+import Image from "next/image";
+import Temoin from "@/[slug]/template-client/Temoin";
+import Banner from "@/components/Banner";
+import Link from "next/link";
 import he from "he";
 
 export default function Client({page}: { page: PageType<ClientType> }) {
@@ -31,8 +31,8 @@ export default function Client({page}: { page: PageType<ClientType> }) {
             <Temoin temoin={temoin} index={index} key={index}/>
           ))}
         </ul>
-        <Link href={`/${getSlug(page.acf.lien_page_realisation.url)}`} className="real">
-          <p>{he.decode(page.acf.lien_page_realisation.title)}</p>
+        <Link href={`/${getSlug(page.acf.lien_page_realisations?.url)}`} className="real">
+          <p>{he.decode(page.acf.lien_page_realisations?.title)}</p>
           <svg
             className="arrow"
             xmlns="http://www.w3.org/2000/svg"
