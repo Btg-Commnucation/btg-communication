@@ -1,16 +1,15 @@
-import BlogHeader from "@/components/blog/BlogHeader";
-import BlogFooter from "@/components/blog/BlogFooter";
-import {PostData} from "@/middleware/Post";
 import axios from "axios";
+import {EquipeType, Membre, PageType} from "@/middleware/Page";
+import {PostData} from "@/middleware/Post";
 import https from "https";
 import {use} from "react";
-import Blog from "./Blog";
-import {EquipeType, Membre, PageType} from "@/middleware/Page";
+import ClientSideBio from "@/blog/bio/ClientSideBio";
+import BlogHeader from "@/components/blog/BlogHeader";
+import BlogFooter from "@/components/blog/BlogFooter";
 import {Metadata, ResolvingMetadata} from "next";
 import he from "he";
 
 const URL_API = process.env.URL_API;
-
 const agent = new https.Agent({
   rejectUnauthorized: false,
 });
@@ -20,9 +19,8 @@ export async function generateMetadata(parent?: ResolvingMetadata): Promise<Meta
     {httpsAgent: agent})
 
   return {
-    title: he.decode("Blog et actualités de l'agence print & web - Btg Communication"),
-    description: he.decode("Retrouvez toutes les actualités de l'agence de communication BTG Communication, agence" +
-      " de communication à Tours et Vannes."),
+    title: he.decode("Les articles de notre auteur - Btg Communication"),
+    description: he.decode("Retrouvez toutes les actualités de notre auteur sur le blog de Btg Communication"),
   }
 }
 
@@ -63,10 +61,10 @@ export default function Page() {
   return (
     <>
       <BlogHeader/>
-      <main id="blog">
-        <Blog articles={articles as PostData[]} members={authors as Membre[]}/>
+      <main id="blog" className="bio-page">
+        <ClientSideBio authors={authors as Membre[]} articles={articles as PostData[]}/>
       </main>
       <BlogFooter/>
     </>
-  );
+  )
 }

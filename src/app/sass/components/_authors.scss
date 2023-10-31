@@ -146,4 +146,48 @@
       }
     }
   }
+
+  &.bio-page h1 {
+    @media (max-width: 799px) {
+      text-align: center;
+      margin-inline: auto !important;
+    }
+  }
+
+  &.bio-page .blog-container {
+    @media (max-width: 799px) {
+      width: 95%;
+    }
+  }
+
+  &.bio-page .author {
+    margin-bottom: 5rem;
+  }
+
+  &.bio-page .author .blog-container {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+
+    @media (max-width: 799px) {
+      flex-direction: column;
+      align-items: center;
+
+      .author-card-job-content {
+        font-size: 1.5rem;
+      }
+    }
+
+    img {
+      height: 292px;
+      width: 254px;
+      position: relative;
+      z-index: 2;
+
+      @media (max-width: 1025px) {
+        height: 200px;
+        width: 174px;
+      }
+    }
+  }
 }
