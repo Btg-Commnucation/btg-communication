@@ -2,18 +2,18 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import axios from "axios";
 import he from "he";
-import { use } from "react";
+import {use} from "react";
 import OtherDomain from "./OtherDomain";
 import Custom404 from "@/[slug]/custom404";
 import {
+  ContentFondImageType,
+  ContentLine,
+  ContentTextePlusType,
   ContentType,
   ContentTypeFondJauneType,
   ContentTypeImage,
   DomainesType,
-  SliderType,
-  ContentFondImageType,
-  ContentTextePlusType,
-  ContentLine
+  SliderType
 } from "@/middleware/Domaines";
 import Banner from "@/components/Banner";
 import GrayBackground from "./GrayBackground";
@@ -28,6 +28,8 @@ export type Domaines = DomainesType<
   | SliderType
   | ContentFondImageType
 >;
+
+export const revalidate = 3200;
 
 export type allDomaineType = Domaines[];
 
@@ -50,13 +52,13 @@ const getDomaines = async (
       error: false,
     };
   } catch (e) {
-    return { data: undefined, allData: [], error: true };
+    return {data: undefined, allData: [], error: true};
   }
 };
 
 export async function generateMetadata({
-  params,
-}: {
+                                         params,
+                                       }: {
   params: { slug: string };
 }) {
   const data = await axios(`${URL_API}/better-rest-endpoints/v1/domaines`).then(
@@ -70,27 +72,27 @@ export async function generateMetadata({
   };
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const { data, allData, error } = use(getDomaines(slug));
+export default function Page({params}: { params: { slug: string } }) {
+  const {slug} = params;
+  const {data, allData, error} = use(getDomaines(slug));
 
   if (error) {
     return (
       <>
-        <Header />
+        <Header/>
         <Custom404
           status={404}
           data="Nous sommes désolés, et si nous retournions à l’accueil ?"
           errorMessage="La page que vous demandez n’existe pas :’("
         />
-        <Footer />
+        <Footer/>
       </>
     );
   }
 
   return (
     <>
-      <Header />
+      <Header/>
       <main id="expertise">
         <Banner
           title={data!.title}
@@ -102,7 +104,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             <h2>{he.decode(data!.acf.titre)}</h2>
             <div
               className="content"
-              dangerouslySetInnerHTML={{ __html: data!.content }}
+              dangerouslySetInnerHTML={{__html: data!.content}}
             ></div>
           </div>
         </section>
@@ -110,7 +112,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           contenu={data!.acf.contenu_fond_gris}
           image={data!.acf.image_fond_gris}
         />
-        <ContactBanner />
+        <ContactBanner/>
         {data!.acf.contenu_flexible.map((item, key) => (
           <>
             {item.acf_fc_layout === "contenu" && (
@@ -124,10 +126,10 @@ export default function Page({ params }: { params: { slug: string } }) {
               />
             )}
             {item.acf_fc_layout === "image_de_fond" && (
-              <AcfBackgroundImage data={item as ContentFondImageType} />
+              <AcfBackgroundImage data={item as ContentFondImageType}/>
             )}
             {item.acf_fc_layout === "slider" && (
-              <Slider data={item as SliderType} />
+              <Slider data={item as SliderType}/>
             )}
           </>
         ))}
@@ -139,11 +141,11 @@ export default function Page({ params }: { params: { slug: string } }) {
           <div className="container">
             <h4>{he.decode("Nos autres domaines d'expertise")}</h4>
             <div className="separator"></div>
-            <OtherDomain domains={allData} />
+            <OtherDomain domains={allData}/>
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer/>
     </>
   );
 }

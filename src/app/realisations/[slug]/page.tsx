@@ -12,6 +12,8 @@ import ContactBanner from "@/components/ContactBanner";
 
 const URL_API = process.env.URL_API;
 
+export const revalidate = 3200;
+
 export type ImageContentType = {
   acf_fc_layout: string;
   image: {

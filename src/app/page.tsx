@@ -22,6 +22,8 @@ const agent = new https.Agent({
   rejectUnauthorized: false,
 });
 
+export const revalidate = 3200;
+
 export type AcfFrontPage = {
   competences: {
     icone: ImageType;
