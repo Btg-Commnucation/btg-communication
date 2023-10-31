@@ -15,6 +15,8 @@ const agent = new https.Agent({
   rejectUnauthorized: false,
 });
 
+export const revalidate = 1800;
+
 export const metadata: Metadata = {
   title: he.decode("Les articles de notre auteur - Btg Communication"),
   description: he.decode("Retrouvez toutes les actualités de notre auteur sur le blog de Btg Communication"),

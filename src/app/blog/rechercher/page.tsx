@@ -1,11 +1,12 @@
 import BlogFooter from "@/components/blog/BlogFooter";
 import BlogHeader from "@/components/blog/BlogHeader";
-import { PostData } from "@/middleware/Post";
+import {PostData} from "@/middleware/Post";
 import axios from "axios";
-import { use } from "react";
+import {use} from "react";
 import PostSearch from "./PostSearch";
 
 const URL_API = process.env.URL_API;
+export const revalidate = 1800;
 
 const getPosts = async () => {
   try {
@@ -24,11 +25,11 @@ export default function Search() {
 
   return (
     <>
-      <BlogHeader />
+      <BlogHeader/>
       <main id="blog" className="search-page">
-        <PostSearch posts={Posts as PostData[]} />
+        <PostSearch posts={Posts as PostData[]}/>
       </main>
-      <BlogFooter />
+      <BlogFooter/>
     </>
   );
 }

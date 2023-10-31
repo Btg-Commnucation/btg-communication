@@ -1,10 +1,10 @@
-import { PostData } from "@/middleware/Post";
+import {PostData} from "@/middleware/Post";
 import axios from "axios";
 import https from "https";
-import { ResolvingMetadata, Metadata } from "next";
+import {Metadata, ResolvingMetadata} from "next";
 import he from "he";
 import BlogHeader from "@/components/blog/BlogHeader";
-import { use } from "react";
+import {use} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AcfLayout from "./AcfLayout";
@@ -16,6 +16,7 @@ const URL_API = process.env.URL_API;
 const agent = new https.Agent({
   rejectUnauthorized: false,
 });
+export const revalidate = 1800;
 
 const getArticle = async (slug: string) => {
   try {
@@ -33,7 +34,7 @@ const getArticle = async (slug: string) => {
         data: {
           title: "Nous sommes désolés, et si nous retournions à l’accueil ?",
           category_names: ["Erreur"],
-          media: { large: "error" },
+          media: {large: "error"},
           acf: {
             accroche: "Erreur",
             image_haut_article: null,
@@ -44,14 +45,14 @@ const getArticle = async (slug: string) => {
       };
     }
 
-    return { data: post, status: 200, errorMessage: "", posts: response.data };
+    return {data: post, status: 200, errorMessage: "", posts: response.data};
   } catch (error) {
     console.log(error);
     return {
       data: {
         title: "error",
         category_names: ["Erreur"],
-        media: { large: "error" },
+        media: {large: "error"},
         acf: {
           accroche: "Erreur",
           image_haut_article: null,
@@ -64,10 +65,10 @@ const getArticle = async (slug: string) => {
 };
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  {params}: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  const {slug} = params;
 
   const data = await axios<PostData[]>(
     `${URL_API}/better-rest-endpoints/v1/posts`,
@@ -88,13 +89,13 @@ export async function generateMetadata(
   });
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const { data, status, errorMessage, posts } = use(getArticle(slug));
+export default function Page({params}: { params: { slug: string } }) {
+  const {slug} = params;
+  const {data, status, errorMessage, posts} = use(getArticle(slug));
 
   return (
     <>
-      <BlogHeader />
+      <BlogHeader/>
       {(data as PostData) && (
         <main id="single">
           <section className="hero-banner">
@@ -143,9 +144,9 @@ export default function Page({ params }: { params: { slug: string } }) {
                 )}
                 <div
                   className="exo-light-18"
-                  dangerouslySetInnerHTML={{ __html: data!.acf.accroche }}
+                  dangerouslySetInnerHTML={{__html: data!.acf.accroche}}
                 ></div>
-                <AcfLayout data={data as PostData} />
+                <AcfLayout data={data as PostData}/>
               </section>
               <Posts
                 posts={posts as PostData[]}
@@ -153,10 +154,10 @@ export default function Page({ params }: { params: { slug: string } }) {
               />
             </div>
           </article>
-          {<Author data={data as PostData} />}
+          {<Author data={data as PostData}/>}
         </main>
       )}
-      <BlogFooter />
+      <BlogFooter/>
     </>
   );
 }
