@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const getArticles = async () => {
   try {
     const response = await axios<PostData[]>(
-      `${URL_API}/better-rest-endpoints/v1/posts`,
+      `${URL_API}/better-rest-endpoints/v1/posts?per_page=100`,
       {
         httpsAgent: agent
       }
