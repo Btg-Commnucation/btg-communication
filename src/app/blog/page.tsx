@@ -6,7 +6,7 @@ import https from "https";
 import {use} from "react";
 import Blog from "./Blog";
 import {EquipeType, Membre, PageType} from "@/middleware/Page";
-import {Metadata, ResolvingMetadata} from "next";
+import {Metadata} from "next";
 import he from "he";
 
 const URL_API = process.env.URL_API;
@@ -15,15 +15,9 @@ const agent = new https.Agent({
   rejectUnauthorized: false,
 });
 
-export async function generateMetadata(parent?: ResolvingMetadata): Promise<Metadata> {
-  const data = await axios<PostData[]>(`${URL_API}/better-rest-endpoints/v1/posts`,
-    {httpsAgent: agent})
-
-  return {
-    title: he.decode("Blog et actualités de l'agence print & web - Btg Communication"),
-    description: he.decode("Retrouvez toutes les actualités de l'agence de communication BTG Communication, agence" +
-      " de communication à Tours et Vannes."),
-  }
+export const metadata: Metadata = {
+  title: he.decode("Les articles de notre auteur - Btg Communication"),
+  description: he.decode("Retrouvez toutes les actualités de notre auteur sur le blog de Btg Communication"),
 }
 
 const getArticles = async () => {
