@@ -6,7 +6,7 @@ import {use} from "react";
 import ClientSideBio from "@/blog/bio/ClientSideBio";
 import BlogHeader from "@/components/blog/BlogHeader";
 import BlogFooter from "@/components/blog/BlogFooter";
-import {Metadata, ResolvingMetadata} from "next";
+import {Metadata} from "next";
 import he from "he";
 
 const URL_API = process.env.URL_API;
@@ -14,12 +14,9 @@ const agent = new https.Agent({
   rejectUnauthorized: false,
 });
 
-export async function generateMetadata(parent?: ResolvingMetadata): Promise<Metadata> {
-
-  return {
-    title: he.decode("Les articles de notre auteur - Btg Communication"),
-    description: he.decode("Retrouvez toutes les actualités de notre auteur sur le blog de Btg Communication"),
-  }
+export const metadata: Metadata = {
+  title: he.decode("Les articles de notre auteur - Btg Communication"),
+  description: he.decode("Retrouvez toutes les actualités de notre auteur sur le blog de Btg Communication"),
 }
 
 const getArticles = async () => {
