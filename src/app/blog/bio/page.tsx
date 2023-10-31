@@ -15,8 +15,6 @@ const agent = new https.Agent({
 });
 
 export async function generateMetadata(parent?: ResolvingMetadata): Promise<Metadata> {
-  const data = await axios<PostData[]>(`${URL_API}/better-rest-endpoints/v1/posts`,
-    {httpsAgent: agent})
 
   return {
     title: he.decode("Les articles de notre auteur - Btg Communication"),
