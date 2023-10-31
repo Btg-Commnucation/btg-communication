@@ -1,5 +1,5 @@
-import { ImageType } from "./Image";
-import { LinkType } from "./Link";
+import {ImageType} from "./Image";
+import {LinkType} from "./Link";
 
 export type PageType<T> = {
   id: number;
@@ -67,6 +67,7 @@ export type RealisationType = {
 export type ClientType = {
   temoignage: TemoignagesType[];
   sous_titre: string;
+  lien_page_realisation: LinkType;
   confiances: {
     image: ImageType;
   }[];

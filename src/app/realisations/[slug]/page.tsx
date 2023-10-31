@@ -1,14 +1,15 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import axios from "axios";
-import { use } from "react";
+import {use} from "react";
 import he from "he";
 import Image from "next/image";
 import AcfImage from "./AcfImage";
 import AcfText from "./AcfText";
-import Link from "next/link";
 import MoreProject from "./MoreProject";
 import AcfVideo from "./AcfVideo";
+import ContactBanner from "@/components/ContactBanner";
+
 const URL_API = process.env.URL_API;
 
 export type ImageContentType = {
@@ -84,13 +85,13 @@ const getRealisation = async (
       error: false,
     };
   } catch (e) {
-    return { allData: [], data: undefined, error: true };
+    return {allData: [], data: undefined, error: true};
   }
 };
 
 export async function generateMetadata({
-  params,
-}: {
+                                         params,
+                                       }: {
   params: { slug: string };
 }) {
   const data = await axios(
@@ -105,9 +106,9 @@ export async function generateMetadata({
   };
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const { allData, data, error } = use(getRealisation(slug));
+export default function Page({params}: { params: { slug: string } }) {
+  const {slug} = params;
+  const {allData, data, error} = use(getRealisation(slug));
 
   const isImageContentType = (object: any): object is ImageContentType => {
     return object.acf_fc_layout === "image";
@@ -119,7 +120,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <Header />
+      <Header/>
       {!error ? (
         <main id="realisations">
           <section className="banner">
@@ -137,11 +138,11 @@ export default function Page({ params }: { params: { slug: string } }) {
               <h1>{he.decode(data!.title)}</h1>
               <div
                 className="content"
-                dangerouslySetInnerHTML={{ __html: data!.content }}
+                dangerouslySetInnerHTML={{__html: data!.content}}
               ></div>
               <div
                 className="accroche"
-                dangerouslySetInnerHTML={{ __html: data!.acf.accroche }}
+                dangerouslySetInnerHTML={{__html: data!.acf.accroche}}
               ></div>
               <Image
                 src="/wave-radiant.gif"
@@ -162,36 +163,20 @@ export default function Page({ params }: { params: { slug: string } }) {
                   ) => (
                     <li key={index}>
                       {isImageContentType(item) ? (
-                        <AcfImage image={item} />
+                        <AcfImage image={item}/>
                       ) : isTextContentType(item) ? (
-                        <AcfText text={item} />
+                        <AcfText text={item}/>
                       ) : (
-                        <AcfVideo video={item} />
+                        <AcfVideo video={item}/>
                       )}
                     </li>
                   )
                 )}
-                <li>
-                  <Link href="/" className="contact-link">
-                    Nous contacter
-                    <svg
-                      className="arrow"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 100 100"
-                      x="0px"
-                      y="0px"
-                    >
-                      <title>Arrows</title>
-                      <g data-name="Layer 2">
-                        <polygon points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
-                      </g>
-                    </svg>
-                  </Link>
-                </li>
               </ul>
             </div>
           </section>
-          <MoreProject projects={allData!.slice(0, 4)} />
+          <ContactBanner/>
+          <MoreProject projects={allData!.slice(0, 4)}/>
         </main>
       ) : (
         <main id="realisation">
@@ -205,7 +190,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           </section>
         </main>
       )}
-      <Footer />
+      <Footer/>
     </>
   );
 }
