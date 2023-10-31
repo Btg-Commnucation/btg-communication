@@ -11,7 +11,7 @@ export const revalidate = 1800;
 const getPosts = async () => {
   try {
     const response = await axios<PostData[]>(
-      `${URL_API}/better-rest-endpoints/v1/posts`
+      `${URL_API}/better-rest-endpoints/v1/posts?per_page=100`
     );
 
     return response.data;
