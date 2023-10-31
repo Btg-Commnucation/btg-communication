@@ -7,8 +7,15 @@ import {ClientType, PageType, TemoignagesType} from "@/middleware/Page";
 import Banner from "@/components/Banner";
 import ScrollToTop from "@/components/ScrollToTop";
 import ContactBanner from "@/components/ContactBanner";
+import he from "he";
 
 export default function Client({page}: { page: PageType<ClientType> }) {
+
+  const getSlug = (url: string) => {
+    const match = url.match(/\/([^/]+)\/?$/);
+    return match ? match[1] : null;
+  };
+
   return (
     <main id="client">
       <ScrollToTop/>
@@ -24,8 +31,8 @@ export default function Client({page}: { page: PageType<ClientType> }) {
             <Temoin temoin={temoin} index={index} key={index}/>
           ))}
         </ul>
-        <Link href="/" className="real">
-          <p>Les réalisations de l&apos;agence</p>
+        <Link href={`/${getSlug(page.acf.lien_page_realisation.url)}`} className="real">
+          <p>{he.decode(page.acf.lien_page_realisation.title)}</p>
           <svg
             className="arrow"
             xmlns="http://www.w3.org/2000/svg"

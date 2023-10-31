@@ -2,8 +2,9 @@ import Link from "next/link";
 import Rs from "../header/Rs";
 import https from "https";
 import axios from "axios";
-import { OptionsType } from "@/middleware/Header";
-import { use } from "react";
+import {OptionsType} from "@/middleware/Header";
+import {use} from "react";
+import he from "he";
 
 const URL_API = process.env.URL_API;
 
@@ -15,7 +16,7 @@ const getOptions = async (): Promise<OptionsType | undefined> => {
   try {
     const response = await axios<OptionsType, any>(
       `${URL_API}/better-rest-endpoints/v1/options/acf`,
-      { httpsAgent: agent }
+      {httpsAgent: agent}
     );
     return response;
   } catch (e) {
@@ -25,6 +26,11 @@ const getOptions = async (): Promise<OptionsType | undefined> => {
 
 export default function BlogFooter() {
   const options = use(getOptions());
+
+  const getSlug = (url: string) => {
+    const match = url.match(/\/([^/]+)\/?$/);
+    return match ? match[1] : null;
+  };
 
   return (
     <>
@@ -46,7 +52,7 @@ export default function BlogFooter() {
           <p className="agency-content">
             Notre agence de communication s&apos;est récemment implantée
             également dans le Morbihan, vous pouvez donc désormais retrouver
-            votre agence préférée à Tours et à Vannes ! <br />
+            votre agence préférée à Tours et à Vannes ! <br/>
             Alors n&apos;hésitez pas à nous contacter, notre équipe sera
             heureuse d evous rencontrer pour échanger sur vos projets.
           </p>
@@ -54,11 +60,11 @@ export default function BlogFooter() {
             Sautez le pas de la communication avec nous !
           </p>
           <div className="agency-location">
-            <Link href="/" className="btn">
-              Agence de Tours
+            <Link href={`/${getSlug(options!.data.lien_tours.url)}`} className="btn">
+              {he.decode(options!.data.lien_tours.title)}
             </Link>
-            <Link href="/" className="btn">
-              Agence de Vannes
+            <Link href={`/${getSlug(options!.data.lien_vannes.url)}`} className="btn">
+              {he.decode(options!.data.lien_vannes.title)}
             </Link>
           </div>
         </div>
@@ -76,7 +82,7 @@ export default function BlogFooter() {
               <a href="#">Mentions légales</a>
             </strong>
           </div>
-          <Rs rsOptions={options!.data} showContact={true} />
+          <Rs rsOptions={options!.data} showContact={true}/>
         </section>
       </footer>
     </>

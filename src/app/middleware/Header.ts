@@ -1,3 +1,5 @@
+import {LinkType} from "@/middleware/Link";
+
 export interface MenuType {
   data: {
     ID: number;
@@ -25,6 +27,8 @@ export interface rsOptions {
     title: string;
     target: string;
   };
+  lien_tours: LinkType;
+  lien_vannes: LinkType;
 }
 
 export interface OptionsType {
