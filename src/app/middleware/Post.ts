@@ -1,5 +1,5 @@
-import { ImageType } from "./Image";
-import { LinkType } from "./Link";
+import {ImageType} from "./Image";
+import {LinkType} from "./Link";
 
 export interface PostData {
   id: number;
@@ -38,7 +38,7 @@ export type contentType =
   | (AcfLayout & ImageData & { acf_fc_layout: "image" })
   | (AcfLayout & VideoData & { acf_fc_layout: "video" })
   | (AcfLayout & TexteData & { acf_fc_layout: "texte" })
-  | (AcfLayout & FichierData & { acf_fc_layout: "fichier" });
+  | (AcfLayout & FichierData & { acf_fc_layout: "fichier_pdf" });
 
 interface AcfLayout {
   acf_fc_layout: string;
@@ -61,7 +61,6 @@ interface TexteData {
 }
 
 interface FichierData {
-  fichier: LinkType;
-  lienFichier: LinkType;
+  lien_vers_le_fichier: LinkType;
   titre: string;
 }
