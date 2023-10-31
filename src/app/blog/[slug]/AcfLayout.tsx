@@ -21,6 +21,16 @@ export default function AcfLayout({data}: { data: PostData }) {
             <Image src={item.image.url} alt={item.image.alt} width={833}
                    height={496}/>
           )}
+          {item.acf_fc_layout === "fichier_pdf" && (
+            <div className="files">
+              <h2><a href={item.lien_vers_le_fichier.url} rel="noopener noreferrer"
+                     target="_blank">{he.decode(item.titre)}</a></h2>
+              <object data={item.lien_vers_le_fichier.url} type="application/pdf" width={833}
+                      height={630}>
+                <a href={item.lien_vers_le_fichier.url}>Allez sur le PDF</a>
+              </object>
+            </div>
+          )}
         </>
       ))}
     </div>
