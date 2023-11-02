@@ -22,6 +22,7 @@
       grid-template-columns: repeat(2, 1fr);
       justify-items: flex-start;
       align-items: center;
+      font-size: 1.4rem;
     }
 
     a {
@@ -31,6 +32,10 @@
       font-family: "Exo", sans-serif;
       font-size: 1.6rem;
       transition: 0.3s ease-in-out;
+
+      @media (max-width: 824px) {
+        font-size: 1.4rem;
+      }
 
       &::after {
         content: ">";
@@ -224,7 +229,7 @@
       text-decoration: none;
       color: black;
       border-radius: 37px;
-      transition: 0.2 ease-in-out;
+      transition: 0.2s ease-in-out;
 
       @media (max-width: 799px) {
         font-size: 1.8rem;
@@ -249,6 +254,11 @@
 .blog-container {
   width: min(80%, 1450px);
   margin-inline: auto;
+
+  @media (max-width: 580px) {
+    width: 95%;
+    padding-inline: 2rem;
+  }
 }
 
 .blog-newsletter {
@@ -260,9 +270,9 @@
     justify-content: center;
     align-items: center;
     background: linear-gradient(
-      90deg,
-      rgba(134, 112, 204, 1) 0%,
-      rgba(255, 94, 129, 1) 100%
+        90deg,
+        rgba(134, 112, 204, 1) 0%,
+        rgba(255, 94, 129, 1) 100%
     );
     text-align: center;
 
@@ -325,6 +335,7 @@
 
       @media (max-width: 467px) {
         line-height: calc(40 / 30);
+        font-size: 4rem;
       }
 
       span {
@@ -375,7 +386,11 @@
     height: auto;
     border-radius: 3.5rem;
     border: 2px solid black;
-    transition: 0.2 ease-in-out;
+    transition: 0.2s ease-in-out;
+
+    @media (max-width: 750px) {
+      text-align: center;
+    }
 
     &:hover {
       background: white;
@@ -395,6 +410,10 @@
     font-weight: 700;
     padding: 0.5rem 0 3rem 0.5rem;
     line-height: 0.8;
+
+    @media (max-width: 450px) {
+      font-size: 4rem;
+    }
 
     span {
       color: #fcd647;
@@ -441,7 +460,7 @@
     }
 
     .card-excerpt {
-      line-height: caclc(21 / 16);
+      line-height: calc(21 / 16);
       font-family: "Exo", sans-serif;
       font-weight: 400;
       margin-bottom: 1rem;
