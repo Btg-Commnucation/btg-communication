@@ -41,7 +41,6 @@
     margin-top: 13rem;
 
     @media (max-width: 1122px) {
-      margin-top: 0;
       position: relative;
       margin-top: -35rem;
       margin-left: -44px;
@@ -147,7 +146,6 @@
     font-size: 2.1rem;
     font-weight: 700;
     border: none;
-    background: transparent;
     width: fit-content;
     align-self: flex-end;
     margin-right: 1em;
@@ -161,7 +159,6 @@
       right: -25px;
       z-index: 1;
       transition: 0.1s;
-      z-index: 1;
 
       g {
         fill: #e3775b;
