@@ -1,12 +1,13 @@
-import { AcfFrontPage } from "@/page";
+import {AcfFrontPage} from "@/page";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import he from "he";
+import Button from "@/components/Button";
 
 const DomainComponent = ({
-  skills,
-}: {
+                           skills,
+                         }: {
   skills: AcfFrontPage["competences"];
 }) => {
   const urls = skills.map((skill) => new URL(skill.competence.url));
@@ -37,11 +38,13 @@ const DomainComponent = ({
 };
 
 export default function FrontDomains({
-  skills,
-  skillsText,
-}: {
+                                       skills,
+                                       skillsText,
+                                       skillsLink,
+                                     }: {
   skills: AcfFrontPage["competences"];
   skillsText: AcfFrontPage["texte_competences"];
+  skillsLink: AcfFrontPage["lien_competences"];
 }) {
   return (
     <section className="front-skills">
@@ -57,26 +60,12 @@ export default function FrontDomains({
           <h2>Ce que l&apos;on fait</h2>
           <div
             className="desc"
-            dangerouslySetInnerHTML={{ __html: skillsText }}
+            dangerouslySetInnerHTML={{__html: skillsText}}
           ></div>
-          <Link href="/lagence-savoir-faire" className="btn-primary">
-            L&apos;agence et savoir-faire
-            <svg
-              className="arrow"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 100"
-              x="0px"
-              y="0px"
-            >
-              <title>Arrows</title>
-              <g data-name="Layer 2">
-                <polygon points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
-              </g>
-            </svg>
-          </Link>
+          <Button link={skillsLink.url} text={skillsLink.title} target={skillsLink.target}/>
         </div>
       </div>
-      <DomainComponent skills={skills} />
+      <DomainComponent skills={skills}/>
     </section>
   );
 }

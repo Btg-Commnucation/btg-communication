@@ -120,6 +120,10 @@
   .slider-wrapper {
     margin-bottom: 10rem;
 
+    @media (max-width: 768px) {
+      margin-bottom: 5rem;
+    }
+
     .container {
       justify-content: flex-start;
       width: 1155px;

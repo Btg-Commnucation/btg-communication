@@ -81,6 +81,7 @@ export type SavoirType = {
   texte_bas_de_page: string;
   lien_agence_tours: LinkType;
   lien_agence_vannes: LinkType;
+  lien_equipe: LinkType;
   agence_bas_texte: string;
   agence_bas_image: ImageType;
   agence_fond_bleu_texte: string;
@@ -91,12 +92,13 @@ export type SavoirType = {
     exemple: string;
     lien_competence: LinkType;
   }[];
+  lien_realisations: LinkType;
 };
 
 export type EquipeType = {
   sous_titre: string;
   membre: Membre[];
-  lien: LinkType;
+  lien_realisations: LinkType;
 };
 
 export interface Membre {

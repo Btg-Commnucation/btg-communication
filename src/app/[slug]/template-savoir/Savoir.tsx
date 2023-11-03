@@ -6,6 +6,7 @@ import {PageType, SavoirType} from "@/middleware/Page";
 import Banner from "@/components/Banner";
 import ScrollToTop from "@/components/ScrollToTop";
 import ContactBanner from "@/components/ContactBanner";
+import Button from "@/components/Button";
 
 export default function Savoir({page}: { page: PageType<SavoirType> }) {
 
@@ -58,27 +59,13 @@ export default function Savoir({page}: { page: PageType<SavoirType> }) {
                   __html: page.acf.texte_accompagnement,
                 }}
               ></div>
-              <Link href="/" className="link-equipe">
-                L&apos;équipe à votre écoute
-                <svg
-                  className="arrow"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 100 100"
-                  x="0px"
-                  y="0px"
-                >
-                  <title>Arrows</title>
-                  <g data-name="Layer 2">
-                    <polygon
-                      points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
-                  </g>
-                </svg>
-              </Link>
+              <Button link={page.acf.lien_equipe.url} text={page.acf.lien_equipe.title}
+                      target={page.acf.lien_equipe.target} name="link-equipe"/>
             </div>
           </div>
         </div>
       </section>
-      <ListSavoir competences={page.acf.competences}/>
+      <ListSavoir competences={page.acf.competences} lien={page.acf.lien_realisations}/>
       <ContactBanner/>
       <section className="bottom">
         <div className="container">
