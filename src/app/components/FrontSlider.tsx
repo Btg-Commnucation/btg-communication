@@ -3,12 +3,12 @@
 import {ImageType} from "@/middleware/Image";
 import {AcfFrontPage} from "@/page";
 import Image from "next/image";
-import Link from "next/link";
 import {CSSProperties, useCallback} from "react";
 import {DotButton, useDotButton} from "./EmblaCarouselDotButton";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel, {EmblaCarouselType, EmblaOptionsType,} from "embla-carousel-react";
 import {NextButton, PrevButton, usePrevNextButtons,} from "./EmblaCarouselArrowButton";
+import Button from "@/components/Button";
 
 const OPTIONS: EmblaOptionsType = {
   align: "start",
@@ -24,9 +24,11 @@ const OPTIONS: EmblaOptionsType = {
 export default function FrontSlider({
                                       slider,
                                       sliderText,
+                                      sliderLink,
                                     }: {
   slider: AcfFrontPage["slider"];
   sliderText: AcfFrontPage["texte_photo"];
+  sliderLink: AcfFrontPage["lien_realisations_slider"];
 }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [Autoplay()]);
 
@@ -103,22 +105,7 @@ export default function FrontSlider({
             className="text"
             dangerouslySetInnerHTML={{__html: sliderText}}
           ></div>
-          <Link href="/nos-realisations" className="btn-primary">
-            Les réalisations de l&apos;agence
-            <svg
-              className="arrow"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 100"
-              x="0px"
-              y="0px"
-            >
-              <title>Arrows</title>
-              <g data-name="Layer 2">
-                <polygon
-                  points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
-              </g>
-            </svg>
-          </Link>
+          <Button link={sliderLink.url} text={sliderLink.title} target={sliderLink.target}/>
         </div>
       </div>
     </section>

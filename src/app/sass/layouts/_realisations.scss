@@ -45,6 +45,10 @@
         margin-right: 3.5rem;
         margin-left: 0.5rem;
       }
+
+      @media (max-width: 540px) {
+        font-size: 4.4rem;
+      }
     }
 
     .content {

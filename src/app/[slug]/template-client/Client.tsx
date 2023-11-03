@@ -6,8 +6,7 @@ import ContactBanner from "@/components/ContactBanner";
 import Image from "next/image";
 import Temoin from "@/[slug]/template-client/Temoin";
 import Banner from "@/components/Banner";
-import Link from "next/link";
-import he from "he";
+import Button from "@/components/Button";
 
 export default function Client({page}: { page: PageType<ClientType> }) {
 
@@ -31,22 +30,8 @@ export default function Client({page}: { page: PageType<ClientType> }) {
             <Temoin temoin={temoin} index={index} key={index}/>
           ))}
         </ul>
-        <Link href={`/${getSlug(page.acf.lien_page_realisations?.url)}`} className="real">
-          <p>{he.decode(page.acf.lien_page_realisations?.title)}</p>
-          <svg
-            className="arrow"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-            x="0px"
-            y="0px"
-          >
-            <title>Arrows</title>
-            <g data-name="Layer 2">
-              <polygon
-                points="44.13 72.13 58 86 94.25 50 57.87 13.13 44 27 57.51 41 6 41 6 59 57.51 59 44.13 72.13"></polygon>
-            </g>
-          </svg>
-        </Link>
+        <Button link={page.acf.lien_page_realisations.url} text={page.acf.lien_page_realisations.title}
+                target={page.acf.lien_page_realisations.target} name="real"/>
       </section>
       <section className="trust-us">
         <div className="container">

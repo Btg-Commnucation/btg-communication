@@ -12,10 +12,10 @@ import FrontSlider from "./components/FrontSlider";
 import he from "he";
 import FrontDomains from "./components/FrontDomains";
 import FrontClient from "./components/FrontClient";
-import FrontPhilosophie from "./components/FrontPhilosophie";
-import FrontMethodologie from "./components/FrontMethodologie";
 import {Metadata, ResolvingMetadata} from "next";
 import Custom404 from "./[slug]/custom404";
+import FrontPhilosophie from "@/components/FrontPhilosophie";
+import FrontMethodologie from "@/components/FrontMethodologie";
 
 const URL_API = process.env.URL_API;
 const agent = new https.Agent({
@@ -31,9 +31,12 @@ export type AcfFrontPage = {
     description: string;
   }[];
   texte_competences: string;
+  lien_competences: LinkType;
   slider: { image: ImageType }[];
+  lien_realisations_slider: LinkType;
   texte_photo: string;
   clients: { image: ImageType }[];
+  lien_clients: LinkType;
   image_philosophie: ImageType;
   texte_philosophie: string;
   texte_methodologie: string;
@@ -116,6 +119,7 @@ export async function generateMetadata(
 export default function Home() {
   const {data, error, status} = use(getHome());
 
+
   if (status !== 200) {
     console.log(error);
     return (
@@ -185,12 +189,14 @@ export default function Home() {
         <FrontSlider
           slider={data.acf.slider}
           sliderText={data.acf.texte_photo}
+          sliderLink={data.acf.lien_realisations_slider}
         />
         <FrontDomains
           skills={data.acf.competences}
           skillsText={data.acf.texte_competences}
+          skillsLink={data.acf.lien_competences}
         />
-        <FrontClient clients={data.acf.clients}/>
+        <FrontClient clients={data.acf.clients} clientsLink={data.acf.lien_clients}/>
         <FrontPhilosophie
           textePhilosophie={data.acf.texte_philosophie}
           imagePhilosophie={data.acf.image_philosophie}
