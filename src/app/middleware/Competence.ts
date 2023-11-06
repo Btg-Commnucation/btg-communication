@@ -1,4 +1,4 @@
-export type Compétences = {
+export type Competences = {
   icone: {
     url: string;
     alt: string;

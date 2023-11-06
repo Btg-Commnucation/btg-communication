@@ -2,45 +2,45 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import axios from "axios";
 import https from "https";
-import {ImageType} from "./middleware/Image";
-import {LinkType} from "./middleware/Link";
-import {PageType} from "./middleware/Page";
-import {use} from "react";
+import { ImageType } from "./middleware/Image";
+import { LinkType } from "./middleware/Link";
+import { PageType } from "./middleware/Page";
+import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import FrontSlider from "./components/FrontSlider";
 import he from "he";
 import FrontDomains from "./components/FrontDomains";
 import FrontClient from "./components/FrontClient";
-import {Metadata, ResolvingMetadata} from "next";
+import { Metadata } from "next";
 import Custom404 from "./[slug]/custom404";
 import FrontPhilosophie from "@/components/FrontPhilosophie";
 import FrontMethodologie from "@/components/FrontMethodologie";
 
 const URL_API = process.env.URL_API;
-const agent = new https.Agent({
+const agent = new https.Agent( {
   rejectUnauthorized: false,
-});
+} );
 
 export const revalidate = 3200;
 
 export type AcfFrontPage = {
+  clients: { image: ImageType }[];
   competences: {
     icone: ImageType;
     competence: LinkType;
     description: string;
   }[];
-  texte_competences: string;
-  lien_competences: LinkType;
-  slider: { image: ImageType }[];
-  lien_realisations_slider: LinkType;
-  texte_photo: string;
-  clients: { image: ImageType }[];
-  lien_clients: LinkType;
   image_philosophie: ImageType;
-  texte_philosophie: string;
-  texte_methodologie: string;
+  lien_clients: LinkType;
+  lien_competences: LinkType;
   lien_contact: LinkType;
+  lien_realisations_slider: LinkType;
+  slider: { image: ImageType }[];
+  texte_competences: string;
+  texte_methodologie: string;
+  texte_philosophie: string;
+  texte_photo: string;
 };
 
 type Response = {
@@ -56,28 +56,29 @@ type Response = {
 }
   );
 
-const HeroDomains = ({
-                       competences,
-                     }: {
+const HeroDomains = ( { competences }: {
   competences: AcfFrontPage["competences"];
-}) => {
-  const getSlug = (url: string) => {
-    const match = url.match(/\/([^/]+)\/?$/);
-    return match ? match[1] : null;
+} ) => {
+  const getSlug = ( url: string ) => {
+    const match = url.match( /\/([^/]+)\/?$/ );
+    return match ?
+      match[ 1 ] :
+      null;
   };
 
   return (
     <ul className="domains">
-      {competences.map((domain, index) => (
-        <li key={index}>
+      { competences.map( ( domain,
+                           index ) => (
+        <li key={ index }>
           <Link
-            href={`/notre-expertise/${getSlug(domain.competence.url)}`}
-            target={domain.competence.target}
+            href={ `/notre-expertise/${ getSlug( domain.competence.url ) }` }
+            target={ domain.competence.target }
           >
-            {domain.competence.title}
+            { domain.competence.title }
           </Link>
         </li>
-      ))}
+      ) ) }
     </ul>
   );
 };
@@ -85,47 +86,48 @@ const HeroDomains = ({
 const getHome = async (): Promise<Response> => {
   try {
     const response = await axios(
-      `${URL_API}/better-rest-endpoints/v1/page/accueil`,
-      {httpsAgent: agent}
+      `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
+      { httpsAgent: agent }
     );
     return {
       data: response.data,
       error: "Tous fonctionne par ici !",
       status: 200,
     };
-  } catch (error) {
+  } catch ( error ) {
     return {
       data: null,
-      error: `Un problème est survenu lors de la récupération des données: ${error}`,
+      error: `Un problème est survenu lors de la récupération des données: ${ error }`,
       status: 500,
     };
   }
 };
 
-export async function generateMetadata(
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata (): Promise<Metadata> {
   const data = await axios<PageType<AcfFrontPage>[], any>(
-    `${URL_API}/better-rest-endpoints/v1/page/accueil`,
-    {httpsAgent: agent}
+    `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
+    { httpsAgent: agent }
   );
 
   return {
-    title: he.decode(data?.data.title),
-    description: he.decode(data?.data.yoast.yoast_wpseo_metadesc),
+    title: he.decode( data?.data.title ),
+    description: he.decode( data?.data.yoast.yoast_wpseo_metadesc ),
   };
 }
 
-export default function Home() {
-  const {data, error, status} = use(getHome());
+export default function Home () {
+  const { data, error, status } = use( getHome() );
 
 
-  if (status !== 200) {
-    console.log(error);
+  if (status !==
+    200) {
+    console.log( error );
     return (
       <>
         <Header/>
-        <Custom404 data={data} status={status} errorMessage={error}/>
+        <Custom404 data={ data }
+                   status={ status }
+                   errorMessage={ error }/>
         <Footer/>
       </>
     );
@@ -141,11 +143,11 @@ export default function Home() {
               <Image
                 src="/logo-btg-encadre.svg"
                 alt="BTG Communication, agence de communication"
-                width={370}
-                height={427.2}
-                quality={100}
+                width={ 370 }
+                height={ 427.2 }
+                quality={ 100 }
               />
-              <HeroDomains competences={data.acf.competences}/>
+              <HeroDomains competences={ data.acf.competences }/>
               <svg
                 id="arrow-index"
                 className="arrow active"
@@ -184,24 +186,26 @@ export default function Home() {
               </svg>
             </div>
           </div>
-          <h1>{he.decode(data.title)}</h1>
+          <h1>{ he.decode( data.title ) }</h1>
         </section>
         <FrontSlider
-          slider={data.acf.slider}
-          sliderText={data.acf.texte_photo}
-          sliderLink={data.acf.lien_realisations_slider}
+          slider={ data.acf.slider }
+          sliderText={ data.acf.texte_photo }
+          sliderLink={ data.acf.lien_realisations_slider }
         />
         <FrontDomains
-          skills={data.acf.competences}
-          skillsText={data.acf.texte_competences}
-          skillsLink={data.acf.lien_competences}
+          skills={ data.acf.competences }
+          skillsText={ data.acf.texte_competences }
+          skillsLink={ data.acf.lien_competences }
         />
-        <FrontClient clients={data.acf.clients} clientsLink={data.acf.lien_clients}/>
+        <FrontClient clients={ data.acf.clients }
+                     clientsLink={ data.acf.lien_clients }/>
         <FrontPhilosophie
-          textePhilosophie={data.acf.texte_philosophie}
-          imagePhilosophie={data.acf.image_philosophie}
+          textePhilosophie={ data.acf.texte_philosophie }
+          imagePhilosophie={ data.acf.image_philosophie }
         />
-        <FrontMethodologie texteMethodologie={data.acf.texte_methodologie} lien={data.acf.lien_contact}/>
+        <FrontMethodologie texteMethodologie={ data.acf.texte_methodologie }
+                           lien={ data.acf.lien_contact }/>
       </main>
       <Footer/>
     </>
