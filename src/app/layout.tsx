@@ -1,7 +1,8 @@
 import { Exo } from "next/font/google";
+import { ReactNode } from "react";
 import "./sass/style.scss";
 
-const exo = Exo({ subsets: ["latin"] });
+const exo = Exo( { subsets: [ "latin" ] } );
 
 export const metadata = {
   icons: {
@@ -9,14 +10,14 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout ( {
+                                       children,
+                                     }: {
+  children: ReactNode;
+} ) {
   return (
     <html lang="fr">
-      <body className={exo.className}>{children}</body>
+    <body className={ exo.className }>{ children }</body>
     </html>
   );
 }

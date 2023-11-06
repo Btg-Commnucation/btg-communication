@@ -1,17 +1,17 @@
 import Image from "next/image";
 import he from "he";
 import Link from "next/link";
-import {Compétences} from "@/middleware/Competence";
+import { Competences } from "@/middleware/Competence";
 import Button from "@/components/Button";
-import {LinkType} from "@/middleware/Link";
+import { LinkType } from "@/middleware/Link";
 
-export default function ListSavoir({
-                                     competences,
-                                     lien
-                                   }: {
-  competences: Compétences[];
+export default function ListSavoir ( {
+                                       competences,
+                                       lien
+                                     }: {
+  competences: Competences[];
   lien: LinkType;
-}) {
+} ) {
   return (
     <section className="list-savoir">
       <div className="container">
@@ -25,27 +25,31 @@ export default function ListSavoir({
           terme de communication.
         </p>
         <ul className="savoir-listing">
-          {competences.map((competence, index: number) => (
-            <li key={index}>
+          { competences.map( ( competence,
+                               index: number ) => (
+            <li key={ index }>
               <Image
-                src={competence.icone.url}
-                alt={competence.icone.alt}
+                src={ competence.icone.url }
+                alt={ competence.icone.alt }
                 width="116"
                 height="150"
               />
               <div className="listing-right">
-                <h3>{he.decode(competence.titre)}</h3>
-                <p className="listing-texte">{he.decode(competence.texte)}</p>
+                <h3>{ he.decode( competence.titre ) }</h3>
+                <p className="listing-texte">{ he.decode( competence.texte ) }</p>
                 <p className="listing-exemple">
                   <span className="exemple">Exemple : </span>
-                  {he.decode(competence.exemple)}
+                  { he.decode( competence.exemple ) }
                 </p>
                 <Link href="/">En savoir plus</Link>
               </div>
             </li>
-          ))}
+          ) ) }
         </ul>
-        <Button link={lien.url} text={lien.title} target={lien.target} name="classic-btn"/>
+        <Button link={ lien.url }
+                text={ lien.title }
+                target={ lien.target }
+                name="classic-btn"/>
       </div>
     </section>
   );

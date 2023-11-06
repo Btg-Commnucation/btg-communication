@@ -1,7 +1,7 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import axios from "axios";
-import {use} from "react";
+import { use } from "react";
 import he from "he";
 import Image from "next/image";
 import AcfImage from "./AcfImage";
@@ -79,78 +79,76 @@ const getRealisation = async (
 }> => {
   try {
     const response = await axios.get(
-      `${URL_API}/better-rest-endpoints/v1/realisations`
+      `${ URL_API }/better-rest-endpoints/v1/realisations`
     );
     return {
       allData: response.data,
-      data: response.data.find((real: RealType) => real.slug === slug),
+      data: response.data.find( ( real: RealType ) => real.slug === slug ),
       error: false,
     };
-  } catch (e) {
-    return {allData: [], data: undefined, error: true};
+  } catch ( e ) {
+    return { allData: [], data: undefined, error: true };
   }
 };
 
-export async function generateMetadata({
-                                         params,
-                                       }: {
+export async function generateMetadata ( { params }: {
   params: { slug: string };
-}) {
+} ) {
   const data = await axios(
-    `${URL_API}/better-rest-endpoints/v1/realisations`
-  ).then((response) =>
-    response.data.find((real: RealType) => real.slug === params.slug)
+    `${ URL_API }/better-rest-endpoints/v1/realisations`
+  ).then( ( response ) =>
+    response.data.find( ( real: RealType ) => real.slug === params.slug )
   );
 
   return {
-    title: he.decode(data?.title),
-    description: he.decode(data?.yoast.yoast_wpseo_metadesc),
+    title: he.decode( data?.title ),
+    description: he.decode( data?.yoast.yoast_wpseo_metadesc ),
   };
 }
 
-export default function Page({params}: { params: { slug: string } }) {
-  const {slug} = params;
-  const {allData, data, error} = use(getRealisation(slug));
+export default function Page ( { params }: { params: { slug: string } } ) {
+  const { slug } = params;
+  const { allData, data, error } = use( getRealisation( slug ) );
 
-  const isImageContentType = (object: any): object is ImageContentType => {
+  const isImageContentType = ( object: any ): object is ImageContentType => {
     return object.acf_fc_layout === "image";
   };
 
-  const isTextContentType = (object: any): object is TextContentType => {
+  const isTextContentType = ( object: any ): object is TextContentType => {
     return object.acf_fc_layout === "texte";
   };
 
   return (
     <>
       <Header/>
-      {!error ? (
+      { !error ? (
         <main id="realisations">
           <section className="banner">
             <div className="container">
               <Image
-                src={data!.acf.poster_single.url}
-                alt={data!.acf.poster_single.alt}
-                width={data!.acf.poster_single.width}
-                height={data!.acf.poster_single.height}
+                src={ data!.acf.poster_single.url }
+                alt={ data!.acf.poster_single.alt }
+                width={ data!.acf.poster_single.width }
+                height={ data!.acf.poster_single.height }
               />
             </div>
           </section>
           <section className="top">
             <div className="container">
-              <h1>{he.decode(data!.title)}</h1>
+              <h1>{ he.decode( data!.title ) }</h1>
               <div
                 className="content"
-                dangerouslySetInnerHTML={{__html: data!.content}}
+                dangerouslySetInnerHTML={ { __html: data!.content } }
               ></div>
               <div
                 className="accroche"
-                dangerouslySetInnerHTML={{__html: data!.acf.accroche}}
+                dangerouslySetInnerHTML={ { __html: data!.acf.accroche } }
               ></div>
               <Image
                 src="/wave-radiant.gif"
                 alt="Vague en dégradé"
-                width={188}
-                height={37}
+                width={ 188 }
+                height={ 37 }
                 className="wave-radiant"
               />
             </div>
@@ -158,27 +156,27 @@ export default function Page({params}: { params: { slug: string } }) {
           <section className="acf-layouts">
             <div className="container">
               <ul>
-                {data!.acf.content.map(
+                { data!.acf.content.map(
                   (
                     item: ImageContentType | TextContentType | VideoContentType,
                     index: number
                   ) => (
-                    <li key={index}>
-                      {isImageContentType(item) ? (
-                        <AcfImage image={item}/>
-                      ) : isTextContentType(item) ? (
-                        <AcfText text={item}/>
+                    <li key={ index }>
+                      { isImageContentType( item ) ? (
+                        <AcfImage image={ item }/>
+                      ) : isTextContentType( item ) ? (
+                        <AcfText text={ item }/>
                       ) : (
-                        <AcfVideo video={item}/>
-                      )}
+                        <AcfVideo video={ item }/>
+                      ) }
                     </li>
                   )
-                )}
+                ) }
               </ul>
             </div>
           </section>
           <ContactBanner/>
-          <MoreProject projects={allData!.slice(0, 4)}/>
+          <MoreProject projects={ allData!.slice( 0, 4 ) }/>
         </main>
       ) : (
         <main id="realisation">
@@ -191,7 +189,7 @@ export default function Page({params}: { params: { slug: string } }) {
             </div>
           </section>
         </main>
-      )}
+      ) }
       <Footer/>
     </>
   );

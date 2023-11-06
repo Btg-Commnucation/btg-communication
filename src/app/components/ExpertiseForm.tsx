@@ -1,67 +1,62 @@
 "use client";
 import { ImageType } from "@/middleware/Image";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import he from "he";
 import Image from "next/image";
 import { boolean, object, string } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-const initialValues = {
-  nom: "",
-  email: "",
-  phoneNumber: "",
-  society: "",
-  message: "",
-  consent: false,
-};
 
-const formSchema = object({
-  nom: string({ required_error: "Veuillez saisir votre nom" }),
-  email: string({ required_error: "Votre adresse mail est requise" }).email(
-    "Vauillez saisir une adresse mail valide"
-  ),
+const formSchema = object( {
+  nom: string( { required_error: "Veuillez saisir votre nom" } ),
+  email: string( { required_error: "Votre adresse mail est requise" } )
+    .email(
+      "Vauillez saisir une adresse mail valide"
+    ),
   phoneNumber: string()
-    .length(10, { message: "Veuillez saisir un numéro de téléphone valide" })
+    .length( 10,
+      { message: "Veuillez saisir un numéro de téléphone valide" } )
     .optional(),
-  society: string().optional(),
-  message: string({ required_error: "Votre demande est nécessaire pour nous" }),
-  consent: boolean({
+  society: string()
+    .optional(),
+  message: string( { required_error: "Votre demande est nécessaire pour nous" } ),
+  consent: boolean( {
     required_error: "Veuillez accepter notre politique de confidentialité",
-  }),
-});
+  } ),
+} );
 
-export default function ExpertiseForm({
-  titre,
-  image,
-}: {
+export default function ExpertiseForm ( {
+                                          titre,
+                                          image,
+                                        }: {
   titre: string;
   image: ImageType;
-}) {
+} ) {
   return (
     <section className="expertise__form">
       <div className="container">
-        <h2 className="expertise__form-title">{he.decode(titre)}</h2>
+        <h2 className="expertise__form-title">{ he.decode( titre ) }</h2>
         <Formik
-          initialValues={{
+          initialValues={ {
             nom: "",
             email: "",
             phoneNumber: "",
             society: "",
             message: "",
             consent: false,
-          }}
-          validationSchema={toFormikValidationSchema(formSchema)}
-          onSubmit={(values) => console.log(values)}
+          } }
+          validationSchema={ toFormikValidationSchema( formSchema ) }
+          onSubmit={ ( values ) => console.log( values ) }
         >
-          {({ errors, touched }) => (
+          { ( { errors, touched } ) => (
             <Form>
               <div className="yellow-form">
                 <div className="txt">
-                  <p>{he.decode("Et si nous allions plus loin ?")}</p>
+                  <p>{ he.decode( "Et si nous allions plus loin ?" ) }</p>
                   <p>
-                    {he.decode(
+                    { he.decode(
                       "Vous souhaitez en découvrir plus sur notre agence ou tout simplement débuter votre projet avec nous ?"
-                    )}
+                    ) }
                   </p>
                 </div>
                 <label htmlFor="nom">
@@ -69,9 +64,14 @@ export default function ExpertiseForm({
                   <Field
                     id="nom"
                     name="nom"
-                    className={errors.nom && touched.nom ? "error-field" : ""}
+                    className={ errors.nom &&
+                    touched.nom ?
+                      "error-field" :
+                      "" }
                   />
-                  <ErrorMessage name="nom" component="div" className="error" />
+                  <ErrorMessage name="nom"
+                                component="div"
+                                className="error"/>
                 </label>
                 <label htmlFor="email">
                   <span>Votre email *</span>
@@ -80,7 +80,10 @@ export default function ExpertiseForm({
                     id="email"
                     name="email"
                     className={
-                      errors.email && touched.email ? "error-field" : ""
+                      errors.email &&
+                      touched.email ?
+                        "error-field" :
+                        ""
                     }
                   />
                   <ErrorMessage
@@ -96,9 +99,12 @@ export default function ExpertiseForm({
                     id="phoneNumber"
                     name="phoneNumber"
                     className={
-                      errors.phoneNumber && touched.phoneNumber
-                        ? "error-field"
-                        : ""
+                      errors.phoneNumber &&
+                      touched.phoneNumber
+                        ?
+                        "error-field"
+                        :
+                        ""
                     }
                   />
                   <ErrorMessage
@@ -113,7 +119,10 @@ export default function ExpertiseForm({
                     name="societe"
                     id="societe"
                     className={
-                      errors.society && touched.society ? "error-field" : ""
+                      errors.society &&
+                      touched.society ?
+                        "error-field" :
+                        ""
                     }
                   />
                   <ErrorMessage
@@ -122,14 +131,18 @@ export default function ExpertiseForm({
                     className="error"
                   />
                 </label>
-                <label htmlFor="message" style={{ marginBottom: 0 }}>
+                <label htmlFor="message"
+                       style={ { marginBottom: 0 } }>
                   <span>Votre demande *</span>
                   <Field
                     as="textarea"
                     name="message"
                     id="message"
                     className={
-                      errors.message && touched.message ? "error-field" : ""
+                      errors.message &&
+                      touched.message ?
+                        "error-field" :
+                        ""
                     }
                   />
                   <ErrorMessage
@@ -141,7 +154,7 @@ export default function ExpertiseForm({
                 <label
                   htmlFor="consent"
                   className="consent"
-                  style={{
+                  style={ {
                     flexDirection: "row",
                     alignItems: "start",
                     gap: "1rem",
@@ -149,21 +162,24 @@ export default function ExpertiseForm({
                     fontSize: "1.4rem",
                     lineHeight: 1.3,
                     marginBottom: 0,
-                  }}
+                  } }
                 >
                   <Field
                     type="checkbox"
                     name="consent"
                     id="consent"
-                    style={{ width: "fit-content", marginBlock: "0" }}
+                    style={ { width: "fit-content", marginBlock: "0" } }
                     className={
-                      errors.consent && touched.consent ? "error-field" : ""
+                      errors.consent &&
+                      touched.consent ?
+                        "error-field" :
+                        ""
                     }
                   />
                   <span>
-                    {he.decode(
+                    { he.decode(
                       "En cochant cette case, j'affirme avoir pris connaissance de la politique de confidentialisé de btg communication"
-                    )}
+                    ) }
                   </span>
                 </label>
               </div>
@@ -182,15 +198,15 @@ export default function ExpertiseForm({
                 </svg>
               </button>
             </Form>
-          )}
+          ) }
         </Formik>
         <div className="expertise__form-left">
           <Image
-            src={image.url}
-            alt={image.alt}
-            title={image.title}
-            width={445}
-            height={608}
+            src={ image.url }
+            alt={ image.alt }
+            title={ image.title }
+            width={ 445 }
+            height={ 608 }
           />
         </div>
       </div>
