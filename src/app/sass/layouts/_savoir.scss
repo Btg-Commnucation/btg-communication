@@ -34,7 +34,7 @@
     .supperpo {
       position: absolute;
       top: 12%;
-      left: -5%;
+      left: -10%;
       height: fit-content;
 
       @media (max-width: 1757px) {
@@ -155,7 +155,7 @@
       align-items: center;
 
       div {
-        max-width: 70%;
+        max-width: 65%;
         margin-inline: auto;
         font-size: 1.8rem;
         font-weight: 500;
@@ -206,7 +206,7 @@
         }
 
         &::before {
-          left: -25%;
+          left: -30%;
 
           @media (max-width: 1757px) {
             left: -150px;
@@ -214,7 +214,8 @@
         }
 
         &::after {
-          right: -25%;
+          right: -30%;
+          transform: rotate(-90deg);
 
           @media (max-width: 1757px) {
             right: -150px;
@@ -542,7 +543,7 @@
       z-index: 5;
       top: 10%;
       left: 31%;
-      width: 62%;
+      width: 54%;
       background: white;
       padding: 2rem 5rem;
       font-size: 2.1rem;

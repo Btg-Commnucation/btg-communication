@@ -37,6 +37,10 @@
 
   li {
     line-height: 5rem;
+    
+    &.active a::after {
+      width: 100%;
+    }
 
     a {
       position: relative;

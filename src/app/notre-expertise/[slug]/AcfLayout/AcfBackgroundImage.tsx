@@ -1,7 +1,7 @@
-import {ContentFondImageType} from "@/middleware/Domaines";
+import { ContentFondImageType } from "@/middleware/Domaines";
 import Image from "next/image";
 import he from "he";
-import Link from "next/link";
+import Button from "@/components/Button";
 
 export default function AcfBackgroundImage({
                                              data,
@@ -48,9 +48,10 @@ export default function AcfBackgroundImage({
             ))}
           </ul>
           {data.lien_ou_sous_texte === "Lien" && (
-            <Link href={`/${getSlug(data.lien.url)}`} target={data.lien.target}>
-              <span>{data.lien.title}</span>
-            </Link>
+            // <Link href={`/${getSlug(data.lien.url)}`} target={data.lien.target}>
+            //   <span>{data.lien.title}</span>
+            // </Link>
+              <Button link={data.lien.url} text={data.lien.title} target={data.lien.target} />
           )}
         </div>
       )}

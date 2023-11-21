@@ -15,8 +15,10 @@ import Equipe from "./template-equipe/Equipe";
 import Ville from "./template-ville/Ville";
 import { ContactType } from "@/middleware/Contact";
 import Contact from "./template-contact/Contact";
+import { redirect } from "next/navigation";
 
 const URL_API = process.env.URL_API;
+const ADMIN_URL = process.env.ADMIN_URL;
 const agent = new https.Agent( {
   rejectUnauthorized: false,
 } );
@@ -79,6 +81,10 @@ export async function generateMetadata (
   { params }: { params: { slug: string } },
 ): Promise<Metadata> {
   const { slug } = params;
+
+  if (ADMIN_URL && slug === "wp-admin") {
+    redirect( ADMIN_URL )
+  }
 
   const data = await axios<
     PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>[],

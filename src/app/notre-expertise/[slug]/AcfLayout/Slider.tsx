@@ -1,8 +1,5 @@
 "use client";
-import useEmblaCarousel, {
-  EmblaOptionsType,
-  EmblaCarouselType,
-} from "embla-carousel-react";
+import useEmblaCarousel, { EmblaCarouselType, EmblaOptionsType, } from "embla-carousel-react";
 import { SliderType } from "@/middleware/Domaines";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
@@ -53,8 +50,8 @@ export default function Slider({ data }: { data: SliderType }) {
                   <Image
                     src={image.url}
                     alt={image.alt}
-                    width={116}
-                    height={133.94}
+                    width={214}
+                    height={92}
                     title={image.title}
                     className="embla__slide_img"
                   />

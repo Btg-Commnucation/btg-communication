@@ -10,6 +10,12 @@
       color: #e3775b;
     }
   }
+  
+  .top .container {
+    background-size: cover !important;
+    width: 100%;
+    margin-top: 44px;
+  }
 
   .openList {
     pointer-events: none;
@@ -114,6 +120,7 @@
       justify-content: center;
       align-items: flex-start;
       gap: 7rem;
+      margin-bottom: 1rem;
 
       @media (max-width: 1200px) {
         gap: 3rem;
@@ -174,7 +181,7 @@
     font-size: 1.8rem;
     font-weight: 300;
     text-align: center;
-    width: 75%;
+    width: 55%;
     margin-bottom: 6rem;
 
     @media (max-width: 550px) {
@@ -183,11 +190,12 @@
   }
 
   .projects-container {
-    width: 100%;
+    width: 89%;
+    margin-inline: auto;
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: 3rem;
     place-items: center;
     margin-block: 1.5rem 3.5rem;
 

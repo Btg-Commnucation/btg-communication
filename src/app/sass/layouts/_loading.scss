@@ -25,27 +25,18 @@ main.loading-mail {
     img {
       position: relative;
       z-index: 1;
+      animation: pulse 5s infinite ease-in-out;
     }
   }
 
   .background-pulse {
-    width: 500px;
-    height: 500px;
-    background: #8670cc;
-    opacity: 0.5;
-    border-radius: 50%;
-    animation: pulse 5s infinite ease-in-out;
-    position: absolute;
-    inset: 0;
-    left: -17%;
-    margin: auto;
-    z-index: 0;
+    display: none;
   }
 }
 
 @keyframes pulse {
   0% {
-    transform: scale(0.1);
+    transform: scale(0.5);
   }
 
   70% {
@@ -53,6 +44,6 @@ main.loading-mail {
   }
 
   100% {
-    transform: scale(0.1);
+    transform: scale(0.5);
   }
 }

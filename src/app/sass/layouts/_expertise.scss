@@ -18,6 +18,10 @@
 
     .wp-block-column {
       width: fit-content;
+      
+      p {
+        text-transform: initial !important;
+      }
 
       &:first-of-type {
         background: black;
@@ -62,8 +66,12 @@
   }
 
   .main-content {
-    margin-top: 3.2rem;
+    margin-top: 5rem;
     font-size: 1.8rem;
+    
+    figure + p {
+      margin-bottom: 1em;
+    }
 
     a {
       display: block;
@@ -79,6 +87,19 @@
       color: black;
       position: relative;
       margin-block: 2.8rem 5.6rem;
+      
+      &::before {
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        right: -25px;
+        content: "";
+        background: url(/orange-arrow.svg) no-repeat center center;
+        background-size: contain;
+        width: 44px;
+        height: 44px;
+        transition: 0.2s ease-in-out;
+      }
 
       &::after {
         position: absolute;
@@ -94,29 +115,44 @@
       &:hover {
         color: white;
         background: black;
+        
+        &::before {
+          right: -40px;
+        }
       }
+    }
+    
+    p:not(.semiBold) {
+      max-width: 838px;
     }
 
     .semiBold {
       font-weight: 600;
-      margin-left: 1em;
+      margin-left: 2.5em;
       margin-top: 1em;
+      max-width: 987px;
     }
 
     .container {
-      max-width: 52%;
+      max-width: min(75%, 1105px);
+      padding: 0;
 
       @media (max-width: 767px) {
         max-width: 95%;
       }
     }
+    
+    .content p:first-of-type {
+      text-transform: uppercase;
+    }
 
     h2 {
       margin-bottom: 1.3rem;
+      text-transform: uppercase;
     }
 
     img {
-      margin-block: 4.2rem 2.8rem;
+      margin-block: 4.2rem 3.8rem;
       width: 188px;
       height: 36.27px;
       transform: rotate(180deg);
@@ -234,7 +270,7 @@
 
   .other-domaines {
     margin-top: 2em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 4.5rem;
 
     .container {
       max-width: 1250px;
