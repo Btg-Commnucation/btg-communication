@@ -4,7 +4,7 @@
   margin-block: 6.3rem 6.5rem;
 
   .container {
-    max-width: 1030px;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +42,7 @@
 .embla {
   --slide-spacing: 6.1rem;
   --slide-size: 21%;
-  --slide-height: 13.3rem;
+  --slide-height: 9.2rem;
 
   @media (max-width: 967px) {
     --slide-size: 34%;
@@ -75,11 +75,10 @@
   align-items: center;
 }
 
-.embla__slide__img {
+.embla__slide_img {
   display: block;
   height: var(--slide-height);
-  width: 100%;
-  object-fit: cover;
+  width: 214px;
 }
 
 .embla__dot {
@@ -89,8 +88,8 @@
   text-decoration: none;
   cursor: pointer;
   border: 1px solid #fcd647;
-  width: 19px;
-  height: 19px;
+  width: 17px;
+  height: 17px;
   padding: 0;
   margin: 0;
   border-radius: 50%;

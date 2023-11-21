@@ -2,12 +2,20 @@
   margin-block: -6.5rem 6.2rem;
 
 }
+.acf.contentType + .background-image {
+  margin-top: 6.8rem;
+}
+
 .background-image {
   margin-block: -3.5rem -6.5rem;
   color: white;
   padding-block: 6.9rem;
   position: relative;
   overflow: hidden;
+  
+  h3:first-of-type {
+    margin-bottom: 2.1rem;
+  }
 
   .hidden-wave {
     display: none;
@@ -51,7 +59,7 @@
   }
 
   .container {
-    max-width: 55%;
+    max-width: 63%;
 
     @media (max-width: 1200px) {
       max-width: 86%;
@@ -81,15 +89,20 @@
     a {
       align-self: end;
       background: transparent;
-      border: 5px solid white;
-      border-radius: 2px;
       text-decoration: none;
       transition: 0.2s ease-in-out;
       color: white;
       text-transform: uppercase;
       font-size: 2.1rem;
       font-family: "Cabin", sans-serif;
-      padding: 3.9rem 3.1rem;
+      
+      &:hover {
+        color: black;
+      }
+      
+      &::after {
+        border-color: white;
+      }
 
       span {
         font-weight: 700;

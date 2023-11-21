@@ -40,10 +40,12 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 13.2rem !important;
-
+    padding: 0;
+    max-width: min(75%, 1105px);
+    
     @media (max-width: 768px) {
       grid-template-columns: 1fr !important;
-      max-width: 85% !important;
+      max-width: 95% !important;
       margin-inline: auto !important;
       gap: 3.4rem !important;
     }
@@ -54,7 +56,7 @@
       border: 1px solid white;
       color: white;
       border-radius: 2px;
-      padding: 3.2rem 5rem;
+      padding: 2.8rem 3rem;
       font-weight: 700;
       font-size: 3.3rem;
       font-family: "Cabin", sans-serif;

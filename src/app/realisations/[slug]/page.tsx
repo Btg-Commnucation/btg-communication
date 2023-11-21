@@ -9,6 +9,8 @@ import AcfText from "./AcfText";
 import MoreProject from "./MoreProject";
 import AcfVideo from "./AcfVideo";
 import ContactBanner from "@/components/ContactBanner";
+import { headers } from "next/headers";
+import Link from "next/link";
 
 const URL_API = process.env.URL_API;
 
@@ -109,6 +111,11 @@ export async function generateMetadata ( { params }: {
 export default function Page ( { params }: { params: { slug: string } } ) {
   const { slug } = params;
   const { allData, data, error } = use( getRealisation( slug ) );
+  const heads = headers();
+  const pathname = heads.get('next-url')
+  const parts = pathname?.split('/')
+  const realisation = parts?.filter(part=> part!=='')[0];
+
 
   const isImageContentType = ( object: any ): object is ImageContentType => {
     return object.acf_fc_layout === "image";
@@ -125,6 +132,20 @@ export default function Page ( { params }: { params: { slug: string } } ) {
         <main id="realisations">
           <section className="banner">
             <div className="container">
+              <Link href={`/${realisation}`} className="backToProject">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1276.9 768">
+                  <path
+                      id="hexa"
+                      d="M948.6 761.8L620.4 572.3v-379L948.6 3.7l328.3 189.5v379L948.6 761.8zM637.2 562.6l311.5 179.8 311.5-179.8V202.9L948.6 23.1 637.2 202.9v359.7z"
+                  ></path>
+                  <path
+                      id="arrow"
+                      d="M562.1 239l-88.3-88.3L242.9 380l231.7 234.8 88.3-88.4-86-89.1h328V322.7h-328l85.2-83.7z"
+                      fill="#e3775b"
+                  ></path>
+                </svg>
+                Retour aux projets
+              </Link>
               <Image
                 src={ data!.acf.poster_single.url }
                 alt={ data!.acf.poster_single.alt }

@@ -46,15 +46,15 @@ export type AcfFrontPage = {
 type Response = {
   error: string;
 } & (
-  | {
+    | {
   status: 200;
   data: PageType<AcfFrontPage>;
 }
-  | {
+    | {
   status: 500;
   data: null;
 }
-  );
+    );
 
 const HeroDomains = ( { competences }: {
   competences: AcfFrontPage["competences"];
@@ -62,32 +62,32 @@ const HeroDomains = ( { competences }: {
   const getSlug = ( url: string ) => {
     const match = url.match( /\/([^/]+)\/?$/ );
     return match ?
-      match[ 1 ] :
-      null;
+        match[ 1 ] :
+        null;
   };
 
   return (
-    <ul className="domains">
-      { competences.map( ( domain,
-                           index ) => (
-        <li key={ index }>
-          <Link
-            href={ `/notre-expertise/${ getSlug( domain.competence.url ) }` }
-            target={ domain.competence.target }
-          >
-            { domain.competence.title }
-          </Link>
-        </li>
-      ) ) }
-    </ul>
+      <ul className="domains">
+        { competences.map( ( domain,
+                             index ) => (
+            <li key={ index }>
+              <Link
+                  href={ `/notre-expertise/${ getSlug( domain.competence.url ) }` }
+                  target={ domain.competence.target }
+              >
+                { domain.competence.title }
+              </Link>
+            </li>
+        ) ) }
+      </ul>
   );
 };
 
 const getHome = async (): Promise<Response> => {
   try {
     const response = await axios(
-      `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
-      { httpsAgent: agent }
+        `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
+        { httpsAgent: agent }
     );
     return {
       data: response.data,
@@ -105,8 +105,8 @@ const getHome = async (): Promise<Response> => {
 
 export async function generateMetadata (): Promise<Metadata> {
   const data = await axios<PageType<AcfFrontPage>[], any>(
-    `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
-    { httpsAgent: agent }
+      `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
+      { httpsAgent: agent }
   );
 
   return {
@@ -120,94 +120,95 @@ export default function Home () {
 
 
   if (status !==
-    200) {
+      200) {
     console.log( error );
     return (
-      <>
-        <Header/>
-        <Custom404 data={ data }
-                   status={ status }
-                   errorMessage={ error }/>
-        <Footer/>
-      </>
+        <>
+          <Header/>
+          <Custom404 data={ data }
+                     status={ status }
+                     errorMessage={ error }/>
+          <Footer/>
+        </>
     );
   }
 
   return (
-    <>
-      <Header/>
-      <main id="front-page">
-        <section className="hero-banner">
-          <div className="container">
-            <div className="middle">
-              <Image
-                src="/logo-btg-encadre.svg"
-                alt="BTG Communication, agence de communication"
-                width={ 370 }
-                height={ 427.2 }
-                quality={ 100 }
-              />
-              <HeroDomains competences={ data.acf.competences }/>
-              <svg
-                id="arrow-index"
-                className="arrow active"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                viewBox="0 0 600 600"
-              >
-                <g>
-                  <path
-                    id="arrow-svg-top"
-                    d="M291.5,158c-2.8,0-5-2.2-5-5V4c0-2.8,2.2-5,5-5s5,2.2,5,5v149C296.5,155.8,294.2,158,291.5,158z"
-                  ></path>
-                </g>
-                <g>
-                  <path
-                    id="arrow-svg-bot"
-                    d="M291.5,572c-2.8,0-5-2.2-5-5V418c0-2.8,2.2-5,5-5s5,2.2,5,5v149C296.5,569.8,294.2,572,291.5,572z"
-                  ></path>
-                </g>
-                <g>
-                  <path
-                    id="arrow-svg-left"
-                    d="M175.7,327.8c-0.8,0-1.7-0.2-2.5-0.7l-129-74.5c-2.4-1.4-3.2-4.4-1.8-6.8c1.4-2.4,4.4-3.2,6.8-1.8l129,74.5
+      <>
+        <Header/>
+        <main id="front-page">
+          <section className="hero-banner">
+            <div className="container">
+              <div className="middle">
+                <Image
+                    src="/logo-btg-encadre.svg"
+                    alt="BTG Communication, agence de communication"
+                    width={ 370 }
+                    height={ 427.2 }
+                    quality={ 100 }
+                />
+                <HeroDomains competences={ data.acf.competences }/>
+                <svg
+                    id="arrow-index"
+                    className="arrow active"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 600 600"
+                >
+                  <g>
+                    <path
+                        id="arrow-svg-top"
+                        d="M291.5,158c-2.8,0-5-2.2-5-5V4c0-2.8,2.2-5,5-5s5,2.2,5,5v149C296.5,155.8,294.2,158,291.5,158z"
+                    ></path>
+                  </g>
+                  <g>
+                    <path
+                        id="arrow-svg-bot"
+                        d="M291.5,572c-2.8,0-5-2.2-5-5V418c0-2.8,2.2-5,5-5s5,2.2,5,5v149C296.5,569.8,294.2,572,291.5,572z"
+                    ></path>
+                  </g>
+                  <g>
+                    <path
+                        id="arrow-svg-left"
+                        d="M175.7,327.8c-0.8,0-1.7-0.2-2.5-0.7l-129-74.5c-2.4-1.4-3.2-4.4-1.8-6.8c1.4-2.4,4.4-3.2,6.8-1.8l129,74.5
                             c2.4,1.4,3.2,4.4,1.8,6.8C179.1,326.9,177.4,327.8,175.7,327.8z"
-                  ></path>
-                </g>
-                <g>
-                  <path
-                    id="arrow-svg-right"
-                    d="M407.3,327.8c-1.7,0-3.4-0.9-4.3-2.5c-1.4-2.4-0.6-5.4,1.8-6.8l129-74.5c2.4-1.4,5.5-0.6,6.8,1.8c1.4,2.4,0.6,5.4-1.8,6.8
+                    ></path>
+                  </g>
+                  <g>
+                    <path
+                        id="arrow-svg-right"
+                        d="M407.3,327.8c-1.7,0-3.4-0.9-4.3-2.5c-1.4-2.4-0.6-5.4,1.8-6.8l129-74.5c2.4-1.4,5.5-0.6,6.8,1.8c1.4,2.4,0.6,5.4-1.8,6.8
                             l-129,74.5C409,327.5,408.1,327.8,407.3,327.8z"
-                  ></path>
-                </g>
-              </svg>
+                    ></path>
+                  </g>
+                </svg>
+              </div>
             </div>
-          </div>
-          <h1>{ he.decode( data.title ) }</h1>
-        </section>
-        <FrontSlider
-          slider={ data.acf.slider }
-          sliderText={ data.acf.texte_photo }
-          sliderLink={ data.acf.lien_realisations_slider }
-        />
-        <FrontDomains
-          skills={ data.acf.competences }
-          skillsText={ data.acf.texte_competences }
-          skillsLink={ data.acf.lien_competences }
-        />
-        <FrontClient clients={ data.acf.clients }
-                     clientsLink={ data.acf.lien_clients }/>
-        <FrontPhilosophie
-          textePhilosophie={ data.acf.texte_philosophie }
-          imagePhilosophie={ data.acf.image_philosophie }
-        />
-        <FrontMethodologie texteMethodologie={ data.acf.texte_methodologie }
-                           lien={ data.acf.lien_contact }/>
-      </main>
-      <Footer/>
-    </>
+            <h1>{ data.title ? he.decode( data.title ) : 'BTG Communication, agence de communication 360° à Tours et' +
+                ' Vannes' }</h1>
+          </section>
+          <FrontSlider
+              slider={ data.acf.slider }
+              sliderText={ data.acf.texte_photo }
+              sliderLink={ data.acf.lien_realisations_slider }
+          />
+          <FrontDomains
+              skills={ data.acf.competences }
+              skillsText={ data.acf.texte_competences }
+              skillsLink={ data.acf.lien_competences }
+          />
+          <FrontClient clients={ data.acf.clients }
+                       clientsLink={ data.acf.lien_clients }/>
+          <FrontPhilosophie
+              textePhilosophie={ data.acf.texte_philosophie }
+              imagePhilosophie={ data.acf.image_philosophie }
+          />
+          <FrontMethodologie texteMethodologie={ data.acf.texte_methodologie }
+                             lien={ data.acf.lien_contact }/>
+        </main>
+        <Footer/>
+      </>
   );
 }

@@ -53,8 +53,8 @@ export default function Ville({ data }: { data: PageType<VilleType> }) {
           <Image
             src={acf.image_post_fond_jaune.url}
             alt={acf.image_post_fond_jaune.alt}
-            width={700}
-            height={800}
+            width={Number(acf.image_post_fond_jaune.width)}
+            height={Number(acf.image_post_fond_jaune.height)}
           />
           <div
             className="road-content content"

@@ -7,7 +7,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline: 7rem 4rem;
+  padding-inline: 4rem 6.5rem;
   height: 60px;
   font-family: "Cabin", sans-serif;
   font-size: 1.4rem;
@@ -43,6 +43,7 @@ footer {
     align-items: center;
     list-style: none;
     margin: 0;
+    gap: 8px;
 
     @media (max-width: 941px) {
       gap: 4rem;
