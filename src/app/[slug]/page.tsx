@@ -44,6 +44,9 @@ export type Response = {
   );
 
 const getPages = async ( slug: string ): Promise<Response> => {
+  if (ADMIN_URL && slug === "wp-admin") {
+    redirect( ADMIN_URL )
+  }
   try {
     const response = await axios<
       PageType<
@@ -82,10 +85,6 @@ export async function generateMetadata (
 ): Promise<Metadata> {
   const { slug } = params;
 
-  if (ADMIN_URL && slug === "wp-admin") {
-    redirect( ADMIN_URL )
-  }
-
   const data = await axios<
     PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>[],
     any
@@ -105,14 +104,16 @@ export async function generateMetadata (
     );
   if ( !data) {
     return Promise.resolve( {
-      title: "404",
-      description: "Page not found",
+      title: "BTG Communication - 404",
+      description: "BTG Communication - Oups, la page que vous demandez n'existe pas",
     } );
   }
 
   return Promise.resolve( {
-    title: he.decode( data?.title ),
-    description: he.decode( data?.yoast.yoast_wpseo_metadesc ),
+    title: data && data.title ? he.decode( data?.title ) : 'BTG Communication, agence de communication à 360°',
+    description: data && data.yoast.yoast_wpseo_metadesc ? he.decode( data.yoast.yoast_wpseo_metadesc ) : "BTG" +
+        " Communication est une agence de communication à 360° située à Tours et Vanne. Nous vous accompagnons dans" +
+        " la création de votre identité visuelle",
   } );
 }
 

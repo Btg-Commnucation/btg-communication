@@ -144,6 +144,10 @@
       grid-template-columns: repeat(3, 1fr);
       margin-top: 0;
     }
+    
+    @media (max-width: 500px) {
+      padding-inline: 1rem;
+    }
 
     .grille {
       position: absolute;

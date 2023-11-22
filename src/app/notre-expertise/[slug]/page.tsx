@@ -2,7 +2,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import axios from "axios";
 import he from "he";
-import {use} from "react";
+import { use } from "react";
 import OtherDomain from "./OtherDomain";
 import Custom404 from "@/[slug]/custom404";
 import {
@@ -67,8 +67,10 @@ export async function generateMetadata({
   );
 
   return {
-    title: he.decode(data?.title),
-    description: he.decode(data?.yoast.yoast_wpseo_metadesc),
+    title: data && data.title ? he.decode(data.title) : "BTG Communication, agence de communication à 360°",
+    description: data && data.yoast.yoast_wpseo_metadesc ? he.decode(data?.yoast.yoast_wpseo_metadesc) : "BTG" +
+        " Communication est une agence de communication à 360° située à Tours et Vanne. Nous vous accompagnons dans" +
+        " la création de votre identité visuelle",
   };
 }
 

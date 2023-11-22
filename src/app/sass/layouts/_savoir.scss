@@ -74,6 +74,11 @@
         z-index: 10;
         top: 50%;
         left: -5%;
+        
+        @media (max-width: 500px) {
+          top: 0;
+          left: -3%;
+        }
       }
 
       .link {
@@ -139,6 +144,11 @@
         @media (max-width: 768px) {
           width: 100%;
         }
+        
+        @media (max-width: 500px) {
+          padding-inline: 0;
+          padding-bottom: 4rem;
+        }
 
         a {
           font-weight: 700;
@@ -185,6 +195,10 @@
           left: unset;
           right: unset;
           width: 100%;
+        }
+        
+        @media (max-width: 500px) {
+          padding-inline: 0;
         }
 
         &::before,
@@ -299,7 +313,7 @@
     }
 
     h2 {
-      font-size: 5.6rem;
+      font-size: calc( 36px + (56 - 36) * ((100vw - 320px) / (1920 - 320)) );
       font-weight: 700;
       color: black;
       background: white;
@@ -319,6 +333,14 @@
         margin-left: 0.5rem;
         display: inline-block;
       }
+      
+      @media (max-width: 500px) {
+        max-width: 91%;
+        
+        &::after {
+          display: none;
+        }
+      }
     }
 
     .sub-title {
@@ -331,10 +353,13 @@
       color: black;
       font-family: "Exo", sans-serif;
       font-style: normal;
+      
+      @media (max-width: 768px) {
+        width: 100%;
+      }
 
       @media (max-width: 650px) {
         text-align: left;
-        width: 100%;
       }
     }
 

@@ -1,6 +1,10 @@
 #front-page #philosophie {
   position: relative;
   margin-top: -2em;
+  
+  @media (max-width: 500px) {
+    margin-top: 0;
+  }
 
   .container {
     justify-content: flex-start;
@@ -115,6 +119,10 @@
     @media (max-width: 768px) {
       margin-top: -26rem;
       bottom: -18rem;
+    }
+    
+    @media (max-width: 500px) {
+      bottom: -19em;
     }
   }
 

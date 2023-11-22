@@ -51,7 +51,7 @@
         }
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 550px) {
         img {
           width: 100px;
         }
@@ -122,6 +122,10 @@
 
     @media (max-width: 768px) {
       margin-bottom: 5rem;
+    }
+    
+    @media (max-width: 500px) {
+      margin-bottom: 1rem;
     }
 
     .container {
@@ -201,7 +205,12 @@
         }
 
         @media (max-width: 803px) {
-          left: -15em;
+          left: -21em;
+        }
+        
+        @media (max-width: 768px) {
+          bottom: -28em;
+          left: -21em;
         }
 
         @media (max-width: 673px) {
@@ -327,6 +336,10 @@
 
       @media (max-width: 803px) {
         right: -1em;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 1.7rem;
       }
 
       @media (max-width: 673px) {
