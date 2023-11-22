@@ -30,6 +30,10 @@
 
     p {
       margin-left: 2.5em;
+      
+      @media (max-width: 500px) {
+        margin-left: 0;
+      }
     }
   }
 
@@ -39,6 +43,10 @@
     padding-inline: 4.5rem;
     position: relative;
     margin-top: 9.9rem;
+    
+    @media (max-width: 750px) {
+      padding-inline: 2.5rem;
+    }
 
     .image-background {
       background: black;
@@ -54,17 +62,17 @@
       left: 0;
       right: 0;
       margin-inline: auto;
-
-      @media (max-width: 635px) {
-        top: -9%;
+      
+      @media (max-width: 750px) {
+        top: -18%;
       }
 
       @media (max-width: 473px) {
-        top: -7%;
+        top: -13%;
       }
 
       @media (max-width: 394px) {
-        top: -5%;
+        top: -10%;
       }
     }
 
@@ -178,6 +186,12 @@
   transition: 0.2s ease-in-out;
   position: relative;
   margin: 2.9rem 0 6.3rem auto;
+  
+  @media (max-width: 500px) {
+    padding: 1.9rem 2rem;
+    font-size: 1.8rem;
+    margin-left: 0;
+  }
 
   svg {
     position: absolute;

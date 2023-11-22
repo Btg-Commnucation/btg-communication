@@ -81,14 +81,16 @@ export async function generateMetadata (
       slug ) );
   if ( !data) {
     return Promise.resolve( {
-      title: "404",
-      description: "Page not found",
+      title: "BTG Communication - 404",
+      description: "BTG Communication - Oups, la page que vous demandez n'existe pas",
     } );
   }
 
+  const { title, yoast } = data;
+
   return Promise.resolve( {
-    title: he.decode( data?.title ),
-    description: he.decode( data?.yoast.yoast_wpseo_metadesc ),
+    title: he.decode( title ),
+    description: he.decode( yoast.yoast_wpseo_metadesc ),
   } );
 }
 

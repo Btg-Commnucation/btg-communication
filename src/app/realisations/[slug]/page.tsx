@@ -103,8 +103,8 @@ export async function generateMetadata ( { params }: {
   );
 
   return {
-    title: he.decode( data?.title ),
-    description: he.decode( data?.yoast.yoast_wpseo_metadesc ),
+    title: data && data.title ? he.decode(data.title) : "BTG Communication, agence de communication à 360°",
+    description: he.decode(data?.yoast.yoast_wpseo_metadesc),
   };
 }
 

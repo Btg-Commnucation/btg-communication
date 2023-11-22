@@ -4,7 +4,7 @@ import axios from "axios";
 import https from "https";
 import { ImageType } from "./middleware/Image";
 import { LinkType } from "./middleware/Link";
-import { PageType } from "./middleware/Page";
+import { ClientType, EquipeType, PageType, SavoirType, VilleType } from "./middleware/Page";
 import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +16,7 @@ import { Metadata } from "next";
 import Custom404 from "./[slug]/custom404";
 import FrontPhilosophie from "@/components/FrontPhilosophie";
 import FrontMethodologie from "@/components/FrontMethodologie";
+import { ContactType } from "@/middleware/Contact";
 
 const URL_API = process.env.URL_API;
 const agent = new https.Agent( {
@@ -104,15 +105,26 @@ const getHome = async (): Promise<Response> => {
 };
 
 export async function generateMetadata (): Promise<Metadata> {
-  const data = await axios<PageType<AcfFrontPage>[], any>(
-      `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
-      { httpsAgent: agent }
-  );
+  const data = await axios<
+      PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>[],
+      any
+  >( `${ URL_API }/better-rest-endpoints/v1/page/accueil`,
+      {
+        httpsAgent: agent,
+      } )
+  if ( !data) {
+    return Promise.resolve( {
+      title: "BTG Communication - 404",
+      description: "BTG Communication - Oups, la page que vous demandez n'existe pas",
+    } );
+  }
 
-  return {
-    title: he.decode( data?.data.title ),
-    description: he.decode( data?.data.yoast.yoast_wpseo_metadesc ),
-  };
+  const { title, yoast} = data.data;
+
+  return Promise.resolve( {
+    title: he.decode(title),
+    description: he.decode( yoast.yoast_wpseo_metadesc ),
+  } );
 }
 
 export default function Home () {

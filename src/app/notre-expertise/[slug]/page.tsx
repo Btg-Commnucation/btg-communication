@@ -2,7 +2,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import axios from "axios";
 import he from "he";
-import {use} from "react";
+import { use } from "react";
 import OtherDomain from "./OtherDomain";
 import Custom404 from "@/[slug]/custom404";
 import {
@@ -67,7 +67,7 @@ export async function generateMetadata({
   );
 
   return {
-    title: he.decode(data?.title),
+    title: data && data.title ? he.decode(data.title) : "BTG Communication, agence de communication à 360°",
     description: he.decode(data?.yoast.yoast_wpseo_metadesc),
   };
 }
