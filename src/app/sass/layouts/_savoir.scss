@@ -100,7 +100,7 @@
           text-decoration: none;
           position: relative;
           font-family: "Cabin", sans-serif;
-          font-size: 2.1rem;
+          font-size: var(--text-font-size);
           text-transform: uppercase;
           padding: 25px 33px 25px 33px;
           transition-duration: 0.1s;
@@ -138,11 +138,12 @@
         background: white;
         width: 720px;
         padding: 25px 0 135px 90px;
-        font-size: 2.1rem;
+        font-size: var(--text-font-size);
         font-weight: 300;
-
-        @media (max-width: 768px) {
+        
+        @media (max-width: 780px) {
           width: 100%;
+          padding-bottom: 35px;
         }
         
         @media (max-width: 500px) {
@@ -167,7 +168,7 @@
       div {
         max-width: 65%;
         margin-inline: auto;
-        font-size: 1.8rem;
+        font-size: var(--text-font-size);
         font-weight: 500;
         color: black;
         position: relative;
@@ -251,7 +252,7 @@
         text-decoration: none;
         color: black;
         font-family: "Cabin", sans-serif;
-        font-size: 2.1rem;
+        font-size: var(--text-font-size);
         text-transform: uppercase;
         padding: 25px 33px 25px 33px;
         transition: 0.1s ease-in-out;
@@ -260,7 +261,6 @@
         @media (max-width: 350px) {
           align-self: flex-start;
           padding: 25px 17px;
-          font-size: 2rem;
         }
 
         svg {
@@ -346,7 +346,7 @@
     .sub-title {
       margin-top: 0;
       text-align: center;
-      font-size: 1.8rem;
+      font-size: var(--text-font-size);
       font-weight: 300;
       width: 51%;
       margin-bottom: 5rem;
@@ -437,7 +437,7 @@
         text-decoration: none;
         text-transform: uppercase;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: 1.7rem;
         background: linear-gradient(-45.9deg, #8670cc, 50%, #ff5e81);
         -webkit-background-clip: text;
         background-clip: text;
@@ -465,7 +465,7 @@
     text-decoration: none;
     position: relative;
     font-family: "Cabin", sans-serif;
-    font-size: 2.1rem;
+    font-size: var(--text-font-size);
     text-transform: uppercase;
     padding: 2.5rem 3.3rem;
     transition: 0.1s ease-in-out;
@@ -541,6 +541,12 @@
           max-height: 888px;
           height: auto;
           aspect-ratio: auto;
+          z-index: 88;
+          
+          @media (max-width: 789px) {
+            width: 65%;
+            margin-bottom: -13rem;
+          }
         }
       }
 
@@ -571,7 +577,7 @@
       width: 54%;
       background: white;
       padding: 2rem 5rem;
-      font-size: 2.1rem;
+      font-size: var(--text-font-size);
       font-weight: 300;
 
       @media (max-width: 1636px) {
@@ -637,7 +643,7 @@
       }
 
       .texte {
-        font-size: 2.1rem;
+        font-size: var(--text-font-size);
         font-weight: 300;
         max-width: 85%;
         position: relative;
@@ -655,7 +661,7 @@
           padding: 18.9rem 3rem 6rem 9.3rem;
         }
 
-        @media (max-width: 758px) {
+        @media (max-width: 789px) {
           max-width: 95%;
           padding-left: 3rem;
           padding-top: 15rem;
@@ -673,7 +679,7 @@
           margin-block: auto;
           transform: rotate(90deg);
 
-          @media (max-width: 758px) {
+          @media (max-width: 789px) {
             display: none;
           }
 

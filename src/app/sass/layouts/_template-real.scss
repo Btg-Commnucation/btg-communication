@@ -179,11 +179,15 @@
 
   .content {
     color: black;
-    font-size: 1.8rem;
+    font-size: var(--text-font-size);
     font-weight: 300;
     text-align: center;
     width: 55%;
     margin-bottom: 6rem;
+    
+    @media (max-width: 789px) {
+      width: 85%;
+    }
 
     @media (max-width: 550px) {
       width: 100%;
