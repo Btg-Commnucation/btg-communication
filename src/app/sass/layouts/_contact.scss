@@ -55,10 +55,11 @@
       font-size: calc(32px + (56 - 32) * ((100vw - 320px) / (1920 - 320)));
       font-family: "Exo", sans-serif;
       line-height: 1.3;
+      text-transform: uppercase;
     }
 
     div {
-      font-size: 1.8rem;
+      font-size: var(--text-font-size);
       font-weight: 300;
       font-family: "Exo", sans-serif;
       display: flex;
@@ -83,6 +84,12 @@
         justify-content: center;
         gap: 7.4rem;
       }
+      
+      @media (max-width: 789px) {
+        padding: 2rem;
+        
+        
+      }
     }
 
     form {
@@ -102,7 +109,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      font-size: 2rem;
+      font-size: var(--text-font-size);
       font-weight: 700;
       margin-bottom: 2.9rem;
     }
@@ -114,7 +121,7 @@
       border: none;
       border-bottom: 1px solid black;
       margin-block: 2rem 1rem;
-      font-size: 2rem;
+      font-size: var(--text-font-size);
 
       &.error-field {
         color: red;
@@ -139,10 +146,10 @@
       color: black;
       font-family: "Cabin", sans-serif;
       text-transform: uppercase;
-      padding: 2.5rem 3.3rem;
+      padding: 2.5rem 6.2rem;
       transition: 0.1s ease-in-out;
       position: relative;
-      font-size: 2.1rem;
+      font-size: var(--text-font-size);
       font-weight: 700;
       border: none;
       background: transparent;
@@ -249,8 +256,8 @@
       @media (max-width: 1329px) {
         width: 100%;
         flex-direction: row;
-        gap: 10rem;
-        justify-content: space-evenly;
+        gap: 2rem;
+        justify-content: center;
         align-items: flex-start;
       }
 
@@ -284,8 +291,9 @@
     }
 
     p {
-      font-size: 1.8rem;
+      font-size: var(--text-font-size);
       font-weight: 300;
     }
   }
+  
 }

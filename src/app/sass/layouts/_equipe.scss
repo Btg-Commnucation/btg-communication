@@ -20,7 +20,7 @@
       text-decoration: none;
       position: relative;
       font-family: "Cabin", sans-serif;
-      font-size: 2.1rem;
+      font-size: var(--text-font-size);
       text-transform: uppercase;
       padding: 25px 33px 25px 33px;
       transition-duration: 0.1s;
@@ -85,7 +85,7 @@
     }
 
     p {
-      font-size: 1.8rem;
+      font-size: var(--text-font-size);
       text-align: center;
     }
   }

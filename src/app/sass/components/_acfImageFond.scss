@@ -93,7 +93,7 @@
       transition: 0.2s ease-in-out;
       color: white;
       text-transform: uppercase;
-      font-size: 2.1rem;
+      font-size: var(--text-font-size);
       font-family: "Cabin", sans-serif;
       
       &:hover {
@@ -166,7 +166,7 @@
 
     p {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: var(--text-font-size);
 
       &:not(:last-of-type) {
         margin-bottom: 1em;
@@ -181,6 +181,46 @@
       justify-content:center;
       align-items:center;
       border-radius: 50%;
+      
+      img {
+        height: 65%;
+      }
+      
+    }
+    
+    li:last-of-type {
+      img {
+        height: 95%;
+        width: 65%;
+      }
+    }
+    
+    li:nth-of-type(2) {
+      img {
+        height: 40%;
+      }
+    }
+  }
+  
+  .column-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 4.4rem !important;
+  }
+  
+  .container.column-container {
+    font-size: var(--text-font-size);
+    max-width: 94%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-bottom: 7.2rem;
+    
+    p {
+      margin: 0;
     }
   }
 

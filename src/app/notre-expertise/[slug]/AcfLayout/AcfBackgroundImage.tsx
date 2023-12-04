@@ -28,7 +28,8 @@ export default function AcfBackgroundImage({
         ></div>
       ) : (
         <div className="container colonne-container">
-          <h3 className="main-title">{data.titre}</h3>
+          <h3 className="column-title">{data.titre}</h3>
+          { data.contenu_en_ligne &&  <div className="container column-container" dangerouslySetInnerHTML={{ __html: data.contenu_en_ligne }}></div> }
           <ul className="steps">
             {data.contenu_en_colonne.map(({image, titre, texte}, index) => (
               <li key={index}>

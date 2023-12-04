@@ -15,7 +15,7 @@
   }
 
   article {
-    font-size: 1.8rem;
+    font-size: var(--text-font-size);
     font-weight: 300;
     line-height: 1.3;
 
@@ -25,7 +25,7 @@
 
     img {
       width: 100%;
-      margin-bottom: calc(5.1rem - 2em);
+      margin-block: calc(5.1rem - 2em);
     }
 
     p {
@@ -58,22 +58,10 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      top: -12%;
+      top: -5rem;
       left: 0;
       right: 0;
       margin-inline: auto;
-      
-      @media (max-width: 750px) {
-        top: -18%;
-      }
-
-      @media (max-width: 473px) {
-        top: -13%;
-      }
-
-      @media (max-width: 394px) {
-        top: -10%;
-      }
     }
 
     img {
@@ -108,7 +96,7 @@
   }
 
   .text-under-content {
-    font-size: 1.8rem;
+    font-size: var(--text-font-size);
     font-weight: 700;
   }
 
@@ -139,7 +127,7 @@
     gap: 0.9rem;
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 789px) {
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -153,7 +141,7 @@
   grid-template-columns: 85px 1fr;
   place-items: center;
   gap: 1.6rem;
-  font-size: 1.8rem;
+  font-size: var(--text-font-size);
   font-weight: 700;
 
   span {
@@ -179,7 +167,7 @@
   text-decoration: none;
   text-transform: uppercase;
   font-family: "Cabin", sans-serif;
-  font-size: 2.1rem;
+  font-size: var(--text-font-size);
   padding: 3.9rem 6.8rem;
   display: flow-root;
   width: fit-content;
@@ -189,7 +177,7 @@
   
   @media (max-width: 500px) {
     padding: 1.9rem 2rem;
-    font-size: 1.8rem;
+    font-size: var(--text-font-size);
     margin-left: 0;
   }
 

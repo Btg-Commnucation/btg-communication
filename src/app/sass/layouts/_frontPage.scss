@@ -5,6 +5,10 @@
     font-family: "Cabin", sans-serif;
     font-style: italic;
     text-align: center;
+    
+    @media (max-width: 500px) {
+      font-size: 2rem;
+    }
   }
 
   margin-top: 0;
@@ -134,7 +138,7 @@
       margin-inline: auto;
       padding: 0;
 
-      @media (max-width: 1155px) {
+      @media (max-width: 1379px) {
         width: calc(100% - 24px);
       }
 
@@ -199,7 +203,7 @@
 
         @media screen and (max-width: 1200px) {
           right: unset;
-          left: -8em;
+          left: -25em;
           width: fit-content;
           bottom: -21em;
         }
@@ -311,12 +315,11 @@
       right: -20em;
       top: -10em;
       z-index: 3;
-      font-size: 2.1rem;
+      font-size: var(--text-font-size);
       font-weight: 300;
       line-height: 1.3;
 
       @media screen and (max-width: 1200px) {
-        font-size: 1.9rem;
         line-height: 1.15;
         width: 664px;
         padding: 2.4rem 0 3.6rem 2.7rem;
@@ -336,10 +339,6 @@
 
       @media (max-width: 803px) {
         right: -1em;
-      }
-      
-      @media (max-width: 768px) {
-        font-size: 1.7rem;
       }
 
       @media (max-width: 673px) {
