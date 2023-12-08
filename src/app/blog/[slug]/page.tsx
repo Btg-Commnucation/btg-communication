@@ -98,6 +98,13 @@ export default function Page ( { params }: { params: { slug: string } } ) {
   const { slug } = params;
   const { data, posts } = use( getArticle( slug ) );
 
+  const truncateText = ( text: string, length: number ): string => {
+    if (text.length <= length) {
+      return text;
+    }
+    return text.slice( 0, length ) + "...";
+  };
+
   return (
     <>
       <BlogHeader/>
@@ -114,7 +121,7 @@ export default function Page ( { params }: { params: { slug: string } } ) {
                   <li>
                     <Link href="/">{ he.decode( data!.category_names[ 0 ] ) }</Link>
                   </li>
-                  <li>{ he.decode( data!.title ) }</li>
+                  <li>{ he.decode( truncateText(data!.title, 20) ) }</li>
                 </ul>
                 <div className="title">
                   <h1>{ he.decode( data!.title ) }</h1>
@@ -133,7 +140,7 @@ export default function Page ( { params }: { params: { slug: string } } ) {
                   { data!.acf.image_haut_article ?
                     (
                       <Image
-                        src={ data!.acf.image_haut_article.url }
+                        src={ data!.acf.image_haut_article.url ? data!.acf.image_haut_article.url : "/fall-back-image.png" }
                         width={ 833 }
                         height={ 370 }
                         alt={ data!.title }

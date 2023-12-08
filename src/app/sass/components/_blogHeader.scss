@@ -59,7 +59,7 @@
     font-weight: 400;
     color: black;
     font-family: "Exo", sans-serif;
-    line-height: 1.3;
+    line-height: 1.1;
 
     @media (max-width: 1200px) {
       display: none;
@@ -83,6 +83,7 @@
     text-decoration: none;
     color: black;
     font-weight: 500;
+    font-family: "Cabin", sans-serif
   }
 
   @media (max-width: 1440px) {
@@ -139,6 +140,10 @@
   border-radius: 10px;
   width: auto;
   transition: 0.5s ease-in-out;
+  
+  ::placeholder {
+    font-size: 1.5rem;
+  }
 
   &.hidden {
     width: 0;

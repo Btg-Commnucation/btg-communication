@@ -12,6 +12,7 @@
 
   @media (max-width: 767px) {
     grid-template-columns: repeat(1, 1fr);
+    row-gap: 2rem;
   }
 }
 
@@ -105,6 +106,10 @@ h2 {
   }
 }
 
+#blog {
+  margin-top: 0;
+}
+
 #blog .guides {
   margin-bottom: 5.2rem;
 
@@ -120,7 +125,7 @@ h2 {
     row-gap: 6.8rem;
     align-items: flex-start;
 
-    @media (max-width: 799px) {
+    @media (max-width: 850px) {
       grid-template-columns: repeat(1, 1fr);
       align-items: center;
     }
@@ -154,7 +159,7 @@ h2 {
     column-gap: 2.5rem;
     row-gap: 2.5rem;
 
-    @media (max-width: 799px) {
+    @media (max-width: 850px) {
       flex-direction: column;
     }
 

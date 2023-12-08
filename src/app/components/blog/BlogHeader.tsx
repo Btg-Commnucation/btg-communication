@@ -1,11 +1,6 @@
 import Image from "next/image";
 import https from "https";
-import {
-  MenuData,
-  MenuType,
-  OptionsType,
-  rsOptions,
-} from "@/middleware/Header";
+import { MenuData, MenuType, OptionsType, rsOptions, } from "@/middleware/Header";
 import axios from "axios";
 import { use } from "react";
 import Link from "next/link";
@@ -63,7 +58,7 @@ export default function BlogHeader() {
             height={81.97}
           />
           <span className="header-logo-text">
-            Le blog <strong>btg communication</strong>
+            Le blog de <strong>btg communication</strong>
           </span>
         </Link>
         <BlogHeaderFront element={menuBlog as unknown as MenuData[]} />

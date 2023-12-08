@@ -1,12 +1,14 @@
 #blog {
   .authors {
     margin-bottom: 5.6rem;
+    
   }
-
+  
   .keen-slider {
     margin-inline: auto;
+    
   }
-
+  
   .keen-slider__slide {
     display: flex;
     align-items: flex-start;
@@ -14,7 +16,7 @@
     height: fit-content;
     min-height: fit-content;
     max-height: fit-content;
-
+    
     img {
       height: 292px;
       width: 254px;
@@ -22,56 +24,56 @@
       margin-top: 1.1rem;
       position: relative;
       z-index: 2;
-
+      
       @media (max-width: 1023px) {
         height: 200px;
         width: 174px;
       }
-
+      
       @media (max-width: 799px) {
         height: 150px;
         width: 130px;
         align-self: center;
       }
     }
-
+    
     @media (max-width: 799px) {
       flex-direction: column;
     }
   }
-
+  
   .author-card-content {
     padding: 4.4rem 5rem 4rem 12rem;
     width: 100%;
     margin-left: -10.6rem;
     border-radius: 0.8rem;
     background: #fcd647;
-
+    
     @media (max-width: 799px) {
       margin-left: auto;
       margin-top: -9rem;
       padding: 11rem 2rem 3rem 2rem;
     }
   }
-
+  
   .author-card-title {
     font-family: "Exo", sans-serif;
     font-size: 2.5rem;
     line-height: calc(33 / 25);
     font-weight: 700;
   }
-
+  
   .author-card-subtitle {
     font-size: 5.3rem;
     line-height: calc(54 / 53);
     font-weight: 700;
     margin-bottom: 1.5rem;
-
+    
     @media (max-width: 799px) {
       font-size: 3rem;
     }
   }
-
+  
   .author-card-job {
     font-family: "Exo", sans-serif;
     font-size: 1.9rem;
@@ -79,7 +81,7 @@
     color: white;
     margin-bottom: 1.5rem;
   }
-
+  
   .author-card-job-content {
     font-size: 1.9rem;
     font-family: "Exo", sans-serif;
@@ -87,7 +89,7 @@
     font-weight: 400;
     margin-bottom: 3.5rem;
   }
-
+  
   .btn-container {
     @media (max-width: 799px) {
       display: flex;
@@ -95,11 +97,11 @@
       justify-content: center;
       align-items: center;
       gap: 1rem;
-
+      
       text-align: center;
     }
   }
-
+  
   .btn {
     font-size: 2.6rem;
     font-family: "Exo", sans-serif;
@@ -111,28 +113,28 @@
     color: black;
     border-radius: 37px;
     transition: 0.2s ease-in-out;
-
+    
     @media (max-width: 799px) {
       font-size: 1.8rem;
     }
-
+    
     &:first-child {
       margin-right: 1.2rem;
-
+      
       @media (max-width: 799px) {
         margin-right: 0;
       }
     }
-
+    
     &:hover {
       color: #fcd647;
       background: black;
     }
   }
-
+  
   .slider-navigation {
     margin-left: 0;
-
+    
     .dot {
       background-color: #fff;
       border: 1px solid #fcd647;
@@ -140,50 +142,50 @@
       height: 19px;
       border-radius: 50%;
       cursor: pointer;
-
+      
       &.active {
         background: #fcd647;
       }
     }
   }
-
+  
   &.bio-page h1 {
     @media (max-width: 799px) {
       text-align: center;
       margin-inline: auto !important;
     }
   }
-
+  
   &.bio-page .blog-container {
     @media (max-width: 799px) {
       width: 95%;
     }
   }
-
+  
   &.bio-page .author {
     margin-bottom: 5rem;
   }
-
+  
   &.bio-page .author .blog-container {
     display: flex;
     align-items: flex-start;
     width: 100%;
-
+    
     @media (max-width: 799px) {
       flex-direction: column;
       align-items: center;
-
+      
       .author-card-job-content {
         font-size: 1.5rem;
       }
     }
-
+    
     img {
       height: 292px;
       width: 254px;
       position: relative;
       z-index: 2;
-
+      
       @media (max-width: 1025px) {
         height: 200px;
         width: 174px;
