@@ -1,14 +1,14 @@
 'use client';
 
-import {useSearchParams} from "next/navigation";
-import {Membre} from "@/middleware/Page";
-import {PostData} from "@/middleware/Post";
+import { useSearchParams } from "next/navigation";
+import { Membre } from "@/middleware/Page";
+import { PostData } from "@/middleware/Post";
 import AuthorCard from "@/components/AuthorCard";
 import Link from "next/link";
 import Image from "next/image";
 import he from "he";
-import {format, parseISO} from "date-fns";
-import {fr} from "date-fns/locale";
+import { format, parseISO } from "date-fns";
+import { fr } from "date-fns/locale";
 
 const removeAccents = (input: string): string => {
   return input
@@ -53,7 +53,7 @@ export default function ClientSideBio({authors, articles}: { authors: Membre[], 
               <div className="post-content" key={index}>
                 <Link href={`/blog/${post.slug}`}>
                   <Image
-                    src={post.media.large}
+                    src={post.media.large ? post.media.large : "/fall-back-image.png" }
                     alt={he.decode(post.title)}
                     width={833}
                     height={496}

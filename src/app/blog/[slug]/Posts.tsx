@@ -38,7 +38,7 @@ export default function Posts({
             <div className="post-content" key={index}>
               <Link href={`/blog/${post.slug}`}>
                 <Image
-                  src={post.media.large}
+                  src={post.media.large ? post.media.large : "/fall-back-image.png"}
                   alt={he.decode(post.title)}
                   width={833}
                   height={496}

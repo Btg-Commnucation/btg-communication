@@ -2,8 +2,8 @@ import Link from "next/link";
 import Rs from "../header/Rs";
 import https from "https";
 import axios from "axios";
-import {OptionsType} from "@/middleware/Header";
-import {use} from "react";
+import { OptionsType } from "@/middleware/Header";
+import { use } from "react";
 import he from "he";
 
 const URL_API = process.env.URL_API;
@@ -34,16 +34,6 @@ export default function BlogFooter() {
 
   return (
     <>
-      <section className="blog-newsletter">
-        <div className="blog-container">
-          <h2>Ne loupez plus l&apos;actu de la comm</h2>
-          <p>
-            Inscrivez vous à la newsletter de btg communication et recevez
-            directement dans votre boite mail toute l&apos;actu de la
-            communication.
-          </p>
-        </div>
-      </section>
       <section className="blog-part-agency">
         <div className="blog-container">
           <h2>

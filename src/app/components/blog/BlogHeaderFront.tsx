@@ -1,13 +1,14 @@
 "use client";
 
-import {MenuData} from "@/middleware/Header";
+import { MenuData } from "@/middleware/Header";
 import Link from "next/link";
 import MenuToggler from "./MenuToggler";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import he from "he";
 
 export default function BlogHeaderFront({element}: { element: MenuData[] }) {
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [ state, setState ] = useState("");
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);

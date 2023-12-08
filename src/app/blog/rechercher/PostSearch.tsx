@@ -35,7 +35,7 @@ const Post = ({
       <div className="post-content">
         <Link href={`/blog/${article.slug}`}>
           <Image
-            src={article.media.large}
+            src={article.media.large ? article.media.large : "/fall-back-image.png"}
             alt={he.decode(article.title)}
             width={833}
             height={496}
