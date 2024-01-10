@@ -3,15 +3,17 @@ export type RealType = {
   title: string;
   slug: string;
   date: string;
-  terms: {
-    count: number;
-    name: string;
-    term_id: number;
-    term_taxonomy_id: number;
-    slug: string;
-    filter: string;
-    description: string;
-  }[];
+  terms:
+    | {
+        count: number;
+        name: string;
+        term_id: number;
+        term_taxonomy_id: number;
+        slug: string;
+        filter: string;
+        description: string;
+      }[]
+    | false;
   acf: {
     banner: {
       url: string;
