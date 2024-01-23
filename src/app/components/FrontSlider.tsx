@@ -6,8 +6,15 @@ import Image from "next/image";
 import { CSSProperties, useCallback } from "react";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import Autoplay from "embla-carousel-autoplay";
-import useEmblaCarousel, { EmblaCarouselType, EmblaOptionsType, } from "embla-carousel-react";
-import { NextButton, PrevButton, usePrevNextButtons, } from "./EmblaCarouselArrowButton";
+import useEmblaCarousel, {
+  EmblaCarouselType,
+  EmblaOptionsType,
+} from "embla-carousel-react";
+import {
+  NextButton,
+  PrevButton,
+  usePrevNextButtons,
+} from "./EmblaCarouselArrowButton";
 import Button from "@/components/Button";
 
 const OPTIONS: EmblaOptionsType = {
@@ -21,25 +28,22 @@ const OPTIONS: EmblaOptionsType = {
   },
 };
 
-export default function FrontSlider ( {
-                                        slider,
-                                        sliderText,
-                                        sliderLink,
-                                      }: {
+export default function FrontSlider({
+  slider,
+  sliderText,
+  sliderLink,
+}: {
   slider: AcfFrontPage["slider"];
   sliderText: AcfFrontPage["texte_photo"];
   sliderLink: AcfFrontPage["lien_realisations_slider"];
-} ) {
-  const [ emblaRef, emblaApi ] = useEmblaCarousel( OPTIONS,
-    [ Autoplay() ] );
+}) {
+  const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [Autoplay()]);
 
-  const onButtonClick = useCallback( ( emblaApi: EmblaCarouselType ) => {
-      const { autoplay } = emblaApi.plugins();
-      if ( !autoplay) return;
-      if (autoplay.options.stopOnInteraction !==
-        false) autoplay.stop();
-    },
-    [] );
+  const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
+    const { autoplay } = emblaApi.plugins();
+    if (!autoplay) return;
+    if (autoplay.options.stopOnInteraction !== false) autoplay.stop();
+  }, []);
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
     emblaApi,
@@ -51,61 +55,56 @@ export default function FrontSlider ( {
     nextBtnDisabled,
     onPrevButtonClick,
     onNextButtonClick,
-  } = usePrevNextButtons( emblaApi,
-    onButtonClick );
+  } = usePrevNextButtons(emblaApi, onButtonClick);
 
   return (
     <section className="slider-wrapper">
       <div className="container">
-        <div className="embla"
-             style={ {
-               "--slide-height": `calc(394px + (${ slider[ 0 ].image.height } - 394) * ((100vw - 320px) / (1920 - 320)))`
-             } as CSSProperties }>
-          <div ref={ emblaRef }
-               className="embla__viewport">
+        <div
+          className="embla"
+          style={
+            {
+              "--slide-height": `calc(394px + (${slider[0].image.height} - 394) * ((100vw - 320px) / (1920 - 320)))`,
+            } as CSSProperties
+          }
+        >
+          <div ref={emblaRef} className="embla__viewport">
             <div className="embla__container">
-              { slider.map( ( slide: { image: ImageType } ) => (
-                <div
-                  className="embla__slide"
-                  key={ slide.image.id }
-                >
+              {slider.map((slide: { image: ImageType }) => (
+                <div className="embla__slide" key={slide.image.id}>
                   <Image
-                    src={ slide.image.url }
-                    alt={ slide.image.alt }
-                    title={ slide.image.title }
-                    width={ slide.image.width }
-                    height={ slide.image.height }
-                    placeholder={ "blur" }
+                    src={slide.image.url}
+                    alt={slide.image.alt}
+                    title={slide.image.title}
+                    width={slide.image.width}
+                    height={slide.image.height}
+                    placeholder={"blur"}
                     blurDataURL="data:image/jpeg..."
                   />
                 </div>
-              ) ) }
+              ))}
             </div>
           </div>
 
           <div className="embla__buttons">
             <PrevButton
-              onClick={ onPrevButtonClick }
-              disabled={ prevBtnDisabled }
+              onClick={onPrevButtonClick}
+              disabled={prevBtnDisabled}
             />
             <div className="embla__dots">
-              { scrollSnaps.map( ( _,
-                                   index ) => (
+              {scrollSnaps.map((_, index) => (
                 <DotButton
-                  key={ index }
-                  onClick={ () => onDotButtonClick( index ) }
-                  className={ "embla__dot".concat(
-                    index ===
-                    selectedIndex ?
-                      " embla__dot--selected" :
-                      ""
-                  ) }
+                  key={index}
+                  onClick={() => onDotButtonClick(index)}
+                  className={"embla__dot".concat(
+                    index === selectedIndex ? " embla__dot--selected" : ""
+                  )}
                 />
-              ) ) }
+              ))}
             </div>
             <NextButton
-              onClick={ onNextButtonClick }
-              disabled={ nextBtnDisabled }
+              onClick={onNextButtonClick}
+              disabled={nextBtnDisabled}
             />
           </div>
         </div>
@@ -113,11 +112,13 @@ export default function FrontSlider ( {
           <h2>Projets</h2>
           <div
             className="text"
-            dangerouslySetInnerHTML={ { __html: sliderText } }
+            dangerouslySetInnerHTML={{ __html: sliderText }}
           ></div>
-          <Button link={ sliderLink.url }
-                  text={ sliderLink.title }
-                  target={ sliderLink.target }/>
+          <Button
+            link={sliderLink.url}
+            text={sliderLink.title}
+            target={sliderLink.target}
+          />
         </div>
       </div>
     </section>

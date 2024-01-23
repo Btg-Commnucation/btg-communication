@@ -153,13 +153,15 @@ h2 {
 
   .post-content {
     color: white;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
     align-items: center;
     column-gap: 2.5rem;
     row-gap: 2.5rem;
 
     @media (max-width: 850px) {
+      display: flex;
       flex-direction: column;
     }
 

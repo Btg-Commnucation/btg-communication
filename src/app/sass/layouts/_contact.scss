@@ -84,11 +84,9 @@
         justify-content: center;
         gap: 7.4rem;
       }
-      
+
       @media (max-width: 789px) {
         padding: 2rem;
-        
-        
       }
     }
 
@@ -295,5 +293,29 @@
       font-weight: 300;
     }
   }
-  
+}
+
+#contact-page .gray .form-container .errorTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#contact-page .gray .form-container .errorMessage {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+#contact-page .gray .form-container .btn-primary.errorBtn {
+  font-size: 2rem;
+  text-align: center;
+  margin: auto;
+  margin-top: 2rem;
+  width: fit-content;
+  display: flow-root;
+  color: black;
+
+  &:hover {
+    color: white;
+  }
 }

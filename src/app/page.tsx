@@ -158,6 +158,7 @@ export default function Home () {
                     width={ 370 }
                     height={ 427.2 }
                     quality={ 100 }
+                    priority
                 />
                 <HeroDomains competences={ data.acf.competences }/>
                 <svg
