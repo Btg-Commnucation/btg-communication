@@ -42,7 +42,7 @@ export default function AcfContent({item}: { item: ItemType }) {
                     ></div>
                   </div>
                 ) : (
-                  <div className="yellow-background__container">
+                  <div className="yellow-background__container" key={index}>
                     {content.colonne.map((item, index) => (
                       <div className="yellow-background" key={index}>
                         <div className="image-background">
