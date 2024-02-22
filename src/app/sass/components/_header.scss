@@ -202,15 +202,44 @@ header {
   }
 }
 
+.header-rightContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
 .contact-icons {
   cursor: pointer;
-  position: fixed;
-  left: 25px;
-  top: calc(50% - 25px);
   z-index: 1;
   height: 50px;
   width: 50px;
   transition: 0.2s ease-in-out;
+  margin-top: 15px;
+  position: relative;
+  
+  p {
+    position: absolute;
+    bottom: 17px;
+    left: -120%;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    transition: 0.2s ease-in-out;
+    
+    @media (max-width: 503px) {
+      bottom: unset;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      top: -40%;
+    }
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+  }
 
   @media screen and (max-width: 1200px) {
     position: initial;
