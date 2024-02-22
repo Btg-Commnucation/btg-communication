@@ -1,10 +1,10 @@
-"use client";
-import Image from "next/image";
-import he from "he";
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { PageType, RealisationType } from "@/middleware/Page";
-import { RealType } from "@/middleware/RealType";
+'use client';
+import Image from 'next/image';
+import he from 'he';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { PageType, RealisationType } from '@/middleware/Page';
+import { RealType } from '@/middleware/RealType';
 
 export default function RealisationClient({
   page,
@@ -13,20 +13,20 @@ export default function RealisationClient({
   page: PageType<RealisationType>;
   data: RealType[];
 }) {
-  const [filter, setFilter] = useState<string>("all");
+  const [filter, setFilter] = useState<string>('all');
   const [filteredData, setFilteredData] = useState(data);
   const [windowWidth, setWindowWidth] = useState<number>(0);
 
   useEffect(() => {
-    if (filter === "all") {
+    if (filter === 'all') {
       setFilteredData(data);
     } else {
       setFilteredData(
         data.filter(
           (real) =>
             real.terms !== false &&
-            real.terms?.some((term) => term.name === filter)
-        )
+            real.terms?.some((term) => term.name === filter),
+        ),
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,8 +43,8 @@ export default function RealisationClient({
         <ul className="categories-filter">
           <li>
             <button
-              onClick={() => setFilter("all")}
-              className={filter === "all" ? "active" : ""}
+              onClick={() => setFilter('all')}
+              className={filter === 'all' ? 'active' : ''}
             >
               <div className="icon">
                 <Image
@@ -75,7 +75,7 @@ export default function RealisationClient({
                 onClick={() => {
                   setFilter(category.nom);
                 }}
-                className={category.nom === filter ? "active" : ""}
+                className={category.nom === filter ? 'active' : ''}
               >
                 <div className="icon">
                   <Image
@@ -101,20 +101,20 @@ export default function RealisationClient({
           className="resp-filters"
           onClick={(e) => {
             if (e.target instanceof HTMLElement) {
-              e.target.classList.toggle("active");
+              e.target.classList.toggle('active');
             }
           }}
         >
           <li className="openList">Type de projet</li>
           <li
-            className={`filter-item ${filter === "all" && "active"}`}
-            onClick={() => setFilter("all")}
+            className={`filter-item ${filter === 'all' && 'active'}`}
+            onClick={() => setFilter('all')}
           >
             Tous
           </li>
           {page.acf.categories.map((category, index: number) => (
             <li
-              className={`filter-item ${filter === category.nom && "active"}`}
+              className={`filter-item ${filter === category.nom && 'active'}`}
               key={index}
               onClick={() => setFilter(he.decode(category.nom))}
             >
@@ -139,7 +139,7 @@ export default function RealisationClient({
                 />
                 <div className="overlay">
                   <div className="bg-overlay"></div>
-                  <h3>{project.title}</h3>
+                  <h3>{he.decode(project.title)}</h3>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 371.9 429.5"
