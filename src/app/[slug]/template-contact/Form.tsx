@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import Image from "next/image";
-import z from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import he from "he";
-import axios from "axios";
-import { useState } from "react";
-import Link from "next/link";
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import Image from 'next/image';
+import z from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import he from 'he';
+import axios from 'axios';
+import { useState } from 'react';
+import Link from 'next/link';
 
-const URL_API = process.env.URL_API;
-const FORM_ID = process.env.FORM_ID;
+const URL_API = process.env.NEXT_PUBLIC_URL_API;
+const FORM_ID = process.env.NEXT_PUBLIC_FORM_ID;
 
 const formSchema = z.object({
-  nom: z.string({ required_error: "Veuillez saisir votre nom" }),
+  nom: z.string({ required_error: 'Veuillez saisir votre nom' }),
   email: z
-    .string({ required_error: "Votre adresse mail est requise" })
-    .email("Veuillez saisir une adresse mail valide"),
+    .string({ required_error: 'Votre adresse mail est requise' })
+    .email('Veuillez saisir une adresse mail valide'),
   phoneNumber: z
     .string()
-    .length(10, { message: "Veuillez saisir un numéro de téléphone valide" })
+    .length(10, { message: 'Veuillez saisir un numéro de téléphone valide' })
     .optional(),
   society: z.string().optional(),
   message: z.string({
-    required_error: "Votre demande est nécessaire pour nous",
+    required_error: 'Votre demande est nécessaire pour nous',
   }),
   consent: z.boolean({
-    required_error: "Veuillez accepter notre politique de confidentialité",
+    required_error: 'Veuillez accepter notre politique de confidentialité',
   }),
 });
 
@@ -36,45 +36,50 @@ export default function FormContact() {
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
   const [returnMessage, setReturnMessage] = useState({
-    title: "",
-    message: "",
+    title: '',
+    message: '',
   });
 
   const handleSubmit = async (values: TValues) => {
-    const API = `${URL_API}/contact-form-7/v1/contact-forms/${FORM_ID}/feedback`;
+    const api = `${URL_API}/contact-form-7/v1/contact-forms/${FORM_ID}/feedback`;
 
     const data = new FormData();
-    data.set("nom-prenom", values.nom);
-    data.set("email", values.email);
-    values.society && data.set("entreprise", values.society);
-    values.phoneNumber && data.set("telephone", values.phoneNumber);
-    data.set("message", values.message);
-    data.set("consent", values.consent ? "true" : "false");
+    data.set('nom', values.nom);
+    values.society
+      ? data.set('entreprise', values.society)
+      : data.set('entreprise', '');
+    data.set('email', values.email);
+    values.phoneNumber
+      ? data.set('telephone', values.phoneNumber)
+      : data.set('telephone', '');
+    data.set('message', values.message);
+    data.set('consent', values.consent ? 'true' : 'false');
+    data.set('_wpcf7_unit_tag', 'wpcf-b8f4944-o1');
 
     try {
-      const response = await axios.post(API, data);
-      console.log(`response, ${response}`);
+      const response = await axios.post(api, data);
+      console.log({ response });
       if (response.status === 200) {
         setIsSent(true);
         setReturnMessage({
-          title: "Merci pour votre message",
-          message: "Nous vous répondrons dans les plus brefs délais",
+          title: 'Merci pour votre message',
+          message: 'Nous vous répondrons dans les plus brefs délais',
         });
       } else {
         setIsError(true);
         setReturnMessage({
-          title: "Oups, une erreur est survenu",
+          title: 'Oups, une erreur est survenu',
           message:
-            "Veuillez réessayer plus tard, nous nous excusons de la gêne occasionnée",
+            'Veuillez réessayer plus tard, nous nous excusons de la gêne occasionnée',
         });
       }
     } catch (error) {
       setIsError(true);
       console.log(`error ${error}`);
       setReturnMessage({
-        title: "Oups, une erreur est survenu",
+        title: 'Oups, une erreur est survenu',
         message:
-          "Veuillez réessayer plus tard, nous nous excusons de la gêne occasionnée",
+          'Veuillez réessayer plus tard, nous nous excusons de la gêne occasionnée',
       });
     }
   };
@@ -108,11 +113,11 @@ export default function FormContact() {
         {!isSent && !isError && (
           <Formik
             initialValues={{
-              nom: "",
-              email: "",
-              phoneNumber: "",
-              society: "",
-              message: "",
+              nom: '',
+              email: '',
+              phoneNumber: '',
+              society: '',
+              message: '',
               consent: false,
             }}
             validationSchema={toFormikValidationSchema(formSchema)}
@@ -126,7 +131,7 @@ export default function FormContact() {
                     <Field
                       id="nom"
                       name="nom"
-                      className={errors.nom && touched.nom ? "error-field" : ""}
+                      className={errors.nom && touched.nom ? 'error-field' : ''}
                     />
                     <ErrorMessage
                       name="nom"
@@ -141,7 +146,7 @@ export default function FormContact() {
                       id="email"
                       name="email"
                       className={
-                        errors.email && touched.email ? "error-field" : ""
+                        errors.email && touched.email ? 'error-field' : ''
                       }
                     />
                     <ErrorMessage
@@ -158,8 +163,8 @@ export default function FormContact() {
                       name="phoneNumber"
                       className={
                         errors.phoneNumber && touched.phoneNumber
-                          ? "error-field"
-                          : ""
+                          ? 'error-field'
+                          : ''
                       }
                     />
                     <ErrorMessage
@@ -174,7 +179,7 @@ export default function FormContact() {
                       name="society"
                       id="society"
                       className={
-                        errors.society && touched.society ? "error-field" : ""
+                        errors.society && touched.society ? 'error-field' : ''
                       }
                     />
                     <ErrorMessage
@@ -190,7 +195,7 @@ export default function FormContact() {
                       name="message"
                       id="message"
                       className={
-                        errors.message && touched.message ? "error-field" : ""
+                        errors.message && touched.message ? 'error-field' : ''
                       }
                     />
                     <ErrorMessage
@@ -202,11 +207,11 @@ export default function FormContact() {
                   <label
                     htmlFor="consent"
                     style={{
-                      flexDirection: "row",
-                      alignItems: "start",
-                      gap: "1rem",
+                      flexDirection: 'row',
+                      alignItems: 'start',
+                      gap: '1rem',
                       fontWeight: 300,
-                      fontSize: "1.4rem",
+                      fontSize: '1.4rem',
                       lineHeight: 1.3,
                       marginBottom: 0,
                     }}
@@ -215,14 +220,14 @@ export default function FormContact() {
                       type="checkbox"
                       name="consent"
                       id="consent"
-                      style={{ width: "fit-content", marginBlock: "0" }}
+                      style={{ width: 'fit-content', marginBlock: '0' }}
                       className={
-                        errors.consent && touched.consent ? "error-field" : ""
+                        errors.consent && touched.consent ? 'error-field' : ''
                       }
                     />
                     <span>
                       {he.decode(
-                        "En cochant cette case, j'affirme avoir pris connaissance de la politique de confidentialisé de btg communication"
+                        "En cochant cette case, j'affirme avoir pris connaissance de la politique de confidentialisé de btg communication",
                       )}
                     </span>
                   </label>
