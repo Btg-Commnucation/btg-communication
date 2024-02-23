@@ -1,5 +1,5 @@
-import {ImageType} from "./Image";
-import {LinkType} from "./Link";
+import { ImageType } from './Image';
+import { LinkType } from './Link';
 
 export interface PostData {
   id: number;
@@ -7,6 +7,7 @@ export interface PostData {
   slug: string;
   permalink: string;
   date: string;
+  date_modified: string;
   excerpt: string;
   content: string;
   author: string;
@@ -28,17 +29,17 @@ export interface PostData {
     media: string;
     medium_large: string;
     large: string;
-    ["1536x1536"]: string;
-    ["2048x2048"]: string;
+    ['1536x1536']: string;
+    ['2048x2048']: string;
   };
 }
 
 export type contentType =
-  | (AcfLayout & SousTitreData & { acf_fc_layout: "sous_titre" })
-  | (AcfLayout & ImageData & { acf_fc_layout: "image" })
-  | (AcfLayout & VideoData & { acf_fc_layout: "video" })
-  | (AcfLayout & TexteData & { acf_fc_layout: "texte" })
-  | (AcfLayout & FichierData & { acf_fc_layout: "fichier_pdf" });
+  | (AcfLayout & SousTitreData & { acf_fc_layout: 'sous_titre' })
+  | (AcfLayout & ImageData & { acf_fc_layout: 'image' })
+  | (AcfLayout & VideoData & { acf_fc_layout: 'video' })
+  | (AcfLayout & TexteData & { acf_fc_layout: 'texte' })
+  | (AcfLayout & FichierData & { acf_fc_layout: 'fichier_pdf' });
 
 interface AcfLayout {
   acf_fc_layout: string;
