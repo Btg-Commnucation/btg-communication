@@ -21,6 +21,20 @@ const getPages = async () => {
   return response.data;
 };
 
+const getExpertises = async () => {
+  const response = await axios<{ date_modified: string; slug: string }[]>(
+    `${URL_API}/better-rest-endpoints/v1/domaines`,
+  );
+  return response.data;
+};
+
+const getRealisations = async () => {
+  const response = await axios<{ date_modified: string; slug: string }[]>(
+    `${URL_API}/better-rest-endpoints/v1/realisations`,
+  );
+  return response.data;
+};
+
 const getAticles = async () => {
   const response = await axios<PostData[]>(
     `${URL_API}/better-rest-endpoints/v1/posts?per_page=100`,
@@ -34,6 +48,8 @@ const getAticles = async () => {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = await getPages();
   const articles = await getAticles();
+  const expertises = await getExpertises();
+  const realisation = await getRealisations();
 
   const pagesUrls = pages.map((page) => {
     return {
@@ -49,6 +65,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
+  const expertisesUrls = expertises.map((expertise) => {
+    return {
+      url: `${baseUrl}/expertise/${expertise.slug}`,
+      lastModified: new Date(expertise.date_modified),
+    };
+  });
+
+  const realisationUrls = realisation.map((real) => {
+    return {
+      url: `${baseUrl}/realisation/${real.slug}`,
+      lastModified: new Date(real.date_modified),
+    };
+  });
+
   return [
     {
       url: baseUrl,
@@ -58,5 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...pagesUrls,
     ...articlesUrls,
+    ...expertisesUrls,
+    ...realisationUrls,
   ];
 }

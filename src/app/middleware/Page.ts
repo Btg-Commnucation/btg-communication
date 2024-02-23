@@ -1,5 +1,5 @@
-import {ImageType} from "./Image";
-import {LinkType} from "./Link";
+import { ImageType } from './Image';
+import { LinkType } from './Link';
 
 export type PageType<T> = {
   id: number;
@@ -8,6 +8,7 @@ export type PageType<T> = {
   parent: boolean;
   slug: string;
   template: string;
+  date_modified: string;
   acf: T;
   yoast: {
     yoast_wpseo_title: string;
@@ -18,8 +19,8 @@ export type PageType<T> = {
     medium: string;
     medium_large: string;
     large: string;
-    "1536x1536": string;
-    "2048x2048": string;
+    '1536x1536': string;
+    '2048x2048': string;
   };
 };
 
