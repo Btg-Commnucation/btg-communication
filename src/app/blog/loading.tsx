@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 function loading() {
   return (
@@ -14,7 +14,7 @@ function loading() {
             />
             <div className="background-pulse"></div>
           </div>
-          <h1>Chargement ...</h1>
+          <h2>Chargement ...</h2>
           <p>Notre site arrive !</p>
         </div>
       </section>
