@@ -55,6 +55,7 @@ export type RealType = {
   title: string;
   slug: string;
   date: string;
+  date_modified: string;
   acf: ACFType<ImageContentType | TextContentType | VideoContentType>;
   excerpt: string;
   content: string;
