@@ -2,10 +2,10 @@
   h1 {
     font-size: 2.4rem;
     font-weight: 600;
-    font-family: "Cabin", sans-serif;
+    font-family: 'Cabin', sans-serif;
     font-style: italic;
     text-align: center;
-    
+
     @media (max-width: 500px) {
       font-size: 2rem;
     }
@@ -71,6 +71,10 @@
       margin-inline: auto;
       bottom: -5em;
 
+      @media screen and (max-width: 500px) {
+        bottom: -3em;
+      }
+
       path {
         transition: 0.2s ease-in-out;
         transform: translate(0);
@@ -109,12 +113,17 @@
         width: 100%;
         text-align: center;
         margin-block: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
       }
 
       a {
         font-size: 2.4rem;
         font-weight: 400;
-        font-family: "Cabin", sans-serif;
+        font-family: 'Cabin', sans-serif;
         text-decoration: none;
         color: black;
       }
@@ -127,7 +136,7 @@
     @media (max-width: 768px) {
       margin-bottom: 5rem;
     }
-    
+
     @media (max-width: 500px) {
       margin-bottom: 1rem;
     }
@@ -211,7 +220,7 @@
         @media (max-width: 803px) {
           left: -21em;
         }
-        
+
         @media (max-width: 768px) {
           bottom: -28em;
           left: -21em;
@@ -238,7 +247,7 @@
       display: inline-block;
       color: white;
       background-color: black;
-      font-family: "Cabin", sans-serif;
+      font-family: 'Cabin', sans-serif;
       text-transform: uppercase;
       font-weight: 700;
       font-size: 5.6rem;
@@ -249,7 +258,7 @@
 
       &:after {
         display: inline-block;
-        content: "";
+        content: '';
         background-color: #000;
         width: 12px;
         height: 12px;

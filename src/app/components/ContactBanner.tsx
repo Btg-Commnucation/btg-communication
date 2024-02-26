@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function ContactBanner() {
   return (
@@ -7,7 +7,7 @@ export default function ContactBanner() {
         <div className="left">
           <h2>Vous avez un projet de communication ?</h2>
           <p>
-            Quelque soit votre projet, notre agence vous proposera une solution
+            Quel que soit votre projet, notre agence vous proposera une solution
             adaptée à vos besoins.
           </p>
         </div>

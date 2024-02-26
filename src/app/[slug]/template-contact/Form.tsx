@@ -227,7 +227,8 @@ export default function FormContact() {
                     />
                     <span>
                       {he.decode(
-                        "En cochant cette case, j'affirme avoir pris connaissance de la politique de confidentialisé de btg communication",
+                        "En cochant cette case, j'affirme avoir pris connaissance de la politique de confidentialité" +
+                          ' de btg communication',
                       )}
                     </span>
                   </label>

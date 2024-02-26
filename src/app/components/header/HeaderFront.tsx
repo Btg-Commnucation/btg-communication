@@ -38,7 +38,7 @@ export default function HeaderFront() {
           <Image
             src="/logo-btg.svg"
             width={64}
-            height={36}
+            height={40}
             alt="Logo de BTG communication"
             quality={80}
           />
