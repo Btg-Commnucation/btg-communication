@@ -130,7 +130,7 @@ export default function RealisationClient({
             <li key={index}>
               <Link href={`/realisations/${project.slug}`}>
                 <Image
-                  src={project.media.medium}
+                  src={project.media.large}
                   alt={project.title}
                   width={321.19}
                   height={393.94}

@@ -1,9 +1,10 @@
-import Map from "./Map";
-import axios from "axios";
-import https from "https";
-import { use } from "react";
-import Rs from "../header/Rs";
-import { OptionsType } from "@/middleware/Header";
+import Map from './Map';
+import axios from 'axios';
+import https from 'https';
+import { use } from 'react';
+import Rs from '../header/Rs';
+import { OptionsType } from '@/middleware/Header';
+import Link from 'next/link';
 
 const URL_API = process.env.URL_API;
 
@@ -15,7 +16,7 @@ const getOptions = async (): Promise<OptionsType | undefined> => {
   try {
     const response = await axios<OptionsType, any>(
       `${URL_API}/better-rest-endpoints/v1/options/acf`,
-      { httpsAgent: agent }
+      { httpsAgent: agent },
     );
     return response;
   } catch (e) {
@@ -38,7 +39,7 @@ export default function Footer() {
               agence de communication visuelle à Tours (37) et Vannes (56)
             </span>
             <span> - </span>
-            <a href="#">Mentions légales</a>
+            <Link href="/mentions-legales">Mentions légales</Link>
           </strong>
         </div>
         <Rs rsOptions={options!.data} showContact={true} />

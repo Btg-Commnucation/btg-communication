@@ -9,3 +9,14 @@ body.no-scroll {
 body {
   line-height: 1.3;
 }
+
+.mentions-pages {
+  margin-bottom: 1.5em;
+  max-width: 1155px;
+  margin-inline: auto;
+  
+  h2 {
+    font-size: 3.2rem;
+    padding: 5px 0 30px 5px;
+  }
+}

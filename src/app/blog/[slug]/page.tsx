@@ -1,16 +1,16 @@
-import { PostData } from "@/middleware/Post";
-import axios from "axios";
-import https from "https";
-import { Metadata, ResolvingMetadata } from "next";
-import he from "he";
-import BlogHeader from "@/components/blog/BlogHeader";
-import { use } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import AcfLayout from "./AcfLayout";
-import Author from "./Author";
-import BlogFooter from "@/components/blog/BlogFooter";
-import Posts from "./Posts";
+import { PostData } from '@/middleware/Post';
+import axios from 'axios';
+import https from 'https';
+import { Metadata, ResolvingMetadata } from 'next';
+import he from 'he';
+import BlogHeader from '@/components/blog/BlogHeader';
+import { use } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import AcfLayout from './AcfLayout';
+import Author from './Author';
+import BlogFooter from '@/components/blog/BlogFooter';
+import Posts from './Posts';
 
 const URL_API = process.env.URL_API;
 const agent = new https.Agent({
@@ -24,7 +24,7 @@ const getArticle = async (slug: string) => {
       `${URL_API}/better-rest-endpoints/v1/posts?per_page=100`,
       {
         httpsAgent: agent,
-      }
+      },
     );
 
     const post = response.data.find((post) => post.slug === slug);
@@ -32,41 +32,41 @@ const getArticle = async (slug: string) => {
     if (!response) {
       return {
         data: {
-          title: "Nous sommes désolés, et si nous retournions à l’accueil ?",
-          category_names: ["Erreur"],
-          media: { large: "error" },
+          title: 'Nous sommes désolés, et si nous retournions à l’accueil ?',
+          category_names: ['Erreur'],
+          media: { large: 'error' },
           acf: {
-            accroche: "Erreur",
+            accroche: 'Erreur',
             image_haut_article: null,
           },
         },
         status: 404,
-        errorMessage: "La page que vous demandez n’existe pas",
+        errorMessage: 'La page que vous demandez n’existe pas',
       };
     }
 
-    return { data: post, status: 200, errorMessage: "", posts: response.data };
+    return { data: post, status: 200, errorMessage: '', posts: response.data };
   } catch (error) {
     console.log(error);
     return {
       data: {
-        title: "error",
-        category_names: ["Erreur"],
-        media: { large: "error" },
+        title: 'error',
+        category_names: ['Erreur'],
+        media: { large: 'error' },
         acf: {
-          accroche: "Erreur",
+          accroche: 'Erreur',
           image_haut_article: null,
         },
       },
       status: 500,
-      errorMessage: "error",
+      errorMessage: 'error',
     };
   }
 };
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = params;
 
@@ -74,11 +74,11 @@ export async function generateMetadata(
     `${URL_API}/better-rest-endpoints/v1/posts`,
     {
       httpsAgent: agent,
-    }
+    },
   ).then((response) => response.data.find((page) => page.slug === slug));
   if (!data) {
     return Promise.resolve({
-      title: "BTG Communication - 404",
+      title: 'BTG Communication - 404',
       description:
         "BTG Communication - Oups, la page que vous demandez n'existe pas",
     });
@@ -100,7 +100,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     if (text.length <= length) {
       return text;
     }
-    return text.slice(0, length) + "...";
+    return text.slice(0, length) + '...';
   };
 
   return (
@@ -139,7 +139,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     src={
                       data!.acf.image_haut_article.url
                         ? data!.acf.image_haut_article.url
-                        : "/fall-back-image.png"
+                        : '/fall-back-image.png'
                     }
                     width={833}
                     height={370}

@@ -292,13 +292,13 @@
     }
 
     .domains-list {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
       justify-content: center;
       align-items: flex-start;
       gap: 2rem;
 
       @media (max-width: 1150px) {
-        display: grid;
         grid-template-columns: repeat(4, 1fr);
         place-items: center;
         width: 100%;

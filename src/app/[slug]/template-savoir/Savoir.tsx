@@ -1,15 +1,14 @@
-import Image from "next/image";
-import he from "he";
-import Link from "next/link";
-import ListSavoir from "./ListSavoir";
-import {PageType, SavoirType} from "@/middleware/Page";
-import Banner from "@/components/Banner";
-import ScrollToTop from "@/components/ScrollToTop";
-import ContactBanner from "@/components/ContactBanner";
-import Button from "@/components/Button";
+import Image from 'next/image';
+import he from 'he';
+import Link from 'next/link';
+import ListSavoir from './ListSavoir';
+import { PageType, SavoirType } from '@/middleware/Page';
+import Banner from '@/components/Banner';
+import ScrollToTop from '@/components/ScrollToTop';
+import ContactBanner from '@/components/ContactBanner';
+import Button from '@/components/Button';
 
-export default function Savoir({page}: { page: PageType<SavoirType> }) {
-
+export default function Savoir({ page }: { page: PageType<SavoirType> }) {
   const getSlug = (url: string) => {
     const match = url.match(/\/([^/]+)\/?$/);
     return match ? match[1] : null;
@@ -17,7 +16,7 @@ export default function Savoir({page}: { page: PageType<SavoirType> }) {
 
   return (
     <main id="savoir">
-      <ScrollToTop/>
+      <ScrollToTop />
       <Banner
         title={page.title}
         media={page.media}
@@ -33,12 +32,12 @@ export default function Savoir({page}: { page: PageType<SavoirType> }) {
           />
           <div
             className="right"
-            style={{height: `${page.acf.image_de_fond.height}px`}}
+            style={{ height: `${page.acf.image_de_fond.height}px` }}
           >
             <div className="supperpo">
               <h2>L&apos;agence</h2>
               <div
-                dangerouslySetInnerHTML={{__html: page.acf.texte_agence}}
+                dangerouslySetInnerHTML={{ __html: page.acf.texte_agence }}
               ></div>
               <ul className="link">
                 <li>
@@ -59,14 +58,21 @@ export default function Savoir({page}: { page: PageType<SavoirType> }) {
                   __html: page.acf.texte_accompagnement,
                 }}
               ></div>
-              <Button link={page.acf.lien_equipe.url} text={page.acf.lien_equipe.title}
-                      target={page.acf.lien_equipe.target} name="link-equipe"/>
+              <Button
+                link={page.acf.lien_equipe.url}
+                text={page.acf.lien_equipe.title}
+                target={page.acf.lien_equipe.target}
+                name="link-equipe"
+              />
             </div>
           </div>
         </div>
       </section>
-      <ListSavoir competences={page.acf.competences} lien={page.acf.lien_realisations}/>
-      <ContactBanner/>
+      <ListSavoir
+        competences={page.acf.competences}
+        lien={page.acf.lien_realisations}
+      />
+      <ContactBanner />
       <section className="bottom">
         <div className="container">
           <Image
@@ -77,7 +83,7 @@ export default function Savoir({page}: { page: PageType<SavoirType> }) {
           />
           <div
             className="bottom-text"
-            dangerouslySetInnerHTML={{__html: page.acf.agence_bas_texte}}
+            dangerouslySetInnerHTML={{ __html: page.acf.agence_bas_texte }}
           ></div>
         </div>
       </section>
@@ -85,7 +91,7 @@ export default function Savoir({page}: { page: PageType<SavoirType> }) {
         <div className="container">
           <div className="texte">
             <Image
-              src="/wave-radiant.gif"
+              src="/vague-degrade.svg"
               alt="Vague en dégradée animée"
               width={188}
               height={37}
@@ -97,7 +103,7 @@ export default function Savoir({page}: { page: PageType<SavoirType> }) {
               }}
             ></div>
             <Image
-              src="/wave-radiant.gif"
+              src="/vague-degrade.svg"
               alt="Vague en dégradée animée"
               width={188}
               height={37}

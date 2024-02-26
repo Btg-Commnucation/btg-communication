@@ -14,8 +14,6 @@ import Link from 'next/link';
 
 const URL_API = process.env.URL_API;
 
-export const revalidate = 3200;
-
 export type ImageContentType = {
   acf_fc_layout: string;
   image: {
@@ -82,7 +80,7 @@ const getRealisation = async (
 }> => {
   try {
     const response = await axios.get(
-      `${URL_API}/better-rest-endpoints/v1/realisations`,
+      `${URL_API}/better-rest-endpoints/v1/realisations?per_page=100`,
     );
     return {
       allData: response.data,
@@ -100,7 +98,7 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const data = await axios(
-    `${URL_API}/better-rest-endpoints/v1/realisations`,
+    `${URL_API}/better-rest-endpoints/v1/realisations?per_page=100`,
   ).then((response) =>
     response.data.find((real: RealType) => real.slug === params.slug),
   );
@@ -154,25 +152,31 @@ export default function Page({ params }: { params: { slug: string } }) {
                 </svg>
                 Retour aux projets
               </Link>
-              <Image
-                src={data!.acf.poster_single.url}
-                alt={data!.acf.poster_single.alt}
-                width={data!.acf.poster_single.width}
-                height={data!.acf.poster_single.height}
-              />
+              {data && data.acf.poster_single && (
+                <Image
+                  src={data.acf.poster_single.url}
+                  alt={data.acf.poster_single.alt}
+                  width={data.acf.poster_single.width}
+                  height={data.acf.poster_single.height}
+                />
+              )}
             </div>
           </section>
           <section className="top">
             <div className="container">
-              <h1>{he.decode(data!.title)}</h1>
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{ __html: data!.content }}
-              ></div>
-              <div
-                className="accroche"
-                dangerouslySetInnerHTML={{ __html: data!.acf.accroche }}
-              ></div>
+              {data && data.title && <h1>{he.decode(data.title)}</h1>}
+              {data && data.content && (
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{ __html: data!.content }}
+                ></div>
+              )}
+              {data && data.acf.accroche && (
+                <div
+                  className="accroche"
+                  dangerouslySetInnerHTML={{ __html: data!.acf.accroche }}
+                ></div>
+              )}
               <Image
                 src="/wave-radiant.gif"
                 alt="Vague en dégradé"
@@ -185,27 +189,32 @@ export default function Page({ params }: { params: { slug: string } }) {
           <section className="acf-layouts">
             <div className="container">
               <ul>
-                {data!.acf.content.map(
-                  (
-                    item: ImageContentType | TextContentType | VideoContentType,
-                    index: number,
-                  ) => (
-                    <li key={index}>
-                      {isImageContentType(item) ? (
-                        <AcfImage image={item} />
-                      ) : isTextContentType(item) ? (
-                        <AcfText text={item} />
-                      ) : (
-                        <AcfVideo video={item} />
-                      )}
-                    </li>
-                  ),
-                )}
+                {data &&
+                  data.acf.content &&
+                  data.acf.content.map(
+                    (
+                      item:
+                        | ImageContentType
+                        | TextContentType
+                        | VideoContentType,
+                      index: number,
+                    ) => (
+                      <li key={index}>
+                        {isImageContentType(item) ? (
+                          <AcfImage image={item} />
+                        ) : isTextContentType(item) ? (
+                          <AcfText text={item} />
+                        ) : (
+                          <AcfVideo video={item} />
+                        )}
+                      </li>
+                    ),
+                  )}
               </ul>
             </div>
           </section>
           <ContactBanner />
-          <MoreProject projects={allData!.slice(0, 4)} />
+          {allData && <MoreProject projects={allData.slice(0, 4)} />}
         </main>
       ) : (
         <main id="realisation">

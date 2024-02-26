@@ -9,6 +9,7 @@ import he from 'he';
 import Savoir from './template-savoir/Savoir';
 import Realisation from './template-real/Realisation';
 import Home from '@/page';
+import Error from '@/error';
 import {
   ClientType,
   EquipeType,
@@ -17,12 +18,12 @@ import {
   SavoirType,
   VilleType,
 } from '@/middleware/Page';
-import Custom404 from './custom404';
 import Equipe from './template-equipe/Equipe';
 import Ville from './template-ville/Ville';
 import { ContactType } from '@/middleware/Contact';
 import Contact from './template-contact/Contact';
 import { redirect } from 'next/navigation';
+import Mention from '@/[slug]/Mention';
 
 const URL_API = process.env.URL_API;
 const ADMIN_URL = process.env.ADMIN_URL;
@@ -129,7 +130,10 @@ export default function Page({ params }: { params: { slug: string } }) {
     return (
       <>
         <Header />
-        <Custom404 data={data} errorMessage={errorMessage} status={status} />
+        <Error
+          error={{ message: 'erreur 404', name: '404' }}
+          reset={() => console.log('erreur')}
+        />
         <Footer />
       </>
     );
@@ -155,6 +159,17 @@ export default function Page({ params }: { params: { slug: string } }) {
       )}
       {data?.template === 'template-contact' && (
         <Contact data={data as PageType<ContactType>} />
+      )}
+      {data?.template === 'default' && (
+        <Mention
+          data={
+            data as {
+              title: string;
+              content: string;
+              media: { '2048x2048': string };
+            }
+          }
+        />
       )}
       {data?.slug === 'accueil' && (
         <>
