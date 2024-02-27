@@ -51,7 +51,9 @@ export default function ListSavoir({
                   <span className="exemple">Exemple : </span>
                   {he.decode(competence.exemple)}
                 </p>
-                <Link href={`/${createSlug(competence.lien_competence.url)}`}>
+                <Link
+                  href={`/notre-expertise/${createSlug(competence.lien_competence.url)}`}
+                >
                   En savoir plus
                 </Link>
               </div>

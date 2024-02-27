@@ -45,6 +45,10 @@
         height: auto;
       }
     }
+    
+    @media (max-width: 500px) {
+      margin-top: 2rem;
+    }
 
     .text {
       position: absolute;
@@ -75,7 +79,7 @@
       @media (max-width: 770px) {
         max-width: 95%;
         margin-top: -5rem;
-        padding-inline: 1rem;
+        padding-inline: 2.6rem;
         padding-bottom: 0;
         margin-inline: auto;
       }
@@ -137,6 +141,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: -5rem;
 
     @media (max-width: 1462px) {
       padding-inline: 10rem;
@@ -154,10 +159,15 @@
       font-size: 5.6rem;
       text-align: center;
       font-family: "Cabin", sans-serif;
-      margin-bottom: 5.8rem;
+      margin-bottom: 2rem;
+      padding-bottom: 0;
       
       &.vannes-title {
-        margin-block: 8rem 5.1rem;
+        margin-block: 6rem 2rem;
+        
+        @media (max-width: 750px) {
+          margin-top: 4rem;
+        }
       }
 
       @media (max-width: 986px) {
@@ -195,6 +205,7 @@
 
       @media (max-width: 750px) {
         grid-template-columns: 1fr;
+        margin-top: 2rem;
       }
 
       div:last-child {
@@ -265,6 +276,10 @@
       
       &.less-top {
         top: -17rem;
+        
+        @media (max-width: 750px) {
+          top: -10rem;
+        }
       }
 
       @media (max-width: 789px) {
@@ -284,15 +299,40 @@
 
     h2 {
       text-align: left;
-      margin-bottom: 5.4rem;
+      margin-bottom: 2rem;
+      line-height: 1.1;
       
-      @media (max-width: 500px) {
+      @media (max-width: 750px) {
+        margin-top: -5rem;
         margin-bottom: 2rem;
       }
     }
   }
 
   .communication-digitale {
+    position: relative;
+    
+    &::after {
+      content: "";
+      background: url("/vague-degrade.svg") no-repeat center;
+      background-size: cover;
+      position: absolute;
+      width: 296.25px;
+      height: 57.15px;
+      bottom: 2%;
+      left: 25%;
+      
+      @media (max-width: 1476px) {
+        background-size: contain;
+        bottom: 55%;
+        left: 32.5%;
+      }
+      
+      @media (max-width: 789px) {
+        display: none;
+      }
+    }
+    
     @media (max-width: 1702px) {
       margin-top: 14.2rem;
     }
@@ -304,7 +344,9 @@
     h2 {
       text-align: left;
       margin-bottom: 5.4rem;
-      @media (max-width: 500px) {
+      padding-top: 0;
+      
+      @media (max-width: 750px) {
         margin-bottom: 2rem;
       }
     }
@@ -313,9 +355,10 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       column-gap: 5.5rem;
-      row-gap: 15.4rem;
+      //row-gap: 15.4rem;
       max-width: 85%;
       margin-inline: auto;
+      row-gap: 0;
 
       @media (max-width: 1142px) {
         max-width: 95%;
@@ -324,6 +367,12 @@
       @media (max-width: 1000px) {
         grid-template-columns: 1fr;
         row-gap: 5rem;
+      }
+      
+      ul {
+        @media (max-width: 750px) {
+          margin-left: 2rem;
+        }
       }
       
       .txt p {
@@ -433,6 +482,12 @@
         left: -3.7rem;
         padding-block: 0;
       }
+      
+      @media (max-width: 500px) {
+        width: 110%;
+        padding-left: 0;
+        left: -1rem;
+      }
     }
 
     h2 {
@@ -458,7 +513,7 @@
       
       @media (max-width: 789px) {
         margin-inline: auto;
-        margin-bottom: 8rem;
+        margin-bottom: 4rem;
       }
       
       @media (max-width: 500px) {
@@ -495,6 +550,14 @@
         gap: 11.8rem;
         max-width: 90%;
       }
+      
+      @media (max-width: 750px) {
+        gap: 5rem;
+      }
+      
+      @media (max-width: 500px) {
+        padding-inline: 1rem;
+      }
     }
 
     h4 {
@@ -502,6 +565,10 @@
 
       &::after {
         display: none;
+      }
+      
+      @media (max-width: 500px) {
+        margin-bottom: 0.5em;
       }
     }
 
@@ -517,6 +584,10 @@
         bottom: 0;
         top: 0;
         margin-block: auto;
+        
+        @media (max-width: 1106px) {
+          display: none !important;
+        }
       }
 
       @media (max-width: 1247px) {
