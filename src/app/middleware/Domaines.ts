@@ -1,5 +1,5 @@
-import { ImageType } from "./Image";
-import { LinkType } from "./Link";
+import { ImageType } from './Image';
+import { LinkType } from './Link';
 
 export type DomainesType<T> = {
   id: number;
@@ -10,6 +10,7 @@ export type DomainesType<T> = {
   content: string;
   acf: {
     mini_titre: string;
+    contact_title: string;
     sous_titre: string;
     titre: string;
     logo_noir: ImageType;
@@ -26,35 +27,35 @@ export type DomainesType<T> = {
     thumbnail: string;
     medium: string;
     large: string;
-    "2048x2048": string;
+    '2048x2048': string;
   };
 };
 
 export type ContentType<T> = {
-  acf_fc_layout: "contenu";
+  acf_fc_layout: 'contenu';
   contenu: string;
   contenu_flex: T[] | false;
 };
 
 export interface ContentLine {
-  acf_fc_layout: "lien";
+  acf_fc_layout: 'lien';
   lien: LinkType;
 }
 
 export interface ContentTextePlusType {
-  acf_fc_layout: "texte_avec_plus";
+  acf_fc_layout: 'texte_avec_plus';
   texte: string;
 }
 
 export interface ContentTypeImage {
-  acf_fc_layout: "image";
+  acf_fc_layout: 'image';
   image: ImageType;
   un_texte_sous_limage: string;
   texte_sous_image: string;
 }
 
 export interface ContentTypeFondJauneType {
-  acf_fc_layout: "fond_jaune";
+  acf_fc_layout: 'fond_jaune';
   colonne_ou_ligne: string;
   image: ImageType;
   contenu_fond_jaune: string;
@@ -62,7 +63,7 @@ export interface ContentTypeFondJauneType {
 }
 
 export interface SliderType {
-  acf_fc_layout: "slider";
+  acf_fc_layout: 'slider';
   titre: string;
   visuels: {
     image: ImageType;
@@ -70,7 +71,7 @@ export interface SliderType {
 }
 
 export interface ContentFondImageType {
-  acf_fc_layout: "image_de_fond";
+  acf_fc_layout: 'image_de_fond';
   image_de_fond: ImageType;
   colonne_ou_ligne: string;
   contenu_en_ligne: string;

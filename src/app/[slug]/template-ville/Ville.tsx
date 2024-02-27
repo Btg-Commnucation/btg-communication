@@ -53,7 +53,9 @@ export default function Ville({ data }: { data: PageType<VilleType> }) {
             </div>
           )}
           {acf.titre_fond_jaune_vannes && (
-            <h2 className="vannes-title">{he.decode(acf.titre_fond_jaune)}</h2>
+            <h2 className="vannes-title">
+              {he.decode(acf.titre_fond_jaune_vannes)}
+            </h2>
           )}
           <div className="conseils">
             {acf.textes_fond_jaune.map((element, index) => (
@@ -81,7 +83,9 @@ export default function Ville({ data }: { data: PageType<VilleType> }) {
             dangerouslySetInnerHTML={{ __html: acf.texte_post_fond_jaune }}
           />
         </section>
-        <section className="communication-digitale">
+        <section
+          className={`communication-digitale ${acf.ville === 'Vannes' && 'wave'}`}
+        >
           <h2>{he.decode(acf.titre_fond_blanc)}</h2>
           <div className="content">
             <div

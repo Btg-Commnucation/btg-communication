@@ -2,7 +2,7 @@
   .container {
     max-width: min(75%, 1105px);
     padding: 0;
-    
+
     @media (max-width: 767px) {
       max-width: 95%;
     }
@@ -10,7 +10,7 @@
 
   h3 {
     font-size: 2.4rem;
-    font-family: "Exo", sans-serif;
+    font-family: 'Exo', sans-serif;
     margin-bottom: 2.1rem;
   }
 
@@ -30,7 +30,7 @@
 
     p {
       margin-left: 2.5em;
-      
+
       @media (max-width: 500px) {
         margin-left: 0;
       }
@@ -43,7 +43,7 @@
     padding-inline: 4.5rem;
     position: relative;
     margin-top: 9.9rem;
-    
+
     @media (max-width: 750px) {
       padding-inline: 2.5rem;
     }
@@ -145,7 +145,7 @@
   font-weight: 700;
 
   span {
-    background: #E3775B;
+    background: #e3775b;
     width: 85px;
     height: 85px;
     border-radius: 50%;
@@ -166,15 +166,15 @@
   border-radius: 2px;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: "Cabin", sans-serif;
+  font-family: 'Cabin', sans-serif;
   font-size: var(--text-font-size);
-  padding: 3.9rem 6.8rem;
+  padding: 2.5rem 3.3rem;
   display: flow-root;
   width: fit-content;
   transition: 0.2s ease-in-out;
   position: relative;
   margin: 2.9rem 0 6.3rem auto;
-  
+
   @media (max-width: 500px) {
     padding: 1.9rem 2rem;
     font-size: var(--text-font-size);
@@ -183,15 +183,15 @@
 
   svg {
     position: absolute;
-    width: 38.39px;
-    height: 31.81px;
+    width: 44px;
+    height: 44px;
     bottom: 5px;
-    right: -26px;
+    right: -33px;
     z-index: -1;
+    transition: 0.2s ease-in-out;
 
     g {
-      fill: #E3775B;
-      transition: 0.2s ease-in-out;
+      fill: #e3775b;
     }
   }
 
@@ -199,7 +199,7 @@
     background: black;
     color: white;
 
-    g {
+    svg {
       transform: translate(12px);
     }
   }
