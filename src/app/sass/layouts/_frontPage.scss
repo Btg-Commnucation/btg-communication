@@ -280,17 +280,17 @@
 
       @media (max-width: 625px) {
         font-size: 3.3rem;
-        right: unset;
-        left: calc(60% - 40px);
-        top: -8em;
+        top: -16.63em;
+        right: -1.5em;
       }
 
       @media (max-width: 573px) {
-        left: calc(65% - 40px);
+        right: -2.5em;
       }
 
       @media (max-width: 526px) {
         left: calc(70% - 40px);
+        top: -15em;
       }
 
       @media (max-width: 486px) {
@@ -298,15 +298,14 @@
       }
       @media (max-width: 485px) {
         left: calc(65% - 40px);
-        top: -6em;
+        top: -12em;
       }
       @media (max-width: 445px) {
         left: calc(72% - 40px);
-        top: -6em;
       }
       @media (max-width: 395px) {
         left: calc(85% - 40px);
-        top: -6em;
+        top: -8em;
       }
       @media (max-width: 342px) {
         left: calc(100% - 40px);

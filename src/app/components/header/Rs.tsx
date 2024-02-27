@@ -1,5 +1,6 @@
-import { rsOptions } from "@/middleware/Header";
-import Image from "next/image";
+import { rsOptions } from '@/middleware/Header';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Rs({
   rsOptions,
@@ -12,20 +13,15 @@ export default function Rs({
     <ul className="rs">
       {showContact && (
         <li>
-          <a
-            href="mailto:contact@btg-communication.fr"
-            rel="noreferrer noopenener"
-          >
-            <span className="screen-reader-text">
-              Nous envoyer directement un email
-            </span>
+          <Link href={`/contact`}>
+            <span className="screen-reader-text">Nous contacter</span>
             <Image
               width={48}
               height={56}
               src="/contact-degrade.svg"
               alt="Image d'une enveloppe"
             />
-          </a>
+          </Link>
         </li>
       )}
       <li>
