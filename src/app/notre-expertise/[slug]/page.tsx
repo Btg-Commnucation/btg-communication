@@ -1,10 +1,10 @@
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
-import axios from "axios";
-import he from "he";
-import { use } from "react";
-import OtherDomain from "./OtherDomain";
-import Custom404 from "@/[slug]/custom404";
+import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
+import axios from 'axios';
+import he from 'he';
+import { use } from 'react';
+import OtherDomain from './OtherDomain';
+import Custom404 from '@/[slug]/custom404';
 import {
   ContentFondImageType,
   ContentLine,
@@ -14,14 +14,14 @@ import {
   ContentTypeImage,
   DomainesType,
   SliderType,
-} from "@/middleware/Domaines";
-import Banner from "@/components/Banner";
-import GrayBackground from "./GrayBackground";
-import ContactBanner from "@/components/ContactBanner";
-import AcfContent from "./AcfLayout/AcfContent";
-import Slider from "./AcfLayout/Slider";
-import ExpertiseForm from "@/components/ExpertiseForm";
-import AcfBackgroundImage from "./AcfLayout/AcfBackgroundImage";
+} from '@/middleware/Domaines';
+import Banner from '@/components/Banner';
+import GrayBackground from './GrayBackground';
+import ContactBanner from '@/components/ContactBanner';
+import AcfContent from './AcfLayout/AcfContent';
+import Slider from './AcfLayout/Slider';
+import ExpertiseForm from '@/components/ExpertiseForm';
+import AcfBackgroundImage from './AcfLayout/AcfBackgroundImage';
 
 export type Domaines = DomainesType<
   | ContentType<
@@ -41,7 +41,7 @@ export type allDomaineType = Domaines[];
 const URL_API = process.env.URL_API;
 
 const getDomaines = async (
-  slug: string
+  slug: string,
 ): Promise<{
   data: Domaines | undefined;
   allData: allDomaineType;
@@ -49,7 +49,7 @@ const getDomaines = async (
 }> => {
   try {
     const response = await axios.get(
-      `${URL_API}/better-rest-endpoints/v1/domaines`
+      `${URL_API}/better-rest-endpoints/v1/domaines`,
     );
     return {
       data: response.data.find((domaine: Domaines) => domaine.slug === slug),
@@ -68,14 +68,14 @@ export async function generateMetadata({
 }) {
   const data = await axios(`${URL_API}/better-rest-endpoints/v1/domaines`).then(
     (response) =>
-      response.data.find((domaine: Domaines) => domaine.slug === params.slug)
+      response.data.find((domaine: Domaines) => domaine.slug === params.slug),
   );
 
   return {
     title:
       data && data.title
         ? he.decode(data.title)
-        : "BTG Communication, agence de communication à 360°",
+        : 'BTG Communication, agence de communication à 360°',
     description: he.decode(data?.yoast.yoast_wpseo_metadesc),
   };
 }
@@ -120,10 +120,10 @@ export default function Page({ params }: { params: { slug: string } }) {
           contenu={data!.acf.contenu_fond_gris}
           image={data!.acf.image_fond_gris}
         />
-        <ContactBanner />
+        <ContactBanner title={data!.acf.contact_title} />
         {data!.acf.contenu_flexible.map((item, key) => (
           <>
-            {item.acf_fc_layout === "contenu" && (
+            {item.acf_fc_layout === 'contenu' && (
               <AcfContent
                 key={key}
                 item={
@@ -136,10 +136,10 @@ export default function Page({ params }: { params: { slug: string } }) {
                 }
               />
             )}
-            {item.acf_fc_layout === "image_de_fond" && (
+            {item.acf_fc_layout === 'image_de_fond' && (
               <AcfBackgroundImage data={item as ContentFondImageType} />
             )}
-            {item.acf_fc_layout === "slider" && (
+            {item.acf_fc_layout === 'slider' && (
               <Slider data={item as SliderType} />
             )}
           </>
