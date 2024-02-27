@@ -25,12 +25,15 @@ export type PageType<T> = {
 };
 
 export interface VilleType {
+  ville: 'Tours' | 'Vannes';
   sous_titre: string;
   image_premier_paragraphe: ImageType;
   texte_premier_paragraphe: string;
   titre_premier_paragraphe: string;
   titre_fond_jaune: string;
   description_fond_jaune: string;
+  textes_fond_jaune_vannes: { texte: string }[];
+  titre_fond_jaune_vannes: string;
   textes_fond_jaune: { texte: string }[];
   image_post_fond_jaune: ImageType;
   texte_post_fond_jaune: string;
@@ -43,6 +46,8 @@ export interface VilleType {
   titre_fond_jaune_2: string;
   texte_fond_jaune_un: string;
   texte_fond_jaune_deux: string;
+  texte_fond_jaune_trois: string;
+  carte: ImageType;
 }
 
 export type TemoignagesType = {

@@ -57,18 +57,11 @@ const getPages = async (slug: string): Promise<Response> => {
   }
   try {
     const response = await axios<
-      PageType<
-        ClientType | SavoirType | EquipeType | VilleType | ContactType
-      >[],
+      PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>,
       any
-    >(`${URL_API}/better-rest-endpoints/v1/pages?per_page=100`, {
+    >(`${URL_API}/better-rest-endpoints/v1/page/${slug}`, {
       httpsAgent: agent,
-    }).then((response) =>
-      response.data.find(
-        (page: PageType<ClientType | SavoirType | EquipeType | ContactType>) =>
-          page.slug === slug,
-      ),
-    );
+    });
 
     if (!response) {
       return {
@@ -78,7 +71,7 @@ const getPages = async (slug: string): Promise<Response> => {
       };
     }
 
-    return { data: response, status: 200, errorMessage: '' };
+    return { data: response.data, status: 200, errorMessage: '' };
   } catch (e) {
     console.log(`Page error fetch Page : ${e}`);
     return { data: e, status: 500, errorMessage: 'Un problème est survenue' };
@@ -93,19 +86,11 @@ export async function generateMetadata({
   const { slug } = params;
 
   const data = await axios<
-    PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>[],
+    PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>,
     any
-  >(`${URL_API}/better-rest-endpoints/v1/pages?per_page=100`, {
+  >(`${URL_API}/better-rest-endpoints/v1/page/${slug}`, {
     httpsAgent: agent,
-  }).then((response) =>
-    response.data.find(
-      (
-        page: PageType<
-          ClientType | SavoirType | EquipeType | VilleType | ContactType
-        >,
-      ) => page.slug === slug,
-    ),
-  );
+  });
   if (!data) {
     return Promise.resolve({
       title: 'BTG Communication - 404',
@@ -114,7 +99,7 @@ export async function generateMetadata({
     });
   }
 
-  const { title, yoast } = data;
+  const { title, yoast } = data.data;
 
   return Promise.resolve({
     title: he.decode(title),

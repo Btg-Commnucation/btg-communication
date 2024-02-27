@@ -91,21 +91,33 @@
       font-family: "Cabin", sans-serif;
       padding: 0.5rem 1rem 2rem 1rem;
       max-width: 1250px;
-      left: 44px;
-      bottom: -71px;
+      left: -2%;
+      bottom: -21%;
+      transform: rotate(-90deg);
       line-height: 1.2;
       text-transform: uppercase;
       text-align: left;
+      
+      @media (max-width: 1462px) {
+        left: -8%;
+      }
 
       @media (max-width: 1200px) {
         font-size: 3.6rem;
         max-width: 660px;
         bottom: 0;
+        left: -5%;
       }
 
       @media (max-width: 996px) {
         z-index: 4;
-        bottom: -50px;
+        bottom: -18%;
+      }
+      
+      @media (max-width: 827px) {
+        transform: rotate(0);
+        left: 5.5%;
+        bottom: -9.8%;
       }
 
       @media (max-width: 770px) {
@@ -143,6 +155,10 @@
       text-align: center;
       font-family: "Cabin", sans-serif;
       margin-bottom: 5.8rem;
+      
+      &.vannes-title {
+        margin-block: 8rem 5.1rem;
+      }
 
       @media (max-width: 986px) {
         font-size: 3.6rem;
@@ -235,6 +251,10 @@
         display: none;
       }
     }
+    
+    &.no-after::after {
+      display: none;
+    }
 
     img {
       position: relative;
@@ -242,6 +262,10 @@
 
       top: -57rem;
       left: -20%;
+      
+      &.less-top {
+        top: -17rem;
+      }
 
       @media (max-width: 789px) {
         min-width: 100%;
@@ -391,6 +415,25 @@
     background: #fcd647;
     padding-block: 7.1rem 7.8rem;
     margin-bottom: 9.9rem;
+    
+    .map-container {
+      background: #fcd647;
+      position: relative;
+      left: -7.5%;
+      top: -9%;
+      padding-top: 3rem;
+      padding-left: 3rem;
+      width: 120%;
+      height: 110%;
+      
+      @media (max-width: 1106px) {
+        width: 115%;
+        height: 100%;
+        top: 0;
+        left: -3.7rem;
+        padding-block: 0;
+      }
+    }
 
     h2 {
       background: black;
@@ -402,6 +445,12 @@
       margin-bottom: 12.4rem;
       text-transform: uppercase;
       text-align: left;
+      
+      &.center-title {
+        text-align: center;
+        margin-inline: auto;
+        width: fit-content;
+      }
       
       @media (max-width: 1396px) {
         max-width: 80%;
@@ -463,6 +512,12 @@
       width: 110%;
       bottom: 1.3em;
       left: -5%;
+      
+      &.center {
+        bottom: 0;
+        top: 0;
+        margin-block: auto;
+      }
 
       @media (max-width: 1247px) {
         bottom: 1em;
