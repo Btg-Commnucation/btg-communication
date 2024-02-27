@@ -47,9 +47,9 @@ export default function HeaderFront() {
       <strong>- Le bureau très graphique -</strong>
       <div className="header-rightContainer">
         <div className="contact-icons">
-          <p>contact</p>
           <div className="flip-card">
             <Link href={'/contact'} className="front-face">
+              <p>contact</p>
               <span className="screen-reader-text">Nous contacter</span>
               <Image
                 src="/contact.svg"
@@ -62,8 +62,8 @@ export default function HeaderFront() {
           </div>
         </div>
         <div className="menu" ref={menuRef}>
-          <p>menu</p>
           <div id="menu-img" onClick={openMenu}>
+            <p>menu</p>
             <div className="front-face">
               <Image
                 src="/menu.svg"

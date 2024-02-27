@@ -226,6 +226,10 @@ header {
     font-size: 1.4rem;
     text-transform: uppercase;
     transition: 0.2s ease-in-out;
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    
+    color: black;
     
     @media (max-width: 503px) {
       bottom: unset;
