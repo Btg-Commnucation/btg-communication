@@ -23,7 +23,9 @@ export default function AcfContent({ item }: { item: ItemType }) {
 
   return (
     <section className="acf contentType">
-      <div className="container">
+      <div
+        className={`container ${item.contenu_flex && item.contenu_flex.map((content) => (content.acf_fc_layout === 'fond_jaune' && content.colonne_ou_ligne === 'Ligne' ? '' : 'large-container'))}`}
+      >
         {item.contenu && (
           <article dangerouslySetInnerHTML={{ __html: item.contenu }}></article>
         )}

@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { PostData } from "@/middleware/Post";
-import Image from "next/image";
-import Link from "next/link";
-import he from "he";
-import { format, parseISO } from "date-fns";
-import { fr } from "date-fns/locale";
-import { Membre } from "@/middleware/Page";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
-import { useSearchParams } from "next/navigation";
-import slugify from "slugify";
-import unslugify from "unslugify";
+import { useEffect, useState } from 'react';
+import { PostData } from '@/middleware/Post';
+import Image from 'next/image';
+import Link from 'next/link';
+import he from 'he';
+import { format, parseISO } from 'date-fns';
+import { fr } from 'date-fns/locale';
+import { Membre } from '@/middleware/Page';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
+import { useSearchParams } from 'next/navigation';
+import slugify from 'slugify';
+import unslugify from 'unslugify';
 
 const slug = (categoryName: string): string => {
   const categorySlug = slugify(categoryName, {
-    replacement: "-",
+    replacement: '-',
     lower: true,
     remove: /[*+~.()'"!:@]/g,
   });
   return categorySlug;
 };
 
-const Post = ({
+export const Post = ({
   article,
   priority,
   filter,
@@ -36,24 +36,24 @@ const Post = ({
     if (text.length <= length) {
       return text;
     }
-    return text.slice(0, length) + "...";
+    return text.slice(0, length) + '...';
   };
 
   const formatDate = (isoDate: string): string => {
     const date = parseISO(isoDate);
-    return `publié le ${format(date, "dd MMMM yyyy", { locale: fr })}`;
+    return `publié le ${format(date, 'dd MMMM yyyy', { locale: fr })}`;
   };
 
   return (
     <>
       {!filter ? (
         <div className="post-content">
-          <Link href={`/blog/${article.slug}`}>
+          <Link href={`/blog/article/${article.slug}`}>
             <Image
               src={
                 article.media.large
                   ? article.media.large
-                  : "/fall-back-image.png"
+                  : '/fall-back-image.png'
               }
               alt={he.decode(article.title)}
               width={833}
@@ -63,7 +63,7 @@ const Post = ({
             />
           </Link>
           <div className="card-content">
-            <Link href={`/blog/${article.slug}`} className="card-title">
+            <Link href={`/blog/article/${article.slug}`} className="card-title">
               {he.decode(article.title)}
             </Link>
             <p className="post-cateogry">
@@ -85,15 +85,17 @@ const Post = ({
       ) : (
         <>
           {article.category_names.find(
-            (category) => slug(category) === filter
+            (category) => slug(category) === filter,
           ) && (
             <div className="post-content">
-              <Link href={`/blog/${article.slug}`}>
+              <Link
+                href={`/blog/${slug(article.category_names[0])}/${article.slug}`}
+              >
                 <Image
                   src={
                     article.media.large
                       ? article.media.large
-                      : "/fall-back-image.png"
+                      : '/fall-back-image.png'
                   }
                   alt={he.decode(article.title)}
                   width={833}
@@ -103,7 +105,10 @@ const Post = ({
                 />
               </Link>
               <div className="card-content">
-                <Link href={`/blog/${article.slug}`} className="card-title">
+                <Link
+                  href={`/blog/${slug(article.category_names[0])}/${article.slug}`}
+                  className="card-title"
+                >
                   {he.decode(article.title)}
                 </Link>
                 <p className="post-cateogry">
@@ -129,13 +134,13 @@ const Post = ({
   );
 };
 
-const Authors = ({ members }: { members: Membre[] }) => {
+export const Authors = ({ members }: { members: Membre[] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
       initial: 0,
-      renderMode: "performance",
+      renderMode: 'performance',
       loop: true,
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel);
@@ -144,13 +149,13 @@ const Authors = ({ members }: { members: Membre[] }) => {
         setLoaded(true);
       },
     },
-    []
+    [],
   );
 
   const removeAccents = (input: string): string => {
     return input
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase();
   };
 
@@ -165,7 +170,7 @@ const Authors = ({ members }: { members: Membre[] }) => {
                   src={
                     member.image_blog_membre.url
                       ? member.image_blog_membre.url
-                      : "/fall-back-image.png"
+                      : '/fall-back-image.png'
                   }
                   alt={member.image_blog_membre.alt}
                   width={254}
@@ -182,7 +187,7 @@ const Authors = ({ members }: { members: Membre[] }) => {
                   <div className="btn-container">
                     <Link
                       href={`/specialistes-communication#${removeAccents(
-                        member.nom_membre
+                        member.nom_membre,
                       )}`}
                       className="btn"
                     >
@@ -190,7 +195,7 @@ const Authors = ({ members }: { members: Membre[] }) => {
                     </Link>
                     <Link
                       href={`/blog/bio?auteur=${removeAccents(
-                        member.nom_membre
+                        member.nom_membre,
                       )}`}
                       className="btn"
                     >
@@ -213,7 +218,7 @@ const Authors = ({ members }: { members: Membre[] }) => {
                 <button
                   key={idx}
                   onClick={() => instanceRef.current?.moveToIdx(idx)}
-                  className={"dot " + (currentSlide === idx ? "active" : "")}
+                  className={'dot ' + (currentSlide === idx ? 'active' : '')}
                 ></button>
               );
             })}
@@ -224,137 +229,137 @@ const Authors = ({ members }: { members: Membre[] }) => {
   );
 };
 
-export default function Blog({
-  articles,
-  members,
-}: {
-  articles: PostData[];
-  members: Membre[];
-}) {
-  const searchParams = useSearchParams();
-  const guideArticles = articles.filter((article) => {
-    return article.category_names.find(
-      (category) => slug(category) === "guides"
-    );
-  });
+// export default function Blog({
+//   articles,
+//   members,
+// }: {
+//   articles: PostData[];
+//   members: Membre[];
+// }) {
+//   const searchParams = useSearchParams();
+//   const guideArticles = articles.filter((article) => {
+//     return article.category_names.find(
+//       (category) => slug(category) === 'guides',
+//     );
+//   });
 
-  const [search, setSearch] = useState(searchParams.get("category"));
+//   const [search, setSearch] = useState(searchParams.get('category'));
 
-  const categoryName = (slug: string): string => {
-    const name = unslugify(slug);
-    return name;
-  };
+//   const categoryName = (slug: string): string => {
+//     const name = unslugify(slug);
+//     return name;
+//   };
 
-  useEffect(() => {
-    setSearch(searchParams.get("category"));
-  }, [search, searchParams]);
+//   useEffect(() => {
+//     setSearch(searchParams.get('category'));
+//   }, [search, searchParams]);
 
-  return (
-    <>
-      {!search ? (
-        <>
-          <section className="hero-banner">
-            <div className="blog-container">
-              <h1>Retrouvez l&apos;actualités de la communication</h1>
-              <div className="articles-container-recommended">
-                <h2>
-                  Nos derniers <span>Articles</span>
-                </h2>
-                <div className="recommended-items">
-                  {articles.slice(0, 3).map((article) => (
-                    <Post
-                      article={article}
-                      key={`last-${article.id}`}
-                      priority={true}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="all-articles__container">
-                <Link href="/blog?category=all" className="all-articles">
-                  Tous nos articles
-                </Link>
-              </div>
-            </div>
-          </section>
-          <section className="mostRead">
-            <div className="blog-container">
-              <h2>
-                Les articles les <span>plus lus</span>
-              </h2>
-              <div className="recommended-items">
-                {articles.map((article) => (
-                  <>
-                    {article.acf &&
-                      article.acf.article_plus_lu &&
-                      article.acf.article_plus_lu === "Oui" && (
-                        <Post
-                          article={article}
-                          key={`mostRead-${article.id}`}
-                          priority={false}
-                        />
-                      )}
-                  </>
-                ))}
-              </div>
-            </div>
-          </section>
-          <section className="authors">
-            <div className="blog-container">
-              <Authors members={members} />
-            </div>
-          </section>
-          <section className="guides">
-            <div className="blog-container">
-              <h2>Tuto / guides</h2>
-              <div className="recommended-items">
-                {guideArticles.slice(0, 2).map((article) => (
-                  <Post
-                    article={article}
-                    key={`guides-${article.id}`}
-                    priority={false}
-                    filter="guides"
-                  />
-                ))}
-              </div>
-              <div className="guides-link">
-                <Link href="/blog?category=guides">Tous nos guides</Link>
-              </div>
-            </div>
-          </section>
-        </>
-      ) : (
-        <>
-          <section className="hero-banner filtered-hero">
-            <div className="blog-container">
-              <h1>
-                {search === "all" ? "Tous les articles" : categoryName(search)}
-              </h1>
-            </div>
-          </section>
-          <section className="posts filtered-posts">
-            <div className="blog-container">
-              <Image
-                src="/wave-radiant.gif"
-                alt="Vague"
-                width={188}
-                height={36}
-                className="wave"
-              />
-              <div className="recommended-items">
-                {articles.map((article) => (
-                  <Post
-                    article={article}
-                    key={`bottom-${article.id}`}
-                    priority={true}
-                    filter={search === "all" ? null : search}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        </>
-      )}
-    </>
-  );
-}
+//   return (
+//     <>
+//       {!search ? (
+//         <>
+//           <section className="hero-banner">
+//             <div className="blog-container">
+//               <h1>Retrouvez l&apos;actualités de la communication</h1>
+//               <div className="articles-container-recommended">
+//                 <h2>
+//                   Nos derniers <span>Articles</span>
+//                 </h2>
+//                 <div className="recommended-items">
+//                   {articles.slice(0, 3).map((article) => (
+//                     <Post
+//                       article={article}
+//                       key={`last-${article.id}`}
+//                       priority={true}
+//                     />
+//                   ))}
+//                 </div>
+//               </div>
+//               <div className="all-articles__container">
+//                 <Link href="/blog?category=all" className="all-articles">
+//                   Tous nos articles
+//                 </Link>
+//               </div>
+//             </div>
+//           </section>
+//           <section className="mostRead">
+//             <div className="blog-container">
+//               <h2>
+//                 Les articles les <span>plus lus</span>
+//               </h2>
+//               <div className="recommended-items">
+//                 {articles.map((article) => (
+//                   <>
+//                     {article.acf &&
+//                       article.acf.article_plus_lu &&
+//                       article.acf.article_plus_lu === 'Oui' && (
+//                         <Post
+//                           article={article}
+//                           key={`mostRead-${article.id}`}
+//                           priority={false}
+//                         />
+//                       )}
+//                   </>
+//                 ))}
+//               </div>
+//             </div>
+//           </section>
+//           <section className="authors">
+//             <div className="blog-container">
+//               <Authors members={members} />
+//             </div>
+//           </section>
+//           <section className="guides">
+//             <div className="blog-container">
+//               <h2>Tuto / guides</h2>
+//               <div className="recommended-items">
+//                 {guideArticles.slice(0, 2).map((article) => (
+//                   <Post
+//                     article={article}
+//                     key={`guides-${article.id}`}
+//                     priority={false}
+//                     filter="guides"
+//                   />
+//                 ))}
+//               </div>
+//               <div className="guides-link">
+//                 <Link href="/blog?category=guides">Tous nos guides</Link>
+//               </div>
+//             </div>
+//           </section>
+//         </>
+//       ) : (
+//         <>
+//           <section className="hero-banner filtered-hero">
+//             <div className="blog-container">
+//               <h1>
+//                 {search === 'all' ? 'Tous les articles' : categoryName(search)}
+//               </h1>
+//             </div>
+//           </section>
+//           <section className="posts filtered-posts">
+//             <div className="blog-container">
+//               <Image
+//                 src="/wave-radiant.gif"
+//                 alt="Vague"
+//                 width={188}
+//                 height={36}
+//                 className="wave"
+//               />
+//               <div className="recommended-items">
+//                 {articles.map((article) => (
+//                   <Post
+//                     article={article}
+//                     key={`bottom-${article.id}`}
+//                     priority={true}
+//                     filter={search === 'all' ? null : search}
+//                   />
+//                 ))}
+//               </div>
+//             </div>
+//           </section>
+//         </>
+//       )}
+//     </>
+//   );
+// }

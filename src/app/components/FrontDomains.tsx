@@ -1,18 +1,18 @@
-import {AcfFrontPage} from "@/page";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import he from "he";
-import Button from "@/components/Button";
+import { AcfFrontPage } from '@/page';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import he from 'he';
+import Button from '@/components/Button';
 
 const DomainComponent = ({
-                           skills,
-                         }: {
-  skills: AcfFrontPage["competences"];
+  skills,
+}: {
+  skills: AcfFrontPage['competences'];
 }) => {
   const urls = skills.map((skill) => new URL(skill.competence.url));
   const pathnames = urls.map((url) => url.pathname);
-  const parts = pathnames.map((pathname) => pathname.split("/"));
+  const parts = pathnames.map((pathname) => pathname.split('/'));
   const lastParts = parts.map((part) => part[part.length - 2]);
 
   return (
@@ -38,13 +38,13 @@ const DomainComponent = ({
 };
 
 export default function FrontDomains({
-                                       skills,
-                                       skillsText,
-                                       skillsLink,
-                                     }: {
-  skills: AcfFrontPage["competences"];
-  skillsText: AcfFrontPage["texte_competences"];
-  skillsLink: AcfFrontPage["lien_competences"];
+  skills,
+  skillsText,
+  skillsLink,
+}: {
+  skills: AcfFrontPage['competences'];
+  skillsText: AcfFrontPage['texte_competences'];
+  skillsLink: AcfFrontPage['lien_competences'];
 }) {
   return (
     <section className="front-skills">
@@ -60,12 +60,16 @@ export default function FrontDomains({
           <h2>Ce que l&apos;on fait</h2>
           <div
             className="desc"
-            dangerouslySetInnerHTML={{__html: skillsText}}
+            dangerouslySetInnerHTML={{ __html: skillsText }}
           ></div>
-          <Button link={skillsLink.url} text={skillsLink.title} target={skillsLink.target}/>
+          <Button
+            link={skillsLink.url}
+            text={skillsLink.title}
+            target={skillsLink.target}
+          />
         </div>
       </div>
-      <DomainComponent skills={skills}/>
+      <DomainComponent skills={skills} />
     </section>
   );
 }

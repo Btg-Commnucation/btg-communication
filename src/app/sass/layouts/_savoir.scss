@@ -141,6 +141,10 @@
         font-size: var(--text-font-size);
         font-weight: 300;
         
+        @media (max-width: 1200px) {
+          padding-bottom: 5rem
+        }
+        
         @media (max-width: 780px) {
           width: 100%;
           padding-bottom: 35px;
