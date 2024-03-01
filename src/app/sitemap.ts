@@ -3,6 +3,7 @@ import https from 'https';
 import axios from 'axios';
 import { PageType } from '@/middleware/Page';
 import { PostData } from '@/middleware/Post';
+import { MenuData, MenuType } from './middleware/Header';
 
 const URL_API = process.env.URL_API;
 const agent = new https.Agent({
@@ -45,11 +46,20 @@ const getAticles = async () => {
 
   return response.data;
 };
+
+const getBlogNav = async () => {
+  const response = await axios<MenuData[]>(
+    `${URL_API}/better-rest-endpoints/v1/menus/location/blog-actualites`,
+  );
+  return response.data;
+};
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = await getPages();
   const articles = await getAticles();
   const expertises = await getExpertises();
   const realisation = await getRealisations();
+  const blogNav = await getBlogNav();
 
   const pagesUrls = pages.map((page) => {
     return {
@@ -60,7 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const articlesUrls = articles.map((article) => {
     return {
-      url: `${baseUrl}/blog/${article.slug}`,
+      url: `${baseUrl}/blog/article/${article.slug}`,
       lastModified: new Date(article.date_modified),
     };
   });
@@ -79,6 +89,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
+  const blogNavUrls = blogNav.map((nav) => {
+    return {
+      url: `${baseUrl}/blog/${nav.slug}`,
+      lastModified: new Date(),
+    };
+  });
+
   return [
     {
       url: baseUrl,
@@ -90,5 +107,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...articlesUrls,
     ...expertisesUrls,
     ...realisationUrls,
+    ...blogNavUrls,
   ];
 }

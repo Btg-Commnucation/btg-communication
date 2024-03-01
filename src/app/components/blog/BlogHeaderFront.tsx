@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { MenuData } from "@/middleware/Header";
-import Link from "next/link";
-import MenuToggler from "./MenuToggler";
-import { useEffect, useState } from "react";
-import he from "he";
+import { MenuData } from '@/middleware/Header';
+import Link from 'next/link';
+import MenuToggler from './MenuToggler';
+import { useEffect, useState } from 'react';
+import he from 'he';
 
-export default function BlogHeaderFront({element}: { element: MenuData[] }) {
+export default function BlogHeaderFront({ element }: { element: MenuData[] }) {
   const [windowWidth, setWindowWidth] = useState<number>(0);
-  const [ state, setState ] = useState("");
+  const [state, setState] = useState('');
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -21,13 +21,15 @@ export default function BlogHeaderFront({element}: { element: MenuData[] }) {
             {element &&
               element.map((item, index: number) => (
                 <li key={index}>
-                  <Link href={`/blog?category=${item.slug}`}>{he.decode(item.title)}</Link>
+                  <Link href={`/blog/${item.slug}`}>
+                    {he.decode(item.title)}
+                  </Link>
                 </li>
               ))}
           </ul>
         </nav>
       ) : (
-        <MenuToggler/>
+        <MenuToggler />
       )}
     </>
   );

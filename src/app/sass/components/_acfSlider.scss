@@ -80,9 +80,13 @@
   height: var(--slide-height);
   width: 214px;
   
+  @media (max-width: 1200px) {
+    height: auto !important;
+  }
+  
   @media (max-width: 500px) {
     width: 100%;
-    height: 100%;
+    height: 100% !important;
   }
 }
 

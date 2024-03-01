@@ -8,8 +8,8 @@ import { Metadata } from 'next';
 import he from 'he';
 import Savoir from './template-savoir/Savoir';
 import Realisation from './template-real/Realisation';
+import { redirect } from 'next/navigation';
 import Home from '@/page';
-import Error from '@/error';
 import {
   ClientType,
   EquipeType,
@@ -22,7 +22,6 @@ import Equipe from './template-equipe/Equipe';
 import Ville from './template-ville/Ville';
 import { ContactType } from '@/middleware/Contact';
 import Contact from './template-contact/Contact';
-import { redirect } from 'next/navigation';
 import Mention from '@/[slug]/Mention';
 
 const URL_API = process.env.URL_API;
@@ -55,27 +54,18 @@ const getPages = async (slug: string): Promise<Response> => {
   if (ADMIN_URL && slug === 'wp-admin') {
     redirect(ADMIN_URL);
   }
-  try {
-    const response = await axios<
-      PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>,
-      any
-    >(`${URL_API}/better-rest-endpoints/v1/page/${slug}`, {
-      httpsAgent: agent,
-    });
+  const response = await axios<
+    PageType<ClientType | SavoirType | EquipeType | VilleType | ContactType>,
+    any
+  >(`${URL_API}/better-rest-endpoints/v1/page/${slug}`, {
+    httpsAgent: agent,
+  });
 
-    if (!response) {
-      return {
-        data: 'Nous sommes désolés, et si nous retournions à l’accueil ?',
-        status: 404,
-        errorMessage: 'La page que vous demandez n’existe pas :’(',
-      };
-    }
-
-    return { data: response.data, status: 200, errorMessage: '' };
-  } catch (e) {
-    console.log(`Page error fetch Page : ${e}`);
-    return { data: e, status: 500, errorMessage: 'Un problème est survenue' };
+  if (!response || !response.data.id) {
+    throw new Error('Failed to fetch data');
   }
+
+  return { data: response.data, status: 200, errorMessage: '' };
 };
 
 export async function generateMetadata({
@@ -91,7 +81,7 @@ export async function generateMetadata({
   >(`${URL_API}/better-rest-endpoints/v1/page/${slug}`, {
     httpsAgent: agent,
   });
-  if (!data) {
+  if (!data || !data.data.id) {
     return Promise.resolve({
       title: 'BTG Communication - 404',
       description:
@@ -110,19 +100,6 @@ export async function generateMetadata({
 export default function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const { data, status, errorMessage } = use(getPages(slug));
-
-  if (status !== 200) {
-    return (
-      <>
-        <Header />
-        <Error
-          error={{ message: 'erreur 404', name: '404' }}
-          reset={() => console.log('erreur')}
-        />
-        <Footer />
-      </>
-    );
-  }
 
   return (
     <>

@@ -7,10 +7,11 @@ import BlogHeader from '@/components/blog/BlogHeader';
 import { use } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import AcfLayout from './AcfLayout';
-import Author from './Author';
 import BlogFooter from '@/components/blog/BlogFooter';
-import Posts from './Posts';
+import slugify from 'slugify';
+import { fr } from 'date-fns/locale';
+import { format, parseISO } from 'date-fns';
+import unslugify from 'unslugify';
 
 const URL_API = process.env.URL_API;
 const agent = new https.Agent({
@@ -27,37 +28,55 @@ const getArticle = async (slug: string) => {
       },
     );
 
-    const post = response.data.find((post) => post.slug === slug);
+    if (slug === 'all') {
+      return { data: response.data, status: 200, errorMessage: '' };
+    }
+
+    const post = response.data.filter((post) =>
+      post.category_names.find(
+        (category) => slug === slugify(category, { lower: true }),
+      ),
+    );
 
     if (!response) {
       return {
-        data: {
-          title: 'Nous sommes désolés, et si nous retournions à l’accueil ?',
-          category_names: ['Erreur'],
-          media: { large: 'error' },
-          acf: {
-            accroche: 'Erreur',
-            image_haut_article: null,
+        data: [
+          {
+            title: 'Nous sommes désolés, et si nous retournions à l’accueil ?',
+            slug: 'error',
+            category_names: ['Erreur'],
+            media: { large: 'error' },
+            excerpt: 'La page que vous demandez n’existe pas',
+            date: 'error',
+            acf: {
+              accroche: 'Erreur',
+              image_haut_article: null,
+            },
           },
-        },
+        ],
         status: 404,
         errorMessage: 'La page que vous demandez n’existe pas',
       };
     }
 
-    return { data: post, status: 200, errorMessage: '', posts: response.data };
+    return { data: post, status: 200, errorMessage: '' };
   } catch (error) {
     console.log(error);
     return {
-      data: {
-        title: 'error',
-        category_names: ['Erreur'],
-        media: { large: 'error' },
-        acf: {
-          accroche: 'Erreur',
-          image_haut_article: null,
+      data: [
+        {
+          title: 'error',
+          slug: 'error',
+          category_names: ['Erreur'],
+          excerpt: 'Erreur',
+          media: { large: 'error' },
+          date: 'error',
+          acf: {
+            accroche: 'Erreur',
+            image_haut_article: null,
+          },
         },
-      },
+      ],
       status: 500,
       errorMessage: 'error',
     };
@@ -75,7 +94,13 @@ export async function generateMetadata(
     {
       httpsAgent: agent,
     },
-  ).then((response) => response.data.find((page) => page.slug === slug));
+  ).then((response) =>
+    response.data.find((post) =>
+      post.category_names.find(
+        (category) => slug === slugify(category, { lower: true }),
+      ),
+    ),
+  );
   if (!data) {
     return Promise.resolve({
       title: 'BTG Communication - 404',
@@ -87,14 +112,31 @@ export async function generateMetadata(
   const { title, yoast } = data;
 
   return Promise.resolve({
-    title: he.decode(title),
-    description: he.decode(yoast.yoast_wpseo_metadesc),
+    title: 'Tous nos articles de la catégorie' + slug,
+    description: 'Retrouvez tous nos articles de la catégorie' + slug,
   });
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const { data, posts } = use(getArticle(slug));
+  const { data } = use(getArticle(slug));
+  const categoryName = (slug: string): string => {
+    const name = unslugify(slug);
+    return name;
+  };
+
+  const formatedSearch = (element: string): string => {
+    const temp = element
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9 ]/g, '');
+    return slugify(temp, { replacement: '-', lower: true });
+  };
+
+  const formatDate = (isoDate: string): string => {
+    const date = parseISO(isoDate);
+    return `publié le ${format(date, 'dd MMMM yyyy', { locale: fr })}`;
+  };
 
   const truncateText = (text: string, length: number): string => {
     if (text.length <= length) {
@@ -106,74 +148,69 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <>
       <BlogHeader />
-      {(data as PostData) && (
-        <main id="single">
-          <section className="hero-banner">
-            <div className="background"></div>
-            <div className="blog-container">
-              <ul className="breadcrumbs">
-                <li>
-                  <Link href="/">BTG Communication</Link>
-                </li>
-                <li>
-                  <Link href="/">{he.decode(data!.category_names[0])}</Link>
-                </li>
-                <li>{he.decode(truncateText(data!.title, 20))}</li>
-              </ul>
-              <div className="title">
-                <h1>{he.decode(data!.title)}</h1>
-                <Image
-                  src="/wave-radiant.gif"
-                  alt="Vague en dégradé Rose et violet"
-                  width={188}
-                  height={36}
-                />
-              </div>
+      <main id="blog">
+        <section className="hero-banner filtered-hero">
+          <div className="blog-container">
+            <h1>{categoryName(slug)}</h1>
+          </div>
+        </section>
+        <section className="posts filtered-posts">
+          <div className="blog-container">
+            <Image
+              src="/wave-radiant.gif"
+              alt="Vague"
+              width={188}
+              height={36}
+              className="wave"
+            />
+            <div className="recommended-items">
+              {data.map((article) => (
+                <>
+                  <div className="post-content">
+                    <Link href={`/blog/article/${article.slug}`}>
+                      <Image
+                        src={
+                          article.media.large
+                            ? article.media.large
+                            : '/fall-back-image.png'
+                        }
+                        alt={he.decode(article.title)}
+                        width={833}
+                        height={496}
+                        quality={100}
+                      />
+                    </Link>
+                    <div className="card-content">
+                      <Link
+                        href={`/blog/article/${article.slug}`}
+                        className="card-title"
+                      >
+                        {he.decode(article.title)}
+                      </Link>
+                      <p className="post-cateogry">
+                        {he.decode(article.category_names[0])}
+                      </p>
+                      <div
+                        className="card-excerpt"
+                        dangerouslySetInnerHTML={
+                          article.excerpt
+                            ? { __html: article.excerpt }
+                            : {
+                                __html: truncateText(article.acf.accroche, 199),
+                              }
+                        }
+                      ></div>
+                      <div className="card-date">
+                        {he.decode(formatDate(article.date))}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))}
             </div>
-          </section>
-          <article>
-            <div className="blog-container">
-              <section className="post">
-                {data!.acf.image_haut_article ? (
-                  <Image
-                    src={
-                      data!.acf.image_haut_article.url
-                        ? data!.acf.image_haut_article.url
-                        : '/fall-back-image.png'
-                    }
-                    width={833}
-                    height={370}
-                    alt={data!.title}
-                    className="thumbnail"
-                    priority={true}
-                  />
-                ) : (
-                  <Image
-                    src={data!.media.large}
-                    width={833}
-                    height={370}
-                    alt={data!.title}
-                    className="thumbnail"
-                  />
-                )}
-                <div
-                  className="exo-light-18"
-                  dangerouslySetInnerHTML={{ __html: data!.acf.accroche }}
-                ></div>
-                <AcfLayout data={data as PostData} />
-              </section>
-              <Posts
-                posts={posts as PostData[]}
-                articleCategory={data!.category_names[0] as string}
-              />
-              <Link href="/contact" className="article-btn">
-                Nous contacter
-              </Link>
-            </div>
-          </article>
-          {<Author data={data as PostData} />}
-        </main>
-      )}
+          </div>
+        </section>
+      </main>
       <BlogFooter />
     </>
   );
