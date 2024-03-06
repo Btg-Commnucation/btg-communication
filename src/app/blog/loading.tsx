@@ -14,7 +14,7 @@ function loading() {
             />
             <div className="background-pulse"></div>
           </div>
-          <h2>Chargement ...</h2>
+          <p>Chargement ...</p>
           <p>Notre site arrive !</p>
         </div>
       </section>
